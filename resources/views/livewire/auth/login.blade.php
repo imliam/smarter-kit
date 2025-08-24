@@ -20,6 +20,14 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     public bool $remember = false;
 
+    public function boot()
+    {
+        if (config('default_user.prefill_login')) {
+            $this->email = config('default_user.email');
+            $this->password = config('default_user.password');
+        }
+    }
+
     /**
      * Handle an incoming authentication request.
      */
