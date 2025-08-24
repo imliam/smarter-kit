@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace {{ namespace }};
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -8,9 +10,6 @@ use Tests\TestCase;
 
 class {{ class }} extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
     public function test_example(): void
     {
         $response = $this->get('/');
