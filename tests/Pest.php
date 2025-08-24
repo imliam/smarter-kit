@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Sleep;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Sleep;
 
 /*
 |--------------------------------------------------------------------------
