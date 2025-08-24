@@ -39,6 +39,9 @@ jobs:
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
           pnpm install
 
+      - name: Run Rector
+        run: vendor/bin/rector
+
       - name: Run Pint
         run: vendor/bin/pint
 
