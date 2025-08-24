@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::get('/', function () {
-    throw new Exception('Oh no! Something went horribly wrong.');
-
     return view('welcome');
 })->name('home');
 
