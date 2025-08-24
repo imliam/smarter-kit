@@ -10,6 +10,7 @@ test('login screen can be rendered', function () {
 });
 
 test('users can authenticate using the login screen', function () {
+    config(['default_user.prefill_login' => false]);
     $user = User::factory()->create();
 
     $response = LivewireVolt::test('auth.login')
