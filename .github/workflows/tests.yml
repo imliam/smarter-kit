@@ -58,3 +58,6 @@ jobs:
 
       - name: Run Tests
         run: ./vendor/bin/pest
+
+      - name: Run Javascript Tests
+        run: pnpm run vitest
