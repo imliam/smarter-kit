@@ -45,13 +45,7 @@ chmod -R 775 storage
 To start the application locally, run:
 
 ```sh
-php artisan serve
-```
-
-If you want to automatically recompile assets when they change, run:
-
-```sh
-npm run dev
+php artisan solo
 ```
 
 Then, open your browser and navigate to `http://localhost:8000`
