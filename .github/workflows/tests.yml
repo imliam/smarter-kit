@@ -60,4 +60,4 @@ jobs:
         run: ./vendor/bin/pest
 
       - name: Run Javascript Tests
-        run: pnpm run vitest
+        run: pnpm run test
