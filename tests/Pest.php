@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Sleep;
 use Illuminate\Support\Facades\Http;
 
 /*
@@ -19,6 +20,7 @@ pest()->extend(Tests\TestCase::class)
     ->beforeEach(function () {
         $this->withoutVite();
         Http::preventStrayRequests();
+        Sleep::fake();
     });
 
 /*
