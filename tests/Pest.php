@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -16,6 +18,7 @@ pest()->extend(Tests\TestCase::class)
     ->in('Feature')
     ->beforeEach(function () {
         $this->withoutVite();
+        Http::preventStrayRequests();
     });
 
 /*
