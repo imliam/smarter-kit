@@ -43,36 +43,13 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     <form method="POST" wire:submit="register" class="flex flex-col gap-6">
         <!-- Name -->
-        <flux:input
-            wire:model="name"
-            label="Name"
-            type="text"
-            required
-            autofocus
-            autocomplete="name"
-            placeholder="Full name"
-        />
+        <flux:input wire:model="name" label="Name" type="text" required autofocus autocomplete="name" placeholder="Full name" />
 
         <!-- Email Address -->
-        <flux:input
-            wire:model="email"
-            label="Email address"
-            type="email"
-            required
-            autocomplete="email"
-            placeholder="email@example.com"
-        />
+        <flux:input wire:model="email" label="Email address" type="email" required autocomplete="email" placeholder="email@example.com" />
 
         <!-- Password -->
-        <flux:input
-            wire:model="password"
-            label="Password"
-            type="password"
-            required
-            autocomplete="new-password"
-            placeholder="Password"
-            viewable
-        />
+        <flux:input wire:model="password" label="Password" type="password" required autocomplete="new-password" placeholder="Password" viewable />
 
         <!-- Confirm Password -->
         <flux:input
@@ -86,13 +63,11 @@ new #[Layout('components.layouts.auth')] class extends Component {
         />
 
         <div class="flex items-center justify-end">
-            <flux:button type="submit" variant="primary" class="w-full">
-                Create account
-            </flux:button>
+            <flux:button type="submit" variant="primary" class="w-full">Create account</flux:button>
         </div>
     </form>
 
-    <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
+    <div class="space-x-1 text-center text-sm text-zinc-600 rtl:space-x-reverse dark:text-zinc-400">
         <span>Already have an account?</span>
         <flux:link :href="route('login')" wire:navigate>Log in</flux:link>
     </div>

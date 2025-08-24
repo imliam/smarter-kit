@@ -30,19 +30,12 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     <form method="POST" wire:submit="sendPasswordResetLink" class="flex flex-col gap-6">
         <!-- Email Address -->
-        <flux:input
-            wire:model="email"
-            label="Email Address"
-            type="email"
-            required
-            autofocus
-            placeholder="email@example.com"
-        />
+        <flux:input wire:model="email" label="Email Address" type="email" required autofocus placeholder="email@example.com" />
 
         <flux:button variant="primary" type="submit" class="w-full">Email password reset link</flux:button>
     </form>
 
-    <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-400">
+    <div class="space-x-1 text-center text-sm text-zinc-400 rtl:space-x-reverse">
         <span>Or, return to</span>
         <flux:link :href="route('login')" wire:navigate>log in</flux:link>
     </div>

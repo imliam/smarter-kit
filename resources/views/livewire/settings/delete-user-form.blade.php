@@ -40,7 +40,8 @@ new class extends Component {
                 <flux:heading size="lg">Are you sure you want to delete your account?</flux:heading>
 
                 <flux:subheading>
-                    Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.
+                    Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you
+                    would like to permanently delete your account.
                 </flux:subheading>
             </div>
 
