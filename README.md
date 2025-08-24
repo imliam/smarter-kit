@@ -9,7 +9,7 @@ Smarter Kit is a Laravel starter kit with a handful of pre-configured features a
 
 ## Installation
 
-As pre-requisites, you are expected to have [Git](https://git-scm.com/), [Composer](https://getcomposer.org/) and [Node.js](https://nodejs.org/) installed.
+As pre-requisites, you are expected to have [Git](https://git-scm.com/), [Composer](https://getcomposer.org/), [Node.js](https://nodejs.org/) and [pnpm](https://pnpm.io/) installed.
 
 Run the following commands:
 
@@ -20,10 +20,10 @@ cd smarter-kit
 
 # Install Dependencies
 composer install
-npm install
+pnpm install
 
 # Build assets
-npm run build
+pnpm run build
 
 # Create an environment file and generate an application key
 cp .env.example .env
