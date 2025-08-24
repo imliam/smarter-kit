@@ -573,4 +573,39 @@ $pages->assertNoJavascriptErrors()->assertNoConsoleLogs();
 # Application Context
 
 Smarter Kit is a Laravel starter kit with a handful of pre-configured features and tools to help build applications.
+
+## Development Guidelines
+
+- When implementing any new functionality that would affect the project's installation process, update the readme to reflect the new steps
+- Never include comments in the code unless absolutely necessary. If you feel like you need to add a comment, consider if the code can be refactored to be more readable instead
+- Mimic the code style of the existing project, use existing libraries and utilities, and follow existing patterns
+- Focus on creating code that provides an excellent developer experience (DX), good autocompletion, type safety, and comprehensive docblocks
+
+
+=== .ai/testing rules ===
+
+# Testing
+
+- If asked to write a test, never start with implementation. If asked to write a test, just write the test
+- Every time a test has been updated, run the test
+- When writing a test, don't start fixing other parts of the tests or implementation code - even if you see a linter error you really want to fix. Don't get distracted, and focus on writing the test you have been asked to write
+- If you have created new code, generate a test for it
+- If you have refactored or restructured code, run the tests afterwards
+- Prefer feature tests when testing models
+- Don't bother making tests for things that are basic Laravel behaviour (eg. casts on a model)
+
+
+=== .ai/php rules ===
+
+# Write great PHP code
+
+- Use the latest PHP features, such as short closures, nullsafe operator, constructor promotion and match expressions
+- Never include a docblock where a typehint is sufficient - only use it if the docblock can be more specific (for example `@param array<string, string> $data` or `@return array<string, string>`)
+- Favor dependency injection over facades, and avoid using facades unless absolutely necessary
+- Implement proper error handling and logging:
+  - Use Laravel's exception handling and logging features
+  - Create custom exceptions when necessary
+  - Use try-catch blocks for expected exceptions
+- Always prefer to import classes using the `use` statement rather than using fully qualified class names (FQCN) in the code
+- After writing or changing any code, run `composer fix` to automatically fix any code style issues
 </laravel-boost-guidelines>
