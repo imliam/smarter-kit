@@ -38,6 +38,9 @@ php artisan db:seed
 # Create the public storage symlink and ensure it is writable
 php artisan storage:link
 chmod -R 775 storage
+
+# Ensure the bootstrap cache is writeable
+chmod -R 775 bootstrap/cache
 ```
 
 ## Running the Application
