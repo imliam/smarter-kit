@@ -6,14 +6,14 @@ use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__ . '/app',
-        __DIR__ . '/bootstrap',
-        __DIR__ . '/config',
-        __DIR__ . '/database',
-        __DIR__ . '/resources/views',
-        __DIR__ . '/routes',
+        __DIR__.'/app',
+        __DIR__.'/bootstrap',
+        __DIR__.'/config',
+        __DIR__.'/database',
+        __DIR__.'/resources/views',
+        __DIR__.'/routes',
     ])
-    ->withSkipPath(__DIR__ . '/bootstrap/cache')
+    ->withSkipPath(__DIR__.'/bootstrap/cache')
     ->withPhpSets()
     ->withPreparedSets(
         deadCode: true,
