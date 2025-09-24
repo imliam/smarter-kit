@@ -60,3 +60,57 @@ Run the application's PHP test suite (testing, static analysis, etc.) with:
 ```sh
 composer test
 ```
+
+## Deployments
+
+### First-Time Setup
+
+When deploying the application to a new server for the first time, follow the installation instructions above. You can also refer to the [Laravel Deployment Documentation](https://laravel.com/docs/deployment) for additional guidance.
+
+You should ensure your environment variables are configured appropriately for your environment. The default `.env.example` provided is for development purposes, so in production you may want to set the following:
+
+```sh
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://your-production-url.com
+```
+
+Add a cron job to run the Laravel scheduler every minute. You can do this by adding the following line to your server's crontab (edit it by running `crontab -e`):
+
+```
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+```
+
+### Updating an Existing Deployment
+
+When updating an existing deployment, you can follow these steps:
+
+```sh
+# Put the application into maintenance mode
+php artisan down --refresh=30 || true
+
+# Pull the latest changes from your version control system
+git pull origin main
+
+# Install PHP dependencies
+composer install --no-dev --optimize-autoloader --no-interaction --no-scripts --prefer-dist
+
+# Install Node.js dependencies and build assets
+pnpm install --prod
+pnpm run build
+
+# Run database migrations
+php artisan migrate --force
+
+# Clear any cached configuration, cache entries, classes, events, routes, and views
+php artisan optimize:clear
+
+# Cache configuration, events, routes, and views
+php artisan optimize
+
+# Restart the queue workers (if applicable)
+php artisan queue:restart
+
+# Bring the application out of maintenance mode
+php artisan up
+```
