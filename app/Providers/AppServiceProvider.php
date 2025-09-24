@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
@@ -25,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
         Vite::useAggressivePrefetching();
         URL::forceHttps(app()->isProduction());
         DB::prohibitDestructiveCommands(app()->isProduction());
+        Model::unguard();
     }
 }
