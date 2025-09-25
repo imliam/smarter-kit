@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
@@ -30,5 +32,7 @@ class AppServiceProvider extends ServiceProvider
         Model::unguard();
 
         MorphMapGenerator::resolveUsing(fn (Model $model) => $model->getTable());
+
+        Date::use(CarbonImmutable::class);
     }
 }
