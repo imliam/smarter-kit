@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Illuminate\Support\Sleep;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ pest()->extend(Tests\TestCase::class)
         $this->withoutVite();
         Http::preventStrayRequests();
         Sleep::fake();
+        Str::createRandomStringsNormally();
+        Str::createUlidsNormally();
+        Str::createUuidsNormally();
     });
 
 /*
