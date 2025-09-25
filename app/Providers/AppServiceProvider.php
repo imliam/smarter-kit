@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
+use Spatie\LaravelMorphMapGenerator\MorphMapGenerator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
         URL::forceHttps(app()->isProduction());
         DB::prohibitDestructiveCommands(app()->isProduction());
         Model::unguard();
+
+        MorphMapGenerator::resolveUsing(fn ($model) => $model->getTable());
     }
 }
