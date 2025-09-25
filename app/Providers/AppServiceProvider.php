@@ -29,6 +29,6 @@ class AppServiceProvider extends ServiceProvider
         DB::prohibitDestructiveCommands(app()->isProduction());
         Model::unguard();
 
-        MorphMapGenerator::resolveUsing(fn ($model) => $model->getTable());
+        MorphMapGenerator::resolveUsing(fn (Model $model) => $model->getTable());
     }
 }

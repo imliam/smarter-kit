@@ -59,6 +59,9 @@ jobs:
       - name: Run Tests
         run: ./vendor/bin/pest
 
+      - name: Run PHPStan
+        run: ./vendor/bin/phpstan analyse --error-format=github --no-progress
+
       - name: Run Javascript Tests
         run: pnpm run test
         env:
