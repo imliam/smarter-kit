@@ -1,0 +1,50 @@
+/*
+|--------------------------------------------------------------------------
+| Development Styles
+|--------------------------------------------------------------------------
+|
+| The styles in this sheet will only be included in the main application
+| when the environment is set to development.
+|
+*/
+
+/*
+|--------------------------------------------------------------------------
+| Ensure Image Alt Text
+|--------------------------------------------------------------------------
+|
+| Give a red border to all images that don't have alt text, to prompt that
+| they are in need of some.
+|
+*/
+
+img:not([alt]) {
+    outline: 3px dotted red;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Find Element
+|--------------------------------------------------------------------------
+|
+| Add a an animated border to elements that are being searched for,
+| to make them stand out and are easily visible on the page.
+|
+*/
+
+.\? {
+    animation: findelement 0.5s ease-in-out alternate infinite;
+}
+
+@keyframes findelement {
+    0% {
+        box-shadow:
+            inset 4px 4px rgb(236, 15, 170),
+            inset -4px -4px rgb(236, 15, 170);
+    }
+    100% {
+        box-shadow:
+            inset 8px 8px rgb(236, 15, 170),
+            inset -8px -8px rgb(236, 15, 170);
+    }
+}
