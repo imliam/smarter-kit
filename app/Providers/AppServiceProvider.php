@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 use Spatie\LaravelMorphMapGenerator\MorphMapGenerator;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,9 +31,20 @@ class AppServiceProvider extends ServiceProvider
         URL::forceHttps(app()->isProduction());
         DB::prohibitDestructiveCommands(app()->isProduction());
         Model::unguard();
-
         MorphMapGenerator::resolveUsing(fn (Model $model) => $model->getTable());
-
         Date::use(CarbonImmutable::class);
+
+        Password::defaults(function (): ?Password {
+            if (!app()->inProduction()) {
+                return null;
+            }
+
+            return Password::min(12)
+                ->letters()
+                ->mixedCase()
+                ->numbers()
+                ->symbols()
+                ->uncompromised();
+        });
     }
 }
