@@ -16,16 +16,4 @@ return [
     'name' => env('DEFAULT_USER_NAME', 'Admin'),
     'email' => env('DEFAULT_USER_EMAIL', 'admin@example.com'),
     'password' => env('DEFAULT_USER_PASSWORD', 'password'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Prefill Login
-    |--------------------------------------------------------------------------
-    |
-    | This option determines whether the default user login should be prefilled
-    | in the login form. If set to true, the login form will automatically
-    | populate the email field with the default user's email.
-    |
-    */
-    'prefill_login' => env('DEFAULT_USER_PREFILL_LOGIN', true),
 ];

@@ -22,7 +22,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     public function boot(): void
     {
-        if (config('default_user.prefill_login')) {
+        if (app()->isLocal()) {
             $this->email = config('default_user.email');
             $this->password = config('default_user.password');
         }

@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         Date::use(CarbonImmutable::class);
 
         Password::defaults(function (): ?Password {
-            if (!app()->inProduction()) {
+            if (!app()->isProduction()) {
                 return null;
             }
 
