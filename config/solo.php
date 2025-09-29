@@ -51,6 +51,7 @@ return [
         'Make' => new MakeCommand,
         'HTTP' => 'php artisan serve',
         'Queue' => 'php artisan queue:work',
+        'Schedule' => 'php artisan schedule:work',
 
         // Lazy commands do not automatically start when Solo starts.
         'Dumps' => Command::from('php artisan solo:dumps')->lazy(),
