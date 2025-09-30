@@ -17,7 +17,6 @@
         @fluxAppearance
     </head>
     <body {{ $attributes->except(['title']) }}>
-
         {{ $slot }}
 
         @fluxScripts
