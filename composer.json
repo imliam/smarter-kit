@@ -8,6 +8,12 @@
         "framework"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/imliam/laravel-error-solutions"
+        }
+    ],
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
@@ -31,7 +37,7 @@
         "pestphp/pest-plugin-laravel": "^4.0",
         "rector/rector": "^2.1",
         "soloterm/solo": "^0.5.0",
-        "spatie/laravel-error-solutions": "^1.0"
+        "spatie/laravel-error-solutions": "dev-laravel-12-error-page"
     },
     "autoload": {
         "psr-4": {
