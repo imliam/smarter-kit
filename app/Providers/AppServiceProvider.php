@@ -31,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
         URL::forceHttps(app()->isProduction());
         DB::prohibitDestructiveCommands(app()->isProduction());
         Model::unguard();
+        Model::shouldBeStrict(! app()->isProduction());
+        Model::automaticallyEagerLoadRelationships();
         MorphMapGenerator::resolveUsing(fn (Model $model) => $model->getTable());
         Date::use(CarbonImmutable::class);
 
