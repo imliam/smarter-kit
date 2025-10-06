@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AddContext
 {
-    /** @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next */
+    /** @param Closure(Request): (Response) $next */
     public function handle(Request $request, Closure $next): Response
     {
         Context::add('url', $request->url());

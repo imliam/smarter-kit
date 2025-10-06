@@ -5,6 +5,9 @@ import laravel from 'laravel-vite-plugin';
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
+    build: {
+        sourcemap: true,
+    },
     plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/css/dev.css', 'resources/js/app.js'],
