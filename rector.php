@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
+use Rector\CodingStyle\Rector\If_\NullableCompareToNullRector;
 use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
@@ -18,8 +20,21 @@ return RectorConfig::configure()
     ->withPreparedSets(
         deadCode: true,
         codeQuality: true,
+        codingStyle: true,
         typeDeclarations: true,
+        typeDeclarationDocblocks: true,
         privatization: true,
         earlyReturn: true,
-        strictBooleans: true,
-    );
+    )
+    ->withSkip([
+        EncapsedStringsToSprintfRector::class,
+        NullableCompareToNullRector::class,
+    ]);
+
+// bool $naming = \false
+// bool $instanceOf = \false
+// bool $carbon = \false
+// bool $rectorPreset = \false
+// bool $phpunitCodeQuality = \false
+
+// with rector-laravel

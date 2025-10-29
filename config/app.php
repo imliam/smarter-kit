@@ -125,5 +125,17 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Editor
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the editor or IDE that the developer
+    | is using locally, and wants to open files in from the
+    | exception page, when an exception is rendered.
+    |
+    */
+
     'editor' => env('APP_EDITOR'),
+
 ];

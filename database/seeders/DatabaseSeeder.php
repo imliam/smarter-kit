@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             'name' => config('default_user.name'),
             'email' => config('default_user.email'),
             'password' => bcrypt(config()->string('default_user.password')),
+            'is_admin' => true,
         ]);
     }
 }

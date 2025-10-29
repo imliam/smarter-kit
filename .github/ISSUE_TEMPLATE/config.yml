@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Feature Request
+    url: https://github.com/imliam/smarter-kit/discussions/new?category=general
+    about: Share an idea for a new feature
+  - name: Ask a Question
+    url: https://github.com/imliam/smarter-kit/discussions/new?category=q-a
+    about: Ask the community for help
+  - name: Check Documentation
+    url: https://github.com/imliam/smarter-kit/tree/main/docs
+    about: Check the documentation

@@ -52,7 +52,8 @@ return [
         'Logs' => EnhancedTailCommand::file(storage_path('logs/laravel.log')),
         'Vite' => 'pnpm run dev',
         'Make' => new MakeCommand,
-        'HTTP' => 'php artisan serve',
+        // 'HTTP' => 'php artisan serve',
+        'HTTP' => file_exists(base_path('frankenphp')) ? 'php artisan octane:start' : 'php artisan serve',
         'Queue' => 'php artisan queue:work',
         'Schedule' => 'php artisan schedule:work',
 

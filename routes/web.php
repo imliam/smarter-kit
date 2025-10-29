@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 
+use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-Route::get('/', fn (): View|\Illuminate\Contracts\View\Factory => view('welcome'))->name('home');
+Route::get('/', fn (): View|ViewFactory => view('welcome'))->name('home');
+
+Route::redirect('.well-known/change-password', 'settings/password');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

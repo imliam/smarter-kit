@@ -7,3 +7,4 @@
 - If you have refactored or restructured code, run the tests afterwards
 - Prefer feature tests when testing models
 - Don't bother making tests for things that are basic Laravel behaviour (eg. casts on a model)
+- All unit/feature tests should follow the same directory structure as the main `app/` directory

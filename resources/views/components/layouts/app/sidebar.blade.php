@@ -53,6 +53,7 @@
                 <flux:menu.separator />
 
                 <flux:menu.radio.group>
+                    <flux:menu.item :href="route('filament.admin.pages.dashboard')" icon="cog" wire:navigate>Admin</flux:menu.item>
                     <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>Settings</flux:menu.item>
                 </flux:menu.radio.group>
 

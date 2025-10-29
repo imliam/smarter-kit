@@ -6,6 +6,15 @@ import globals from 'globals';
 export default [
     js.configs.recommended,
     {
+        files: ['./*.js'],
+        languageOptions: {
+            globals: {
+                ...globals.node,
+            },
+        },
+    },
+    {
+        files: ['resources/js/**/*.js', 'resources/js/*.js'],
         languageOptions: {
             globals: {
                 ...globals.browser,

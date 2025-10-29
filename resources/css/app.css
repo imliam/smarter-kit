@@ -10,11 +10,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer theme {
-    [data-density=condensed] {
+    [data-density='condensed'] {
         --spacing: 0.15rem;
     }
 
-    [data-density=expanded] {
+    [data-density='expanded'] {
         --spacing: 0.35rem;
     }
 }

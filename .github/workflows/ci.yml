@@ -1,0 +1,275 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+  pull_request:
+    branches:
+      - develop
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    environment: Testing
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.4]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: xdebug
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: 'pnpm'
+
+      - name: Cache Node Modules
+        id: node-modules-cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Install Node Dependencies
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: pnpm install
+
+      - name: Add Flux Credentials Loaded From ENV
+        run: composer config http-basic.composer.fluxui.dev "${{ secrets.FLUX_USERNAME }}" "${{ secrets.FLUX_LICENSE_KEY }}"
+
+      - name: Cache Vendor
+        id: vendor-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-vendor-${{ hashFiles('**/composer.lock') }}
+
+      - name: Install Dependencies
+        if: steps.vendor-cache.outputs.cache-hit != 'true'
+        run: |
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Build Assets
+        run: |
+          npm run build
+          node bin/build.ts
+
+      - name: Prepare Application
+        run: |
+          php artisan config:clear
+          cp .env.example .env
+          php artisan key:generate
+          php artisan storage:link
+          mkdir -p storage/framework/cache/data
+          mkdir -p storage/framework/sessions
+          mkdir -p storage/framework/views
+          mkdir -p bootstrap/cache
+
+      - name: Create Workspace Archive
+        run: |
+          tar --exclude='./.git' -zcf ../workspace.tar.gz .
+          mv ../workspace.tar.gz ./workspace.tar.gz
+
+      - name: Upload Workspace
+        uses: actions/upload-artifact@v4
+        with:
+          name: workspace
+          path: workspace.tar.gz
+          retention-days: 1
+
+  php-tests:
+    runs-on: ubuntu-latest
+    environment: Testing
+    needs: setup
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.4]
+        shard: [1, 2]
+    steps:
+      - name: Download Workspace
+        uses: actions/download-artifact@v4
+        with:
+          name: workspace
+
+      - name: Extract Workspace
+        run: |
+          tar xzf workspace.tar.gz
+          rm workspace.tar.gz
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: xdebug
+
+      - name: Run Tests
+        run: ./vendor/bin/pest --parallel --coverage --cache-directory=storage/app/pest --shard ${{ matrix.shard }}/2 --ci
+
+  js-tests:
+    runs-on: ubuntu-latest
+    environment: Testing
+    needs: setup
+    steps:
+      - name: Download Workspace
+        uses: actions/download-artifact@v4
+        with:
+          name: workspace
+
+      - name: Extract Workspace
+        run: |
+          tar xzf workspace.tar.gz
+          rm workspace.tar.gz
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Run Javascript Tests
+        run: pnpm test
+        env:
+          LARAVEL_BYPASS_ENV_CHECK: 1
+
+  static-analysis:
+    runs-on: ubuntu-latest
+    environment: Testing
+    needs: setup
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.4]
+    steps:
+      - name: Download Workspace
+        uses: actions/download-artifact@v4
+        with:
+          name: workspace
+
+      - name: Extract Workspace
+        run: |
+          tar xzf workspace.tar.gz
+          rm workspace.tar.gz
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+
+      - name: Run PHPStan
+        run: ./vendor/bin/phpstan analyse --error-format=github --no-progress
+
+  code-style-fixes:
+    runs-on: ubuntu-latest
+    environment: Testing
+    needs: setup
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.4]
+    steps:
+      - name: Download Workspace
+        uses: actions/download-artifact@v4
+        with:
+          name: workspace
+
+      - name: Extract Workspace
+        run: |
+          tar xzf workspace.tar.gz
+          rm workspace.tar.gz
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Cache Rector
+        uses: actions/cache@v3
+        with:
+          path: ./storage/rector/cache
+          key: ${{ runner.os }}-rector-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-rector-
+
+      - name: Cache Pint
+        uses: actions/cache@v3
+        with:
+          path: ./storage/pint.cache
+          key: ${{ runner.os }}-pint-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-pint-
+
+      - name: Run Rector
+        run: vendor/bin/rector --ansi
+
+      - name: Run Pint
+        run: vendor/bin/pint
+
+      - name: Run ESLint Fix
+        run: pnpm run lint:fix
+
+      - name: Run Prettier
+        run: pnpm run format
+
+      - name: Normalize Composer
+        run: composer normalize --ansi --no-interaction
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Commit Changes
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: Fix code style
+          commit_options: '--no-verify'
+          file_pattern: |
+            **/*
+            !.github/workflows/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

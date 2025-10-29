@@ -32,15 +32,21 @@ php artisan key:generate
 # Run the database migrations
 php artisan migrate
 
-# (Optional) Seed the database with sample data
-php artisan db:seed
-
 # Create the public storage symlink and ensure it is writable
 php artisan storage:link
 chmod -R 775 storage
 
 # Ensure the bootstrap cache is writeable
 chmod -R 775 bootstrap/cache
+
+# (Optional) Seed the database with sample data
+php artisan db:seed
+
+# (Optional) Install Laravel Octane for improved performance, select FrankenPHP as the server:
+php artisan octane:install
+
+# (Optional) Run Boost to generate AI guidelines for your preferred tooling:
+php artisan boost:install
 ```
 
 ## Running the Application
@@ -59,6 +65,27 @@ Run the application's PHP test suite (testing, static analysis, etc.) with:
 
 ```sh
 composer test
+```
+
+Run the application's JS test suite with:
+
+```sh
+pnpm test
+```
+
+Run the GitHub Action workflows locally with the [Act](https://github.com/nektos/act) CLI (install separately):
+
+```sh
+act
+```
+
+## Code Style
+
+Automatically fix style issues with:
+
+```sh
+composer fix
+pnpm format
 ```
 
 ## Deployments
