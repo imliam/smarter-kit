@@ -18,6 +18,9 @@ Run the following commands:
 git clone https://github.com/imliam/smarter-kit.git
 cd smarter-kit
 
+# Create an environment file
+cp .env.example .env
+
 # Install Dependencies
 composer install
 pnpm install
@@ -25,8 +28,7 @@ pnpm install
 # Build assets
 pnpm run build
 
-# Create an environment file and generate an application key
-cp .env.example .env
+# Generate the application key
 php artisan key:generate
 
 # Run the database migrations
@@ -38,6 +40,9 @@ chmod -R 775 storage
 
 # Ensure the bootstrap cache is writeable
 chmod -R 775 bootstrap/cache
+
+# Run the setup command to replace any references of `smarter-kit` with your application's name and set up a fresh git repository for the project
+php artisan setup
 
 # (Optional) Seed the database with sample data
 php artisan db:seed
