@@ -19,7 +19,7 @@ new class extends Component {
 
     public function getDeleteConfirmLabelProperty(): string
     {
-        return __('Type ":name" to confirm', ['name' => $this->team->name]);
+        return 'Type "'.$this->team->name.'" to confirm';
     }
 
     public function deleteTeam(): void
@@ -31,7 +31,7 @@ new class extends Component {
         ]);
 
         if ($validated['deleteName'] !== $this->team->name) {
-            $this->addError('deleteName', __('The team name does not match.'));
+            $this->addError('deleteName', 'The team name does not match.');
 
             return;
         }
@@ -71,9 +71,9 @@ new class extends Component {
 <flux:modal name="delete-team" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
     <form wire:submit="deleteTeam" class="space-y-6">
         <div>
-            <flux:heading size="lg">{{ __('Are you sure?') }}</flux:heading>
+            <flux:heading size="lg">Are you sure?</flux:heading>
             <flux:subheading>
-                {{ __('This action cannot be undone. This will permanently delete the team ":name".', ['name' => $team->name]) }}
+                This action cannot be undone. This will permanently delete the team "{{ $team->name }}".
             </flux:subheading>
         </div>
 
@@ -83,10 +83,10 @@ new class extends Component {
 
         <div class="flex justify-end space-x-2 rtl:space-x-reverse">
             <flux:modal.close>
-                <flux:button variant="filled">{{ __('Cancel') }}</flux:button>
+                <flux:button variant="filled">Cancel</flux:button>
             </flux:modal.close>
             <flux:button variant="danger" type="submit" data-test="delete-team-confirm">
-                {{ __('Delete team') }}
+                Delete team
             </flux:button>
         </div>
     </form>

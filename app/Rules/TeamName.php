@@ -20,7 +20,7 @@ class TeamName implements ValidationRule
         $name = strtolower(trim($value));
 
         if (in_array($name, $this->reservedNames(), true)) {
-            $fail(__('This team name is reserved and cannot be used.'));
+            $fail('This team name is reserved and cannot be used.');
         }
     }
 

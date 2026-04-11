@@ -1,8 +1,8 @@
-<x-layouts::auth :title="__('Confirm password')">
+<x-layouts::auth title="Confirm password">
     <div class="flex flex-col gap-6">
         <x-auth-header
-            :title="__('Confirm password')"
-            :description="__('This is a secure area of the application. Please confirm your password before continuing.')"
+            title="Confirm password"
+            description="This is a secure area of the application. Please confirm your password before continuing."
         />
 
         <x-auth-session-status class="text-center" :status="session('status')" />
@@ -12,16 +12,16 @@
 
             <flux:input
                 name="password"
-                :label="__('Password')"
+                label="Password"
                 type="password"
                 required
                 autocomplete="current-password"
-                :placeholder="__('Password')"
+                placeholder="Password"
                 viewable
             />
 
             <flux:button variant="primary" type="submit" class="w-full" data-test="confirm-password-button">
-                {{ __('Confirm') }}
+                Confirm
             </flux:button>
         </form>
     </div>

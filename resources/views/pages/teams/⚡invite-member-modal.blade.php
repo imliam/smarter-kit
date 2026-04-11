@@ -56,14 +56,14 @@ new class extends Component {
 <flux:modal name="invite-member" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
     <form wire:submit="createInvitation" class="space-y-6">
         <div>
-            <flux:heading size="lg">{{ __('Invite a team member') }}</flux:heading>
-            <flux:subheading>{{ __('Send an invitation to join this team.') }}</flux:subheading>
+            <flux:heading size="lg">Invite a team member</flux:heading>
+            <flux:subheading>Send an invitation to join this team.</flux:subheading>
         </div>
 
         <div class="space-y-4">
-            <flux:input wire:model="inviteEmail" type="email" :label="__('Email address')" required data-test="invite-email" />
+            <flux:input wire:model="inviteEmail" type="email" label="Email address" required data-test="invite-email" />
 
-            <flux:select wire:model="inviteRole" :label="__('Role')" data-test="invite-role">
+            <flux:select wire:model="inviteRole" label="Role" data-test="invite-role">
                 @foreach ($this->availableRoles as $role)
                     <flux:select.option value="{{ $role['value'] }}">{{ $role['label'] }}</flux:select.option>
                 @endforeach
@@ -72,9 +72,9 @@ new class extends Component {
 
         <div class="flex justify-end space-x-2 rtl:space-x-reverse">
             <flux:modal.close>
-                <flux:button variant="filled">{{ __('Cancel') }}</flux:button>
+                <flux:button variant="filled">Cancel</flux:button>
             </flux:modal.close>
-            <flux:button variant="primary" type="submit" data-test="invite-submit">{{ __('Send invitation') }}</flux:button>
+            <flux:button variant="primary" type="submit" data-test="invite-submit">Send invitation</flux:button>
         </div>
     </form>
 </flux:modal>

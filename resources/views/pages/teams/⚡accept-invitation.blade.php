@@ -45,19 +45,19 @@ new #[Title('Teams')] class extends Component {
     {
         if ($invitation->isAccepted()) {
             throw ValidationException::withMessages([
-                'invitation' => [__('This invitation has already been accepted.')],
+                'invitation' => ['This invitation has already been accepted.'],
             ]);
         }
 
         if ($invitation->isExpired()) {
             throw ValidationException::withMessages([
-                'invitation' => [__('This invitation has expired.')],
+                'invitation' => ['This invitation has expired.'],
             ]);
         }
 
         if (Str::lower($invitation->email) !== Str::lower($user->email)) {
             throw ValidationException::withMessages([
-                'invitation' => [__('This invitation was sent to a different email address.')],
+                'invitation' => ['This invitation was sent to a different email address.'],
             ]);
         }
     }
