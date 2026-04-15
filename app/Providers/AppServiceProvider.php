@@ -5,6 +5,7 @@ namespace App\Providers;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
@@ -16,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        Vite::useAggressivePrefetching();
+        //
     }
 
     /**
@@ -32,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function configureDefaults(): void
     {
+        URL::forceHttps(app()->isProduction());
+
+        Vite::useAggressivePrefetching();
+
         Date::use(CarbonImmutable::class);
 
         DB::prohibitDestructiveCommands(
