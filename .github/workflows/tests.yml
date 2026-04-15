@@ -26,6 +26,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - uses: oven-sh/setup-bun@v2
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -39,7 +41,7 @@ jobs:
           node-version: '22'
 
       - name: Install Node Dependencies
-        run: npm i
+        run: bun i
 
       - name: Add Flux Credentials Loaded From ENV
         run: composer config http-basic.composer.fluxui.dev "${{ secrets.FLUX_USERNAME }}" "${{ secrets.FLUX_LICENSE_KEY }}"
@@ -54,7 +56,7 @@ jobs:
         run: php artisan key:generate
 
       - name: Build Assets
-        run: npm run build
+        run: bun run build
 
       - name: Run Tests
         run: ./vendor/bin/pest

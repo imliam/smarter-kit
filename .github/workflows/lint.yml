@@ -23,6 +23,7 @@ jobs:
     environment: Testing
     steps:
       - uses: actions/checkout@v6
+      - uses: oven-sh/setup-bun@v2
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -35,7 +36,7 @@ jobs:
       - name: Install Dependencies
         run: |
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-          npm install
+          bun install
 
       - name: Run Pint
         run: composer lint

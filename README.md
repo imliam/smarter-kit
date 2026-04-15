@@ -9,7 +9,7 @@ Smarter Kit is a Laravel starter kit with a handful of pre-configured features a
 
 ## Installation
 
-As pre-requisites, you are expected to have [Git](https://git-scm.com/), [Composer](https://getcomposer.org/) and [Node.js](https://nodejs.org/) installed.
+As pre-requisites, you are expected to have [Git](https://git-scm.com/), [Composer](https://getcomposer.org/), [Node.js](https://nodejs.org/) and [Bun](https://bun.com/) installed.
 
 Run the following commands:
 
@@ -20,10 +20,10 @@ cd smarter-kit
 
 # Install Dependencies
 composer install
-npm install
+bun install
 
 # Build assets
-npm run build
+bun run build
 
 # Create an environment file and generate an application key
 cp .env.example .env
@@ -51,7 +51,7 @@ php artisan serve
 If you want to automatically recompile assets when they change, run:
 
 ```sh
-npm run dev
+bun run dev
 ```
 
 Then, open your browser and navigate to `http://localhost:8000`
