@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 /*
@@ -19,6 +20,7 @@ pest()->extend(TestCase::class)
     ->in('Feature')
     ->beforeEach(function () {
         $this->withoutVite();
+        Http::preventStrayRequests();
     });
 
 /*
