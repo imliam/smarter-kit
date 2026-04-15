@@ -70,6 +70,12 @@
             "@lint:check",
             "@php artisan test"
         ],
+        "fix": [
+            "Composer\\Config::disableProcessTimeout",
+            "@lint",
+            "bun run format",
+            "bun run lint"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
