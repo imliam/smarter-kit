@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://json.schemastore.org/dependabot-2.0.json
+
+version: 2
+
+updates:
+-
+    package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+        interval: "monthly"
+-
+    package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+        interval: "monthly"
+-
+    package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+        interval: "monthly"
+    groups:
+      major-updates:
+        update-types:
+            - "major"
+      minor-updates:
+        update-types:
+            - "minor"
+            - "patch"
+      security-updates:
+        applies-to: version-updates
+        update-types:
+            - "minor"
+            - "patch"
+-
+    package-ecosystem: "pnpm"
+    directory: "/"
+    schedule:
+        interval: "weekly"
+    groups:
+        major-updates:
+            update-types:
+                - "major"
+        minor-updates:
+            update-types:
+                - "minor"
+                - "patch"
+        security-updates:
+            applies-to: version-updates
+            update-types:
+                - "minor"
+                - "patch"
