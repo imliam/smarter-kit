@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Sleep;
 use Tests\TestCase;
 
 /*
@@ -21,6 +22,7 @@ pest()->extend(TestCase::class)
     ->beforeEach(function () {
         $this->withoutVite();
         Http::preventStrayRequests();
+        Sleep::fake();
     });
 
 /*
