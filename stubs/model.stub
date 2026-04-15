@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace {{ namespace }};
 
 {{ factoryImport }}
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Model as BaseModel;
 
-class {{ class }} extends Model
+class {{ class }} extends BaseModel
 {
     {{ factory }}
 }
