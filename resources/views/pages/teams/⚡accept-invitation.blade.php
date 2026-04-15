@@ -25,7 +25,7 @@ new #[Title('Teams')] class extends Component {
 
         $this->validateInvitation($user, $this->invitation);
 
-        DB::transaction(function () use ($user) {
+        DB::transaction(function () use ($user): void {
             $team = $this->invitation->team;
 
             $membership = $team->memberships()->firstOrCreate(

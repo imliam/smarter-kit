@@ -5,7 +5,7 @@ use App\Models\Team;
 use App\Models\User;
 use Livewire\Livewire;
 
-test('teams index page can be rendered', function () {
+test('teams index page can be rendered', function (): void {
     $user = User::factory()->create();
 
     $response = $this
@@ -15,7 +15,7 @@ test('teams index page can be rendered', function () {
     $response->assertOk();
 });
 
-test('teams can be created', function () {
+test('teams can be created', function (): void {
     $user = User::factory()->create();
 
     $this->actingAs($user);
@@ -31,7 +31,7 @@ test('teams can be created', function () {
     ]);
 });
 
-test('team slug uses next available suffix', function () {
+test('team slug uses next available suffix', function (): void {
     $user = User::factory()->create();
 
     Team::factory()->create(['name' => 'Acme', 'slug' => 'acme']);
@@ -51,7 +51,7 @@ test('team slug uses next available suffix', function () {
     ]);
 });
 
-test('team edit page can be rendered', function () {
+test('team edit page can be rendered', function (): void {
     $user = User::factory()->create();
     $team = Team::factory()->create();
     $team->members()->attach($user, ['role' => TeamRole::Owner->value]);
@@ -63,7 +63,7 @@ test('team edit page can be rendered', function () {
     $response->assertOk();
 });
 
-test('teams can be updated by owners', function () {
+test('teams can be updated by owners', function (): void {
     $user = User::factory()->create();
     $team = Team::factory()->create(['name' => 'Original Name']);
 
@@ -82,7 +82,7 @@ test('teams can be updated by owners', function () {
     ]);
 });
 
-test('teams cannot be updated by members', function () {
+test('teams cannot be updated by members', function (): void {
     $owner = User::factory()->create();
     $member = User::factory()->create();
     $team = Team::factory()->create();
@@ -98,7 +98,7 @@ test('teams cannot be updated by members', function () {
         ->assertForbidden();
 });
 
-test('teams can be deleted by owners', function () {
+test('teams can be deleted by owners', function (): void {
     $user = User::factory()->create();
     $team = Team::factory()->create();
 
@@ -116,7 +116,7 @@ test('teams can be deleted by owners', function () {
     ]);
 });
 
-test('team deletion requires name confirmation', function () {
+test('team deletion requires name confirmation', function (): void {
     $user = User::factory()->create();
     $team = Team::factory()->create();
 
@@ -135,7 +135,7 @@ test('team deletion requires name confirmation', function () {
     ]);
 });
 
-test('deleting current team switches to alphabetically first remaining team', function () {
+test('deleting current team switches to alphabetically first remaining team', function (): void {
     $user = User::factory()->create(['name' => 'Mike']);
 
     $zuluTeam = Team::factory()->create(['name' => 'Zulu Team']);
@@ -163,7 +163,7 @@ test('deleting current team switches to alphabetically first remaining team', fu
     expect($user->fresh()->current_team_id)->toEqual($alphaTeam->id);
 });
 
-test('deleting current team falls back to personal team when alphabetically first', function () {
+test('deleting current team falls back to personal team when alphabetically first', function (): void {
     $user = User::factory()->create();
     $personalTeam = $user->personalTeam();
     $team = Team::factory()->create(['name' => 'Zulu Team']);
@@ -185,7 +185,7 @@ test('deleting current team falls back to personal team when alphabetically firs
     expect($user->fresh()->current_team_id)->toEqual($personalTeam->id);
 });
 
-test('deleting non current team leaves current team unchanged', function () {
+test('deleting non current team leaves current team unchanged', function (): void {
     $user = User::factory()->create();
     $personalTeam = $user->personalTeam();
     $team = Team::factory()->create();
@@ -207,7 +207,7 @@ test('deleting non current team leaves current team unchanged', function () {
     expect($user->fresh()->current_team_id)->toEqual($personalTeam->id);
 });
 
-test('deleting team switches other affected users to their personal team', function () {
+test('deleting team switches other affected users to their personal team', function (): void {
     $owner = User::factory()->create();
     $member = User::factory()->create();
 
@@ -228,7 +228,7 @@ test('deleting team switches other affected users to their personal team', funct
     expect($member->fresh()->current_team_id)->toEqual($member->personalTeam()->id);
 });
 
-test('personal teams cannot be deleted', function () {
+test('personal teams cannot be deleted', function (): void {
     $user = User::factory()->create();
 
     $personalTeam = $user->personalTeam();
@@ -246,7 +246,7 @@ test('personal teams cannot be deleted', function () {
     ]);
 });
 
-test('teams cannot be deleted by non owners', function () {
+test('teams cannot be deleted by non owners', function (): void {
     $owner = User::factory()->create();
     $member = User::factory()->create();
     $team = Team::factory()->create();
@@ -262,7 +262,7 @@ test('teams cannot be deleted by non owners', function () {
         ->assertForbidden();
 });
 
-test('guests cannot access teams', function () {
+test('guests cannot access teams', function (): void {
     $response = $this->get(route('teams.index'));
 
     $response->assertRedirect(route('login'));

@@ -42,10 +42,10 @@ new class extends Component {
             ? $user->fallbackTeam($this->team)
             : null;
 
-        DB::transaction(function () use ($user) {
+        DB::transaction(function () use ($user): void {
             User::where('current_team_id', $this->team->id)
                 ->where('id', '!=', $user->id)
-                ->each(fn (User $affectedUser) => $affectedUser->switchTeam($affectedUser->personalTeam()));
+                ->each(fn (User $affectedUser): bool => $affectedUser->switchTeam($affectedUser->personalTeam()));
 
             $this->team->invitations()->delete();
             $this->team->memberships()->delete();

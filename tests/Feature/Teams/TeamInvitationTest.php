@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 
-test('team invitations can be created', function () {
+test('team invitations can be created', function (): void {
     Notification::fake();
 
     $owner = User::factory()->create();
@@ -30,7 +30,7 @@ test('team invitations can be created', function () {
     ]);
 });
 
-test('team invitations cannot be created by members', function () {
+test('team invitations cannot be created by members', function (): void {
     $owner = User::factory()->create();
     $member = User::factory()->create();
     $team = Team::factory()->create();
@@ -47,7 +47,7 @@ test('team invitations cannot be created by members', function () {
         ->assertForbidden();
 });
 
-test('team invitations can be cancelled by owner', function () {
+test('team invitations can be cancelled by owner', function (): void {
     $owner = User::factory()->create();
     $team = Team::factory()->create();
 
@@ -70,7 +70,7 @@ test('team invitations can be cancelled by owner', function () {
     ]);
 });
 
-test('team invitations can be accepted', function () {
+test('team invitations can be accepted', function (): void {
     $owner = User::factory()->create();
     $invitedUser = User::factory()->create(['email' => 'invited@example.com']);
     $team = Team::factory()->create();
@@ -96,7 +96,7 @@ test('team invitations can be accepted', function () {
     expect($invitedUser->fresh()->belongsToTeam($team))->toBeTrue();
 });
 
-test('team invitations cannot be accepted by user that wasnt invited', function () {
+test('team invitations cannot be accepted by user that wasnt invited', function (): void {
     $owner = User::factory()->create();
     $uninvitedUser = User::factory()->create(['email' => 'uninvited@example.com']);
     $team = Team::factory()->create();
@@ -120,7 +120,7 @@ test('team invitations cannot be accepted by user that wasnt invited', function 
     expect($uninvitedUser->fresh()->belongsToTeam($team))->toBeFalse();
 });
 
-test('expired invitations cannot be accepted', function () {
+test('expired invitations cannot be accepted', function (): void {
     $owner = User::factory()->create();
     $invitedUser = User::factory()->create(['email' => 'invited@example.com']);
     $team = Team::factory()->create();

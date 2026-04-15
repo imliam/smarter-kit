@@ -5,7 +5,7 @@ use App\Models\Team;
 use App\Models\User;
 use Livewire\Livewire;
 
-test('team member role can be updated by owner', function () {
+test('team member role can be updated by owner', function (): void {
     $owner = User::factory()->create();
     $member = User::factory()->create();
     $team = Team::factory()->create();
@@ -22,7 +22,7 @@ test('team member role can be updated by owner', function () {
     expect($team->members()->where('user_id', $member->id)->first()->pivot->role->value)->toEqual(TeamRole::Admin->value);
 });
 
-test('team member role cannot be updated by non owner', function () {
+test('team member role cannot be updated by non owner', function (): void {
     $owner = User::factory()->create();
     $admin = User::factory()->create();
     $member = User::factory()->create();
@@ -39,7 +39,7 @@ test('team member role cannot be updated by non owner', function () {
         ->assertForbidden();
 });
 
-test('team member can be removed by owner', function () {
+test('team member can be removed by owner', function (): void {
     $owner = User::factory()->create();
     $member = User::factory()->create();
     $team = Team::factory()->create();
@@ -57,7 +57,7 @@ test('team member can be removed by owner', function () {
     expect($member->fresh()->belongsToTeam($team))->toBeFalse();
 });
 
-test('team member cannot be removed by non owners', function () {
+test('team member cannot be removed by non owners', function (): void {
     $owner = User::factory()->create();
     $admin = User::factory()->create();
     $member = User::factory()->create();
@@ -75,7 +75,7 @@ test('team member cannot be removed by non owners', function () {
         ->assertForbidden();
 });
 
-test('removed members current team is set to personal team', function () {
+test('removed members current team is set to personal team', function (): void {
     $owner = User::factory()->create();
     $member = User::factory()->create();
     $personalTeam = $member->personalTeam();

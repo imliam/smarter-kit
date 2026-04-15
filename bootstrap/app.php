@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Middleware\HttpsRedirect;
 use App\Http\Middleware\SetTeamUrlDefaults;
 use Illuminate\Foundation\Application;

@@ -87,7 +87,7 @@ new class extends Component
             'is_personal' => $team->is_personal,
         ];
 
-        $this->members = $team->members()->get()->map(fn ($member) => [
+        $this->members = $team->members()->get()->map(fn ($member): array => [
             'id' => $member->id,
             'name' => $member->name,
             'email' => $member->email,
@@ -99,7 +99,7 @@ new class extends Component
         $this->invitations = $team->invitations()
             ->whereNull('accepted_at')
             ->get()
-            ->map(fn ($invitation) => [
+            ->map(fn ($invitation): array => [
                 'code' => $invitation->code,
                 'email' => $invitation->email,
                 'role' => $invitation->role->value,

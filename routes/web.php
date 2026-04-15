@@ -10,11 +10,11 @@ Route::view('/', 'welcome', [
 
 Route::prefix('{current_team}')
     ->middleware(['auth', 'verified', EnsureTeamMembership::class])
-    ->group(function () {
+    ->group(function (): void {
         Route::view('dashboard', 'dashboard')->name('dashboard');
     });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function (): void {
     Route::livewire('invitations/{invitation}/accept', 'pages::teams.accept-invitation')->name('invitations.accept');
 });
 
