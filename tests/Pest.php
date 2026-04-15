@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Sleep;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 /*
@@ -23,6 +24,9 @@ pest()->extend(TestCase::class)
         $this->withoutVite();
         Http::preventStrayRequests();
         Sleep::fake();
+        Str::createRandomStringsNormally();
+        Str::createUlidsNormally();
+        Str::createUuidsNormally();
     });
 
 /*
