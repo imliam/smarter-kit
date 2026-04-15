@@ -82,9 +82,7 @@ new class extends Component {
                 data-test="invite-role"
             >
                 @foreach ($this->availableRoles as $role)
-                    <flux:select.option
-                        value="{{ $role['value'] }}"
-                    >
+                    <flux:select.option value="{{ $role['value'] }}">
                         {{ $role['label'] }}</flux:select.option
                     >
                 @endforeach

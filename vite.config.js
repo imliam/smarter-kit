@@ -18,4 +18,14 @@ export default defineConfig({
             ignored: ['**/storage/framework/views/**'],
         },
     },
+    test: {
+        environment: 'node',
+        globals: true,
+        exclude: [
+            '**/vendor/**',
+            '**/node_modules/**',
+            '**/.{idea,git,cache,output,temp}/**',
+            '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build}.config.*'
+        ],
+    },
 });
