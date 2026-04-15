@@ -1,0 +1,13 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedUserModel }};
+
+class {{ class }}
+{
+    public function __construct()
+    {
+        //
+    }
+}
