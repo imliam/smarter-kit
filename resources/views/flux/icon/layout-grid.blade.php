@@ -1,6 +1,6 @@
 {{-- Credit: Lucide (https://lucide.dev) --}}
 
-@props([
+@props ([
     'variant' => 'outline',
 ])
 

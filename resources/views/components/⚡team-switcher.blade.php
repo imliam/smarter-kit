@@ -99,9 +99,19 @@ new class extends Component {
 
 <div>
     <flux:dropdown position="bottom" align="start">
-        <flux:button variant="ghost" class="group w-full justify-start in-data-flux-sidebar-collapsed-desktop:justify-center" data-test="team-switcher-trigger">
-            <flux:icon name="users" class="hidden size-4 in-data-flux-sidebar-collapsed-desktop:block" />
-            <span class="truncate font-semibold in-data-flux-sidebar-collapsed-desktop:hidden">{{ $this->currentTeam()['name'] ?? 'Select team' }}</span>
+        <flux:button
+            variant="ghost"
+            class="group w-full justify-start in-data-flux-sidebar-collapsed-desktop:justify-center"
+            data-test="team-switcher-trigger"
+        >
+            <flux:icon
+                name="users"
+                class="hidden size-4 in-data-flux-sidebar-collapsed-desktop:block"
+            />
+            <span
+                class="truncate font-semibold in-data-flux-sidebar-collapsed-desktop:hidden"
+                >{{ $this->currentTeam()['name'] ?? 'Select team' }}</span
+            >
             <flux:icon
                 name="chevrons-up-down"
                 variant="micro"
@@ -130,28 +140,50 @@ new class extends Component {
             <flux:menu.separator />
 
             <flux:modal.trigger name="create-team-switcher">
-                <flux:menu.item icon="plus" class="cursor-pointer" data-test="team-switcher-new-team">
+                <flux:menu.item
+                    icon="plus"
+                    class="cursor-pointer"
+                    data-test="team-switcher-new-team"
+                >
                     New team
                 </flux:menu.item>
             </flux:modal.trigger>
         </flux:menu>
     </flux:dropdown>
 
-    <flux:modal name="create-team-switcher" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
+    <flux:modal
+        name="create-team-switcher"
+        :show="$errors->isNotEmpty()"
+        focusable
+        class="max-w-lg"
+    >
         <form wire:submit="createTeam" class="space-y-6">
             <div>
                 <flux:heading size="lg">Create a new team</flux:heading>
-                <flux:subheading>Give your team a name to get started.</flux:subheading>
+                <flux:subheading
+                    >Give your team a name to get started.</flux:subheading
+                >
             </div>
 
-            <flux:input wire:model="teamName" label="Team name" type="text" required autofocus data-test="switcher-create-team-name" />
+            <flux:input
+                wire:model="teamName"
+                label="Team name"
+                type="text"
+                required
+                autofocus
+                data-test="switcher-create-team-name"
+            />
 
             <div class="flex justify-end space-x-2 rtl:space-x-reverse">
                 <flux:modal.close>
                     <flux:button variant="filled">Cancel</flux:button>
                 </flux:modal.close>
 
-                <flux:button variant="primary" type="submit" data-test="switcher-create-team-submit">
+                <flux:button
+                    variant="primary"
+                    type="submit"
+                    data-test="switcher-create-team-submit"
+                >
                     Create team
                 </flux:button>
             </div>

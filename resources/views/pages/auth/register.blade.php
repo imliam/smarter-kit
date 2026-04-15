@@ -1,11 +1,21 @@
 <x-layouts::auth title="Register">
     <div class="flex flex-col gap-6">
-        <x-auth-header title="Create an account" description="Enter your details below to create your account" />
+        <x-auth-header
+            title="Create an account"
+            description="Enter your details below to create your account"
+        />
 
         <!-- Session Status -->
-        <x-auth-session-status class="text-center" :status="session('status')" />
+        <x-auth-session-status
+            class="text-center"
+            :status="session('status')"
+        />
 
-        <form method="POST" action="{{ route('register.store') }}" class="flex flex-col gap-6">
+        <form
+            method="POST"
+            action="{{ route('register.store') }}"
+            class="flex flex-col gap-6"
+        >
             @csrf
             <!-- Name -->
             <flux:input
@@ -53,13 +63,20 @@
             />
 
             <div class="flex items-center justify-end">
-                <flux:button type="submit" variant="primary" class="w-full" data-test="register-user-button">
+                <flux:button
+                    type="submit"
+                    variant="primary"
+                    class="w-full"
+                    data-test="register-user-button"
+                >
                     Create account
                 </flux:button>
             </div>
         </form>
 
-        <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
+        <div
+            class="space-x-1 text-center text-sm text-zinc-600 rtl:space-x-reverse dark:text-zinc-400"
+        >
             <span>Already have an account?</span>
             <flux:link :href="route('login')" wire:navigate>Log in</flux:link>
         </div>

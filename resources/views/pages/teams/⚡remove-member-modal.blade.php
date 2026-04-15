@@ -56,14 +56,20 @@ new class extends Component {
         <div>
             <flux:heading size="lg">Remove team member</flux:heading>
             <flux:subheading>
-                Are you sure you want to remove "{{ $memberName }}" from this team?
+                Are you sure you want to remove "{{ $memberName }}" from this
+                team?
             </flux:subheading>
         </div>
         <div class="flex justify-end space-x-2 rtl:space-x-reverse">
             <flux:modal.close>
                 <flux:button variant="filled">Cancel</flux:button>
             </flux:modal.close>
-            <flux:button variant="danger" type="submit" data-test="remove-member-confirm">Remove member</flux:button>
+            <flux:button
+                variant="danger"
+                type="submit"
+                data-test="remove-member-confirm"
+                >Remove member</flux:button
+            >
         </div>
     </form>
 </flux:modal>

@@ -53,19 +53,40 @@ new class extends Component {
     }
 }; ?>
 
-<flux:modal name="invite-member" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
+<flux:modal
+    name="invite-member"
+    :show="$errors->isNotEmpty()"
+    focusable
+    class="max-w-lg"
+>
     <form wire:submit="createInvitation" class="space-y-6">
         <div>
             <flux:heading size="lg">Invite a team member</flux:heading>
-            <flux:subheading>Send an invitation to join this team.</flux:subheading>
+            <flux:subheading
+                >Send an invitation to join this team.</flux:subheading
+            >
         </div>
 
         <div class="space-y-4">
-            <flux:input wire:model="inviteEmail" type="email" label="Email address" required data-test="invite-email" />
+            <flux:input
+                wire:model="inviteEmail"
+                type="email"
+                label="Email address"
+                required
+                data-test="invite-email"
+            />
 
-            <flux:select wire:model="inviteRole" label="Role" data-test="invite-role">
+            <flux:select
+                wire:model="inviteRole"
+                label="Role"
+                data-test="invite-role"
+            >
                 @foreach ($this->availableRoles as $role)
-                    <flux:select.option value="{{ $role['value'] }}">{{ $role['label'] }}</flux:select.option>
+                    <flux:select.option
+                        value="{{ $role['value'] }}"
+                    >
+                        {{ $role['label'] }}</flux:select.option
+                    >
                 @endforeach
             </flux:select>
         </div>
@@ -74,7 +95,12 @@ new class extends Component {
             <flux:modal.close>
                 <flux:button variant="filled">Cancel</flux:button>
             </flux:modal.close>
-            <flux:button variant="primary" type="submit" data-test="invite-submit">Send invitation</flux:button>
+            <flux:button
+                variant="primary"
+                type="submit"
+                data-test="invite-submit"
+                >Send invitation</flux:button
+            >
         </div>
     </form>
 </flux:modal>

@@ -36,14 +36,23 @@ new #[Title('Teams')] class extends Component {
 }; ?>
 
 <section class="w-full">
-    @include('partials.settings-heading')
+    @include ('partials.settings-heading')
 
     <flux:heading class="sr-only">Teams</flux:heading>
 
-    <x-pages::settings.layout heading="Teams" subheading="Manage your teams and team memberships">
+    <x-pages::settings.layout
+        heading="Teams"
+        subheading="Manage your teams and team memberships"
+    >
         <div class="flex items-center justify-end">
             <flux:modal.trigger name="create-team">
-                <flux:button variant="primary" icon="plus" x-data="" x-on:click.prevent="$dispatch('open-modal', 'create-team')" data-test="teams-new-team-button">
+                <flux:button
+                    variant="primary"
+                    icon="plus"
+                    x-data=""
+                    x-on:click.prevent="$dispatch('open-modal', 'create-team')"
+                    data-test="teams-new-team-button"
+                >
                     New team
                 </flux:button>
             </flux:modal.trigger>
@@ -51,21 +60,34 @@ new #[Title('Teams')] class extends Component {
 
         <div class="mt-6 space-y-3">
             @forelse ($this->teams as $team)
-                <div class="flex items-center justify-between rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-900" data-test="team-row">
+                <div
+                    class="flex items-center justify-between rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-900"
+                    data-test="team-row"
+                >
                     <div class="flex items-center gap-4">
                         <div>
                             <div class="flex items-center gap-2">
-                                <span class="font-medium">{{ $team->name }}</span>
+                                <span
+                                    class="font-medium"
+                                    >{{ $team->name }}</span
+                                >
                                 @if ($team->isPersonal)
-                                    <flux:badge color="zinc">Personal</flux:badge>
+                                    <flux:badge color="zinc"
+                                        >Personal</flux:badge
+                                    >
                                 @endif
                             </div>
-                            <flux:text class="text-sm text-zinc-500 dark:text-zinc-400">{{ $team->roleLabel }}</flux:text>
+                            <flux:text
+                                class="text-sm text-zinc-500 dark:text-zinc-400"
+                                >{{ $team->roleLabel }}</flux:text
+                            >
                         </div>
                     </div>
 
                     <div class="flex items-center gap-1">
-                        <flux:tooltip :content="$team->role === 'member' ? 'View team' : 'Edit team'">
+                        <flux:tooltip
+                            :content="$team->role === 'member' ? 'View team' : 'Edit team'"
+                        >
                             <flux:button
                                 variant="ghost"
                                 size="sm"
@@ -78,28 +100,48 @@ new #[Title('Teams')] class extends Component {
                     </div>
                 </div>
             @empty
-                <flux:text class="py-8 text-center text-zinc-500 dark:text-zinc-400">
+                <flux:text
+                    class="py-8 text-center text-zinc-500 dark:text-zinc-400"
+                >
                     You don't belong to any teams yet.
                 </flux:text>
             @endforelse
         </div>
     </x-pages::settings.layout>
 
-    <flux:modal name="create-team" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
+    <flux:modal
+        name="create-team"
+        :show="$errors->isNotEmpty()"
+        focusable
+        class="max-w-lg"
+    >
         <form wire:submit="createTeam" class="space-y-6">
             <div>
                 <flux:heading size="lg">Create a new team</flux:heading>
-                <flux:subheading>Give your team a name to get started.</flux:subheading>
+                <flux:subheading
+                    >Give your team a name to get started.</flux:subheading
+                >
             </div>
 
-            <flux:input wire:model="name" label="Team name" type="text" required autofocus data-test="create-team-name" />
+            <flux:input
+                wire:model="name"
+                label="Team name"
+                type="text"
+                required
+                autofocus
+                data-test="create-team-name"
+            />
 
             <div class="flex justify-end space-x-2 rtl:space-x-reverse">
                 <flux:modal.close>
                     <flux:button variant="filled">Cancel</flux:button>
                 </flux:modal.close>
 
-                <flux:button variant="primary" type="submit" data-test="create-team-submit">
+                <flux:button
+                    variant="primary"
+                    type="submit"
+                    data-test="create-team-submit"
+                >
                     Create team
                 </flux:button>
             </div>

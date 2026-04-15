@@ -76,30 +76,55 @@ new #[Title('Profile settings')] class extends Component {
 }; ?>
 
 <section class="w-full">
-    @include('partials.settings-heading')
+    @include ('partials.settings-heading')
 
     <flux:heading class="sr-only">Profile settings</flux:heading>
 
-    <x-pages::settings.layout heading="Profile" subheading="Update your name and email address">
-        <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
-            <flux:input wire:model="name" label="Name" type="text" required autofocus autocomplete="name" />
+    <x-pages::settings.layout
+        heading="Profile"
+        subheading="Update your name and email address"
+    >
+        <form
+            wire:submit="updateProfileInformation"
+            class="my-6 w-full space-y-6"
+        >
+            <flux:input
+                wire:model="name"
+                label="Name"
+                type="text"
+                required
+                autofocus
+                autocomplete="name"
+            />
 
             <div>
-                <flux:input wire:model="email" label="Email" type="email" required autocomplete="email" />
+                <flux:input
+                    wire:model="email"
+                    label="Email"
+                    type="email"
+                    required
+                    autocomplete="email"
+                />
 
                 @if ($this->hasUnverifiedEmail)
                     <div>
                         <flux:text class="mt-4">
                             Your email address is unverified.
 
-                            <flux:link class="text-sm cursor-pointer" wire:click.prevent="resendVerificationNotification">
+                            <flux:link
+                                class="cursor-pointer text-sm"
+                                wire:click.prevent="resendVerificationNotification"
+                            >
                                 Click here to re-send the verification email.
                             </flux:link>
                         </flux:text>
 
                         @if (session('status') === 'verification-link-sent')
-                            <flux:text class="mt-2 font-medium !dark:text-green-400 !text-green-600">
-                                A new verification link has been sent to your email address.
+                            <flux:text
+                                class="!dark:text-green-400 mt-2 font-medium !text-green-600"
+                            >
+                                A new verification link has been sent to your
+                                email address.
                             </flux:text>
                         @endif
                     </div>
@@ -108,7 +133,12 @@ new #[Title('Profile settings')] class extends Component {
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">
-                    <flux:button variant="primary" type="submit" class="w-full" data-test="update-profile-button">
+                    <flux:button
+                        variant="primary"
+                        type="submit"
+                        class="w-full"
+                        data-test="update-profile-button"
+                    >
                         Save
                     </flux:button>
                 </div>

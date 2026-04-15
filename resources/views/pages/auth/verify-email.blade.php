@@ -1,12 +1,16 @@
 <x-layouts::auth title="Email verification">
     <div class="mt-4 flex flex-col gap-6">
         <flux:text class="text-center">
-            Please verify your email address by clicking on the link we just emailed to you.
+            Please verify your email address by clicking on the link we just
+            emailed to you.
         </flux:text>
 
         @if (session('status') == 'verification-link-sent')
-            <flux:text class="text-center font-medium !dark:text-green-400 !text-green-600">
-                A new verification link has been sent to the email address you provided during registration.
+            <flux:text
+                class="!dark:text-green-400 text-center font-medium !text-green-600"
+            >
+                A new verification link has been sent to the email address you
+                provided during registration.
             </flux:text>
         @endif
 
@@ -20,7 +24,12 @@
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <flux:button variant="ghost" type="submit" class="text-sm cursor-pointer" data-test="logout-button">
+                <flux:button
+                    variant="ghost"
+                    type="submit"
+                    class="cursor-pointer text-sm"
+                    data-test="logout-button"
+                >
                     Log out
                 </flux:button>
             </form>

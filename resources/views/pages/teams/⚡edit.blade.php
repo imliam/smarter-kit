@@ -130,19 +130,31 @@ new class extends Component
 }; ?>
 
 <section class="w-full">
-    @include('partials.settings-heading')
+    @include ('partials.settings-heading')
 
     <flux:heading class="sr-only">Teams</flux:heading>
 
-    <x-pages::settings.layout heading="Teams" subheading="Manage your team settings">
+    <x-pages::settings.layout
+        heading="Teams"
+        subheading="Manage your team settings"
+    >
         <div class="space-y-10">
             <div class="space-y-6">
                 @if ($this->permissions->canUpdateTeam)
                     <div class="space-y-4">
                         <form wire:submit="updateTeam" class="space-y-6">
-                            <flux:input wire:model="teamName" label="Team name" required data-test="team-name-input" />
+                            <flux:input
+                                wire:model="teamName"
+                                label="Team name"
+                                required
+                                data-test="team-name-input"
+                            />
 
-                            <flux:button variant="primary" type="submit" data-test="team-save-button">
+                            <flux:button
+                                variant="primary"
+                                type="submit"
+                                data-test="team-save-button"
+                            >
                                 Save
                             </flux:button>
                         </form>
@@ -159,13 +171,20 @@ new class extends Component
                     <div>
                         <flux:heading>Team members</flux:heading>
                         @if ($this->permissions->canAddMember || $this->permissions->canUpdateMember || $this->permissions->canRemoveMember)
-                            <flux:subheading>Manage who belongs to this team</flux:subheading>
+                            <flux:subheading
+                                >Manage who belongs to this
+                                team</flux:subheading
+                            >
                         @endif
                     </div>
 
                     @if ($this->permissions->canCreateInvitation)
                         <flux:modal.trigger name="invite-member">
-                            <flux:button variant="primary" icon="user-plus" data-test="invite-member-button">
+                            <flux:button
+                                variant="primary"
+                                icon="user-plus"
+                                data-test="invite-member-button"
+                            >
                                 Invite member
                             </flux:button>
                         </flux:modal.trigger>
@@ -174,19 +193,38 @@ new class extends Component
 
                 <div class="space-y-3">
                     @foreach ($members as $member)
-                        <div class="flex items-center justify-between rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-900" data-test="member-row">
+                        <div
+                            class="flex items-center justify-between rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-900"
+                            data-test="member-row"
+                        >
                             <div class="flex items-center gap-4">
-                                <flux:avatar :name="$member['name']" :initials="strtoupper(substr($member['name'], 0, 1))" />
+                                <flux:avatar
+                                    :name="$member['name']"
+                                    :initials="strtoupper(substr($member['name'], 0, 1))"
+                                />
                                 <div>
-                                    <div class="font-medium">{{ $member['name'] }}</div>
-                                    <flux:text class="text-sm text-zinc-500 dark:text-zinc-400">{{ $member['email'] }}</flux:text>
+                                    <div class="font-medium">
+                                        {{ $member['name'] }}
+                                    </div>
+                                    <flux:text
+                                        class="text-sm text-zinc-500 dark:text-zinc-400"
+                                        >{{ $member['email'] }}</flux:text
+                                    >
                                 </div>
                             </div>
 
                             <div class="flex items-center gap-2">
                                 @if ($member['role'] !== 'owner' && $this->permissions->canUpdateMember)
-                                    <flux:dropdown position="bottom" align="end">
-                                        <flux:button variant="outline" size="sm" icon:trailing="chevron-down" data-test="member-role-trigger">
+                                    <flux:dropdown
+                                        position="bottom"
+                                        align="end"
+                                    >
+                                        <flux:button
+                                            variant="outline"
+                                            size="sm"
+                                            icon:trailing="chevron-down"
+                                            data-test="member-role-trigger"
+                                        >
                                             {{ $member['role_label'] }}
                                         </flux:button>
                                         <flux:menu>
@@ -203,11 +241,16 @@ new class extends Component
                                         </flux:menu>
                                     </flux:dropdown>
                                 @else
-                                    <flux:badge color="zinc">{{ $member['role_label'] }}</flux:badge>
+                                    <flux:badge
+                                        color="zinc"
+                                        >{{ $member['role_label'] }}</flux:badge
+                                    >
                                 @endif
 
                                 @if ($member['role'] !== 'owner' && $this->permissions->canRemoveMember)
-                                    <flux:modal.trigger name="remove-member-{{ $member['id'] }}">
+                                    <flux:modal.trigger
+                                        name="remove-member-{{ $member['id'] }}"
+                                    >
                                         <flux:tooltip content="Remove member">
                                             <flux:button
                                                 variant="ghost"
@@ -220,7 +263,6 @@ new class extends Component
                                 @endif
                             </div>
                         </div>
-
                         @if ($member['role'] !== 'owner' && $this->permissions->canRemoveMember)
                             <livewire:pages::teams.remove-member-modal
                                 :team="$teamModel"
@@ -238,25 +280,45 @@ new class extends Component
                 <div class="space-y-6">
                     <div>
                         <flux:heading>Pending invitations</flux:heading>
-                        <flux:subheading>Invitations that have not been accepted yet</flux:subheading>
+                        <flux:subheading
+                            >Invitations that have not been accepted
+                            yet</flux:subheading
+                        >
                     </div>
 
                     <div class="space-y-3">
                         @foreach ($invitations as $invitation)
-                            <div class="flex items-center justify-between rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-900" data-test="invitation-row">
+                            <div
+                                class="flex items-center justify-between rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-900"
+                                data-test="invitation-row"
+                            >
                                 <div class="flex items-center gap-4">
-                                    <div class="flex size-10 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800">
-                                        <flux:icon name="envelope" class="text-zinc-500" />
+                                    <div
+                                        class="flex size-10 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800"
+                                    >
+                                        <flux:icon
+                                            name="envelope"
+                                            class="text-zinc-500"
+                                        />
                                     </div>
                                     <div>
-                                        <div class="font-medium">{{ $invitation['email'] }}</div>
-                                        <flux:text class="text-sm text-zinc-500 dark:text-zinc-400">{{ $invitation['role_label'] }}</flux:text>
+                                        <div class="font-medium">
+                                            {{ $invitation['email'] }}
+                                        </div>
+                                        <flux:text
+                                            class="text-sm text-zinc-500 dark:text-zinc-400"
+                                            >{{ $invitation['role_label'] }}</flux:text
+                                        >
                                     </div>
                                 </div>
 
                                 @if ($this->permissions->canCancelInvitation)
-                                    <flux:modal.trigger name="cancel-invitation-{{ $invitation['code'] }}">
-                                        <flux:tooltip content="Cancel invitation">
+                                    <flux:modal.trigger
+                                        name="cancel-invitation-{{ $invitation['code'] }}"
+                                    >
+                                        <flux:tooltip
+                                            content="Cancel invitation"
+                                        >
                                             <flux:button
                                                 variant="ghost"
                                                 size="sm"
@@ -285,17 +347,24 @@ new class extends Component
                 <div class="space-y-6">
                     <div>
                         <flux:heading>Delete team</flux:heading>
-                        <flux:subheading>Permanently delete your team</flux:subheading>
+                        <flux:subheading
+                            >Permanently delete your team</flux:subheading
+                        >
                     </div>
 
-                    <div class="space-y-4 rounded-lg border border-red-200 bg-red-50 p-4 text-red-700 dark:border-red-200/10 dark:bg-red-900/20 dark:text-red-100">
+                    <div
+                        class="space-y-4 rounded-lg border border-red-200 bg-red-50 p-4 text-red-700 dark:border-red-200/10 dark:bg-red-900/20 dark:text-red-100"
+                    >
                         <div>
                             <p class="font-medium">Warning</p>
                             <p class="text-sm">Please proceed with caution, this cannot be undone.</p>
                         </div>
 
                         <flux:modal.trigger name="delete-team">
-                            <flux:button variant="danger" data-test="delete-team-button">
+                            <flux:button
+                                variant="danger"
+                                data-test="delete-team-button"
+                            >
                                 Delete team
                             </flux:button>
                         </flux:modal.trigger>

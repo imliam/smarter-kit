@@ -68,24 +68,39 @@ new class extends Component {
     }
 }; ?>
 
-<flux:modal name="delete-team" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
+<flux:modal
+    name="delete-team"
+    :show="$errors->isNotEmpty()"
+    focusable
+    class="max-w-lg"
+>
     <form wire:submit="deleteTeam" class="space-y-6">
         <div>
             <flux:heading size="lg">Are you sure?</flux:heading>
             <flux:subheading>
-                This action cannot be undone. This will permanently delete the team "{{ $team->name }}".
+                This action cannot be undone. This will permanently delete the
+                team "{{ $team->name }}".
             </flux:subheading>
         </div>
 
         <div class="space-y-4">
-            <flux:input wire:model="deleteName" :label="$this->deleteConfirmLabel" required data-test="delete-team-name" />
+            <flux:input
+                wire:model="deleteName"
+                :label="$this->deleteConfirmLabel"
+                required
+                data-test="delete-team-name"
+            />
         </div>
 
         <div class="flex justify-end space-x-2 rtl:space-x-reverse">
             <flux:modal.close>
                 <flux:button variant="filled">Cancel</flux:button>
             </flux:modal.close>
-            <flux:button variant="danger" type="submit" data-test="delete-team-confirm">
+            <flux:button
+                variant="danger"
+                type="submit"
+                data-test="delete-team-confirm"
+            >
                 Delete team
             </flux:button>
         </div>
