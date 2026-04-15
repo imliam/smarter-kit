@@ -41,6 +41,12 @@ jobs:
       - name: Run Pint
         run: composer lint
 
+      - name: Format Frontend
+        run: bun run format
+
+      - name: Lint Frontend
+        run: bun run lint
+
       # - name: Commit Changes
       #   uses: stefanzweifel/git-auto-commit-action@v7
       #   with:
