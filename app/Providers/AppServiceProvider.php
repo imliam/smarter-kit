@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Spatie\LaravelMorphMapGenerator\MorphMapGenerator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -46,6 +47,8 @@ class AppServiceProvider extends ServiceProvider
         );
 
         Model::unguard();
+
+        MorphMapGenerator::resolveUsing(fn ($model) => $model->getTable());
 
         Password::defaults(fn (): ?Password => app()->isProduction()
             ? Password::min(12)
