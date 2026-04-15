@@ -63,3 +63,5 @@ jobs:
 
       - name: Run Javascript Tests
         run: bun run test
+        env:
+          LARAVEL_BYPASS_ENV_CHECK: 1
