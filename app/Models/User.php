@@ -17,12 +17,13 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
     /** @use HasFactory<UserFactory> */
-    use Authenticatable, Authorizable, CanResetPassword, HasFactory, HasTeams, MustVerifyEmail, Notifiable, TwoFactorAuthenticatable;
+    use Authenticatable, Authorizable, CanResetPassword, HasApiTokens, HasFactory, HasTeams, MustVerifyEmail, Notifiable, TwoFactorAuthenticatable;
 
     /**
      * Get the attributes that should be cast.
