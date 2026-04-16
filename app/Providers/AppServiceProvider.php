@@ -48,6 +48,10 @@ class AppServiceProvider extends ServiceProvider
 
         Model::unguard();
 
+        Model::shouldBeStrict(! app()->isProduction());
+
+        Model::automaticallyEagerLoadRelationships();
+
         MorphMapGenerator::resolveUsing(fn ($model) => $model->getTable());
 
         Password::defaults(fn (): ?Password => app()->isProduction()
