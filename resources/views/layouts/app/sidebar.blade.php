@@ -128,5 +128,4 @@
     </flux:header>
 
     {{ $slot }}
-
 </x-layouts::wrapper>
