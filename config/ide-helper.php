@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'write_model_magic_where' => true,
+    'write_model_magic_where' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'write_model_external_builder_methods' => true,
+    'write_model_external_builder_methods' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -90,7 +90,7 @@ return [
     |
     */
 
-    'write_model_relation_count_properties' => true,
+    'write_model_relation_count_properties' => false,
     'write_model_relation_exists_properties' => false,
 
     /*
