@@ -13,6 +13,7 @@ class Membership extends Pivot
      *
      * @var string
      */
+    #[\Override]
     protected $table = 'team_members';
 
     /**
@@ -20,6 +21,7 @@ class Membership extends Pivot
      *
      * @var bool
      */
+    #[\Override]
     public $incrementing = true;
 
     /**
