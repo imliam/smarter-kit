@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Rules;
 
 use Closure;
@@ -17,16 +19,14 @@ class TeamName implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $name = strtolower(trim((string) $value));
+        $name = mb_strtolower(mb_trim((string) $value));
 
         if (in_array($name, $this->reservedNames(), true)) {
             $fail('This team name is reserved and cannot be used.');
         }
     }
 
-    /**
-     * Get a list of all reserved names.
-     */
+    /** Get a list of all reserved names. */
     protected function reservedNames(): array
     {
         return once(fn () => collect($this->routesPrefixes())
@@ -366,9 +366,7 @@ class TeamName implements ValidationRule
             ->toArray());
     }
 
-    /**
-     * Get a list of reserved names from the application's route prefixes.
-     */
+    /** Get a list of reserved names from the application's route prefixes. */
     protected function routesPrefixes(): array
     {
         return collect(Route::getRoutes()->getRoutes())

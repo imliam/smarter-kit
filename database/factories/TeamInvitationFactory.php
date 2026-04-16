@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Enums\TeamRole;
@@ -30,9 +32,7 @@ class TeamInvitationFactory extends Factory
         ];
     }
 
-    /**
-     * Indicate that the invitation has been accepted.
-     */
+    /** Indicate that the invitation has been accepted. */
     public function accepted(): static
     {
         return $this->state(fn (array $attributes): array => [
@@ -40,9 +40,7 @@ class TeamInvitationFactory extends Factory
         ]);
     }
 
-    /**
-     * Indicate that the invitation has expired.
-     */
+    /** Indicate that the invitation has expired. */
     public function expired(): static
     {
         return $this->state(fn (array $attributes): array => [
@@ -50,9 +48,7 @@ class TeamInvitationFactory extends Factory
         ]);
     }
 
-    /**
-     * Indicate that the invitation expires in the given time.
-     */
+    /** Indicate that the invitation expires in the given time. */
     public function expiresIn(int $value, string $unit = 'days'): static
     {
         return $this->state(fn (array $attributes): array => [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Team;
@@ -27,9 +29,7 @@ class TeamFactory extends Factory
         ];
     }
 
-    /**
-     * Indicate that the team is a personal team.
-     */
+    /** Indicate that the team is a personal team. */
     public function personal(): static
     {
         return $this->state(fn (array $attributes): array => [
@@ -37,9 +37,7 @@ class TeamFactory extends Factory
         ]);
     }
 
-    /**
-     * Indicate that the team has been deleted.
-     */
+    /** Indicate that the team has been deleted. */
     public function trashed(): static
     {
         return $this->state(fn (array $attributes): array => [

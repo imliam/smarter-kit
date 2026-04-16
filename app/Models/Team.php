@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Concerns\GeneratesUniqueTeamSlugs;
@@ -9,36 +11,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Override;
 
 class Team extends Model
 {
     /** @use HasFactory<TeamFactory> */
     use GeneratesUniqueTeamSlugs, HasFactory, SoftDeletes;
 
-    /**
-     * Bootstrap the model and its traits.
-     */
-    #[\Override]
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::creating(function (Team $team): void {
-            if (empty($team->slug)) {
-                $team->slug = static::generateUniqueTeamSlug($team->name);
-            }
-        });
-
-        static::updating(function (Team $team): void {
-            if ($team->isDirty('name')) {
-                $team->slug = static::generateUniqueTeamSlug($team->name, $team->id);
-            }
-        });
-    }
-
-    /**
-     * Get the team owner.
-     */
+    /** Get the team owner. */
     public function owner(): ?Model
     {
         return $this->members()
@@ -79,25 +59,42 @@ class Team extends Model
         return $this->hasMany(TeamInvitation::class);
     }
 
+    /** Get the route key for the model. */
+    #[Override]
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    /** Bootstrap the model and its traits. */
+    #[Override]
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function (Team $team): void {
+            if (empty($team->slug)) {
+                $team->slug = static::generateUniqueTeamSlug($team->name);
+            }
+        });
+
+        static::updating(function (Team $team): void {
+            if ($team->isDirty('name')) {
+                $team->slug = static::generateUniqueTeamSlug($team->name, $team->id);
+            }
+        });
+    }
+
     /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
      */
-    #[\Override]
+    #[Override]
     protected function casts(): array
     {
         return [
             'is_personal' => 'boolean',
         ];
-    }
-
-    /**
-     * Get the route key for the model.
-     */
-    #[\Override]
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
     }
 }

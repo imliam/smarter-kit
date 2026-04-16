@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Enums\TeamRole;
@@ -8,15 +10,14 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Override;
 
 /**
  * @extends Factory<User>
  */
 class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
+    /** The current password being used by the factory. */
     protected static ?string $password;
 
     /**
@@ -38,10 +39,8 @@ class UserFactory extends Factory
         ];
     }
 
-    /**
-     * Configure the model factory.
-     */
-    #[\Override]
+    /** Configure the model factory. */
+    #[Override]
     public function configure(): static
     {
         return $this->afterCreating(function ($user): void {
@@ -57,9 +56,7 @@ class UserFactory extends Factory
         });
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
+    /** Indicate that the model's email address should be unverified. */
     public function unverified(): static
     {
         return $this->state(fn (array $attributes): array => [
@@ -67,9 +64,7 @@ class UserFactory extends Factory
         ]);
     }
 
-    /**
-     * Indicate that the model has two-factor authentication configured.
-     */
+    /** Indicate that the model has two-factor authentication configured. */
     public function withTwoFactor(): static
     {
         return $this->state(fn (array $attributes): array => [

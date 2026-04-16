@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enums;
 
 enum TeamRole: string
@@ -9,8 +11,20 @@ enum TeamRole: string
     case Member = 'member';
 
     /**
-     * Get the display label for the role.
+     * Get the roles that can be assigned to team members (excludes Owner).
+     *
+     * @return array<array{value: string, label: string}>
      */
+    public static function assignable(): array
+    {
+        return collect(self::cases())
+            ->filter(fn (self $role): bool => $role !== self::Owner)
+            ->map(fn (self $role): array => ['value' => $role->value, 'label' => $role->label()])
+            ->values()
+            ->toArray();
+    }
+
+    /** Get the display label for the role. */
     public function label(): string
     {
         return ucfirst($this->value);
@@ -34,9 +48,7 @@ enum TeamRole: string
         };
     }
 
-    /**
-     * Determine if the role has the given permission.
-     */
+    /** Determine if the role has the given permission. */
     public function hasPermission(TeamPermission $permission): bool
     {
         return in_array($permission, $this->permissions());
@@ -55,25 +67,9 @@ enum TeamRole: string
         };
     }
 
-    /**
-     * Check if this role is at least as privileged as another role.
-     */
+    /** Check if this role is at least as privileged as another role. */
     public function isAtLeast(TeamRole $role): bool
     {
         return $this->level() >= $role->level();
-    }
-
-    /**
-     * Get the roles that can be assigned to team members (excludes Owner).
-     *
-     * @return array<array{value: string, label: string}>
-     */
-    public static function assignable(): array
-    {
-        return collect(self::cases())
-            ->filter(fn (self $role): bool => $role !== self::Owner)
-            ->map(fn (self $role): array => ['value' => $role->value, 'label' => $role->label()])
-            ->values()
-            ->toArray();
     }
 }

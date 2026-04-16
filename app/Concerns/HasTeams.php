@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Concerns;
 
 use App\Enums\TeamPermission;
@@ -66,9 +68,7 @@ trait HasTeams
         return $this->belongsTo(Team::class, 'current_team_id');
     }
 
-    /**
-     * Get the user's personal team.
-     */
+    /** Get the user's personal team. */
     public function personalTeam(): ?Team
     {
         return $this->teams()
@@ -76,9 +76,7 @@ trait HasTeams
             ->first();
     }
 
-    /**
-     * Switch to the given team.
-     */
+    /** Switch to the given team. */
     public function switchTeam(Team $team): bool
     {
         if (! $this->belongsToTeam($team)) {
@@ -93,33 +91,25 @@ trait HasTeams
         return true;
     }
 
-    /**
-     * Determine if the user belongs to the given team.
-     */
+    /** Determine if the user belongs to the given team. */
     public function belongsToTeam(Team $team): bool
     {
         return $this->teams()->where('teams.id', $team->id)->exists();
     }
 
-    /**
-     * Determine if the given team is the user's current team.
-     */
+    /** Determine if the given team is the user's current team. */
     public function isCurrentTeam(Team $team): bool
     {
         return $this->current_team_id === $team->id;
     }
 
-    /**
-     * Determine if the user is the owner of the given team.
-     */
+    /** Determine if the user is the owner of the given team. */
     public function ownsTeam(Team $team): bool
     {
         return $this->teamRole($team) === TeamRole::Owner;
     }
 
-    /**
-     * Get the user's role on the given team.
-     */
+    /** Get the user's role on the given team. */
     public function teamRole(Team $team): ?TeamRole
     {
         return $this->teamMemberships()
@@ -142,9 +132,7 @@ trait HasTeams
             ->values();
     }
 
-    /**
-     * Get the user's team as a UserTeam object.
-     */
+    /** Get the user's team as a UserTeam object. */
     public function toUserTeam(Team $team): UserTeam
     {
         $role = $this->teamRole($team);
@@ -160,9 +148,7 @@ trait HasTeams
         );
     }
 
-    /**
-     * Get the standard permissions for a team as a TeamPermissions object.
-     */
+    /** Get the standard permissions for a team as a TeamPermissions object. */
     public function toTeamPermissions(Team $team): TeamPermissions
     {
         $role = $this->teamRole($team);
@@ -186,9 +172,7 @@ trait HasTeams
             ->first();
     }
 
-    /**
-     * Determine if the user has the given permission on the team.
-     */
+    /** Determine if the user has the given permission on the team. */
     public function hasTeamPermission(Team $team, TeamPermission $permission): bool
     {
         return $this->teamRole($team)?->hasPermission($permission) ?? false;

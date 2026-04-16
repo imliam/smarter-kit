@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
 
 use App\Enums\TeamRole;
@@ -31,9 +33,7 @@ class EnsureTeamMembership
         return $next($request);
     }
 
-    /**
-     * Ensure the given user has at least the given role, if applicable.
-     */
+    /** Ensure the given user has at least the given role, if applicable. */
     protected function ensureTeamMemberHasRequiredRole(User $user, Team $team, ?string $minimumRole): void
     {
         if ($minimumRole === null) {
@@ -52,9 +52,7 @@ class EnsureTeamMembership
         );
     }
 
-    /**
-     * Get the team associated with the request.
-     */
+    /** Get the team associated with the request. */
     protected function team(Request $request): ?Team
     {
         $team = $request->route('current_team') ?? $request->route('team');
