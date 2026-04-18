@@ -31,6 +31,7 @@ pest()->extend(TestCase::class)
         Str::createUlidsNormally();
         Str::createUuidsNormally();
         Storage::fake('public');
+        $this->freezeTime();
     });
 
 /*
