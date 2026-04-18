@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Sleep;
 use Illuminate\Support\Str;
 use Tests\TestCase;
@@ -29,6 +30,7 @@ pest()->extend(TestCase::class)
         Str::createRandomStringsNormally();
         Str::createUlidsNormally();
         Str::createUuidsNormally();
+        Storage::fake('public');
     });
 
 /*
