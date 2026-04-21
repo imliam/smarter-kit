@@ -35,3 +35,4 @@ frankenphp-worker.php
 /storage/rector/cache
 /storage/pint.cache
 /tests/Browser/Screenshots
+**/caddy
