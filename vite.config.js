@@ -1,8 +1,11 @@
+import path from 'path';
 import tailwindcss from "@tailwindcss/vite";
 import laravel from 'laravel-vite-plugin';
 import {
     defineConfig
 } from 'vite';
+
+const __dirname = import.meta.dirname;
 
 export default defineConfig({
     build: {
