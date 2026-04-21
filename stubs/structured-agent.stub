@@ -1,0 +1,44 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Illuminate\Contracts\JsonSchema\JsonSchema;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Contracts\Conversational;
+use Laravel\Ai\Contracts\HasStructuredOutput;
+use Laravel\Ai\Contracts\HasTools;
+use Laravel\Ai\Contracts\Tool;
+use Laravel\Ai\Messages\Message;
+use Laravel\Ai\Promptable;
+use Stringable;
+
+class {{ class }} implements Agent, Conversational, HasStructuredOutput, HasTools
+{
+    use Promptable;
+
+    public function instructions(): Stringable|string
+    {
+        return 'You are a helpful assistant.';
+    }
+
+    /** @return Message[] */
+    public function messages(): iterable
+    {
+        return [];
+    }
+
+    /** @return Tool[] */
+    public function tools(): iterable
+    {
+        return [];
+    }
+
+    public function schema(JsonSchema $schema): array
+    {
+        return [
+            'value' => $schema->string()->required(),
+        ];
+    }
+}

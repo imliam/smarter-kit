@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Closure;
+use Laravel\Ai\Prompts\AgentPrompt;
+use Laravel\Ai\Responses\AgentResponse;
+
+class {{ class }}
+{
+    public function handle(AgentPrompt $prompt, Closure $next)
+    {
+        return $next($prompt)->then(function (AgentResponse $response) {
+            // ...
+        });
+    }
+}
