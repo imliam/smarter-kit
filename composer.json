@@ -97,7 +97,8 @@
             "@php artisan ide-helper:meta",
             "@php artisan ide-helper:models --nowrite",
             "@php artisan ide-helper:eloquent",
-            "@php artisan filament:upgrade"
+            "@php artisan filament:upgrade",
+            "@php artisan icons:cache"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
