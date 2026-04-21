@@ -1,2 +1,7 @@
-resources/js/components/ui/*
-resources/views/mail/*
+/bootstrap/cache
+/node_modules
+/public
+/resources/js/components/ui/*
+/resources/views/mail/*
+/storage
+/vendor

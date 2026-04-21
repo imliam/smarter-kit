@@ -26,3 +26,12 @@ yarn-error.log
 _ide_helper_models.php
 _ide_helper.php
 .phpstorm.meta.php
+frankenphp
+frankenphp-worker.php
+/public/css/filament
+/public/fonts/filament
+/public/js/app
+/public/js/filament
+/storage/rector/cache
+/storage/pint.cache
+/tests/Browser/Screenshots
