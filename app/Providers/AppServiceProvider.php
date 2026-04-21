@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
@@ -50,6 +51,8 @@ class AppServiceProvider extends ServiceProvider
         Model::automaticallyEagerLoadRelationships();
 
         MorphMapGenerator::resolveUsing(fn ($model) => $model->getTable());
+
+        FormRequest::failOnUnknownFields();
 
         Password::defaults(fn (): ?Password => app()->isProduction()
             ? Password::min(12)
