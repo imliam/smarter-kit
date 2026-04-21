@@ -1,17 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Laravel\Ai\Migrations\AiMigration;
 
 return new class extends AiMigration
 {
-    /**
-     * Run the migrations.
-     */
+    /** Run the migrations. */
     public function up(): void
     {
-        Schema::create('agent_conversations', function (Blueprint $table) {
+        Schema::create('agent_conversations', function (Blueprint $table): void {
             $table->string('id', 36)->primary();
             $table->foreignId('user_id')->nullable();
             $table->string('title');
@@ -20,7 +20,7 @@ return new class extends AiMigration
             $table->index(['user_id', 'updated_at']);
         });
 
-        Schema::create('agent_conversation_messages', function (Blueprint $table) {
+        Schema::create('agent_conversation_messages', function (Blueprint $table): void {
             $table->string('id', 36)->primary();
             $table->string('conversation_id', 36)->index();
             $table->foreignId('user_id')->nullable();
@@ -39,9 +39,7 @@ return new class extends AiMigration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    /** Reverse the migrations. */
     public function down(): void
     {
         Schema::dropIfExists('agent_conversations');
