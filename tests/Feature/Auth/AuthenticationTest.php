@@ -3,12 +3,22 @@
 declare(strict_types=1);
 
 use App\Models\User;
+use Database\Seeders\DatabaseSeeder;
 use Laravel\Fortify\Features;
 
 test('login screen can be rendered', function (): void {
     $response = $this->get(route('login'));
 
     $response->assertOk();
+});
+
+test('login screen prefills default credentials in local environment', function (): void {
+    $this->app['env'] = 'local';
+
+    $response = $this->get(route('login'));
+
+    $response->assertOk();
+    $response->assertSee(DatabaseSeeder::DEFAULT_EMAIL);
 });
 
 test('users can authenticate using the login screen', function (): void {

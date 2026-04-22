@@ -22,7 +22,7 @@
             <flux:input
                 name="email"
                 label="Email address"
-                :value="old('email')"
+                :value="old('email', app()->isLocal() ? \Database\Seeders\DatabaseSeeder::DEFAULT_EMAIL : '')"
                 type="email"
                 required
                 autofocus
@@ -40,6 +40,7 @@
                     autocomplete="current-password"
                     placeholder="Password"
                     viewable
+                    :value="app()->isLocal() ? \Database\Seeders\DatabaseSeeder::DEFAULT_PASSWORD : ''"
                 />
 
                 @if (Route::has('password.request'))
