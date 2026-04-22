@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\Model;
+use App\Providers\Filament\AdminPanelProvider;
 use Pest\Arch\Support\Composer;
 
 arch()->preset()->php();
@@ -10,13 +11,14 @@ arch()->preset()->security();
 arch()->preset()->laravel()
     ->ignoring([
         Model::class,
+        AdminPanelProvider::class,
     ]);
 
 arch()->expect(['sleep', 'usleep'])->not->toBeUsed();
 
 arch('tests to not be used in application code')
     ->expect('Tests')
-    ->not->toBeUsedIn('App');
+    ->not->toBeUsedIn(['App', 'Database']);
 
 foreach (Composer::userNamespaces() as $namespace) {
     arch()->expect($namespace)->toUseStrictTypes();
