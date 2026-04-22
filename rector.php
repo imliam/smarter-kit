@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Rector\Caching\ValueObject\Storage\FileCacheStorage;
 use Rector\CodingStyle\Rector\ArrowFunction\ArrowFunctionDelegatingCallToFirstClassCallableRector;
 use Rector\CodingStyle\Rector\Closure\ClosureDelegatingCallToFirstClassCallableRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
@@ -22,6 +23,7 @@ return RectorConfig::configure()
         __DIR__.'/tests',
     ])
     ->withSkipPath(__DIR__.'/bootstrap/cache')
+    ->withCache(__DIR__.'/storage/rector/cache', FileCacheStorage::class)
     ->withPhpSets()
     ->withPreparedSets(
         deadCode: true,
