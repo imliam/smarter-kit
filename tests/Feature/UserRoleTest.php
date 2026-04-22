@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Enums\UserRole;
 use App\Models\User;
 use Filament\Panel;
 use Illuminate\Support\Facades\Gate;
