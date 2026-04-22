@@ -81,7 +81,7 @@
         "test": [
             "@php artisan config:clear --ansi",
             "@lint:check",
-            "@php artisan test",
+            "@php artisan test --parallel",
             "phpstan analyse --ansi --memory-limit=-1"
         ],
         "fix": [
@@ -112,7 +112,11 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
-            "@php artisan migrate --graceful --ansi"
+            "@php artisan migrate --graceful --ansi",
+            "@php artisan db:seed --ansi",
+            "bun install",
+            "npx playwright install",
+            "bun run build"
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
