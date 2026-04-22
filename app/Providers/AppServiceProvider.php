@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
@@ -18,20 +20,29 @@ use Spatie\LaravelMorphMapGenerator\MorphMapGenerator;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /** Register any application services. */
     #[Override]
     public function register(): void
     {
         //
     }
 
-    /** Bootstrap any application services. */
     public function boot(): void
     {
         $this->configureDefaults();
+        $this->configureGates();
     }
 
-    /** Configure default behaviors for production-ready applications. */
+    protected function configureGates(): void
+    {
+        Gate::before(function (User $user, string $ability): ?bool {
+            if ($user->isAdmin()) {
+                return true;
+            }
+
+            return null;
+        });
+    }
+
     protected function configureDefaults(): void
     {
         URL::forceHttps(app()->isProduction());
