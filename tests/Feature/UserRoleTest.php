@@ -15,14 +15,14 @@ test('users have no role by default', function (): void {
 
 test('admins can access the admin panel', function (): void {
     $admin = User::factory()->admin()->create();
-    $panel = app(Panel::class);
+    $panel = resolve(Panel::class);
 
     expect($admin->canAccessPanel($panel))->toBeTrue();
 });
 
 test('regular users cannot access the admin panel', function (): void {
     $user = User::factory()->create();
-    $panel = app(Panel::class);
+    $panel = resolve(Panel::class);
 
     expect($user->canAccessPanel($panel))->toBeFalse();
 });

@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Concerns\HasTeams;
 use App\Enums\UserRole;
-use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
@@ -29,8 +28,15 @@ use Override;
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, FilamentUser, HasName, MustVerifyEmailContract
 {
-    /** @use HasFactory<UserFactory> */
-    use Authenticatable, Authorizable, CanResetPassword, HasApiTokens, HasFactory, HasTeams, MustVerifyEmail, Notifiable, TwoFactorAuthenticatable;
+    use Authenticatable;
+    use Authorizable;
+    use CanResetPassword;
+    use HasApiTokens;
+    use HasFactory;
+    use HasTeams;
+    use MustVerifyEmail;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
 
     /** Get the user's initials */
     public function initials(): string

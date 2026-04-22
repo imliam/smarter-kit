@@ -6,17 +6,18 @@ namespace App\Models;
 
 use App\Concerns\GeneratesUniqueTeamSlugs;
 use App\Enums\TeamRole;
-use Database\Factories\TeamFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Override;
 
 class Team extends Model
 {
-    /** @use HasFactory<TeamFactory> */
-    use GeneratesUniqueTeamSlugs, HasFactory, SoftDeletes;
+    use GeneratesUniqueTeamSlugs;
+    use HasFactory;
+    use SoftDeletes;
 
     /** Get the team owner. */
     public function owner(): ?Model
@@ -29,7 +30,7 @@ class Team extends Model
     /**
      * Get all members of this team.
      *
-     * @return BelongsToMany<Model, $this>
+     * @return BelongsToMany<User, $this, Pivot>
      */
     public function members(): BelongsToMany
     {

@@ -18,7 +18,7 @@ test('new users can register', function (): void {
         'password_confirmation' => 'password',
     ]);
 
-    $user = User::where('email', 'test@example.com')->first();
+    $user = User::query()->where('email', 'test@example.com')->first();
 
     $response->assertSessionHasNoErrors()
         ->assertRedirect(route('dashboard', absolute: false));

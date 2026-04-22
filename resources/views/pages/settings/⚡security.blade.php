@@ -14,7 +14,9 @@ new #[Title('Security settings')] class extends Component {
     use PasswordValidationRules;
 
     public string $current_password = '';
+
     public string $password = '';
+
     public string $password_confirmation = '';
 
     public bool $canManageTwoFactor;
@@ -50,10 +52,10 @@ new #[Title('Security settings')] class extends Component {
                 'current_password' => $this->currentPasswordRules(),
                 'password' => $this->passwordRules(),
             ]);
-        } catch (ValidationException $e) {
+        } catch (ValidationException $validationException) {
             $this->reset('current_password', 'password', 'password_confirmation');
 
-            throw $e;
+            throw $validationException;
         }
 
         Auth::user()->update([

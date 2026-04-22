@@ -43,7 +43,7 @@ new class extends Component {
             : null;
 
         DB::transaction(function () use ($user): void {
-            User::where('current_team_id', $this->team->id)
+            User::query()->where('current_team_id', $this->team->id)
                 ->where('id', '!=', $user->id)
                 ->each(fn (User $affectedUser): bool => $affectedUser->switchTeam($affectedUser->personalTeam()));
 

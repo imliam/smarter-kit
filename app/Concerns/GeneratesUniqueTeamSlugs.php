@@ -31,6 +31,7 @@ trait GeneratesUniqueTeamSlugs
                 if ($slug === $defaultSlug) {
                     return 0;
                 }
+
                 if (preg_match('/^'.preg_quote($defaultSlug, '/').'-(\d+)$/', $slug, $matches)) {
                     return (int) $matches[1];
                 }

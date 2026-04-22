@@ -7,6 +7,7 @@ namespace App\Rules;
 use App\Models\Team;
 use App\Models\TeamInvitation;
 use Closure;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Translation\PotentiallyTranslatedString;
 
@@ -36,10 +37,10 @@ class UniqueTeamInvitation implements ValidationRule
             return;
         }
 
-        $hasPendingInvitation = TeamInvitation::where('team_id', $this->team->id)
+        $hasPendingInvitation = TeamInvitation::query()->where('team_id', $this->team->id)
             ->whereRaw('LOWER(email) = ?', [$email])
             ->whereNull('accepted_at')
-            ->where(function ($query): void {
+            ->where(function (Builder $query): void {
                 $query->whereNull('expires_at')
                     ->orWhere('expires_at', '>', now());
             })

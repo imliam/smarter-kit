@@ -35,7 +35,7 @@ new class extends Component {
     #[On('start-two-factor-setup')]
     public function startTwoFactorSetup(): void
     {
-        $enableTwoFactorAuthentication = app(EnableTwoFactorAuthentication::class);
+        $enableTwoFactorAuthentication = resolve(EnableTwoFactorAuthentication::class);
         $enableTwoFactorAuthentication(auth()->user());
 
         $this->loadSetupData();
@@ -49,9 +49,7 @@ new class extends Component {
         $user = auth()->user()?->fresh();
 
         try {
-            if (! $user || ! $user->two_factor_secret) {
-                throw new Exception('Two-factor setup secret is not available.');
-            }
+            throw_if(! $user || ! $user->two_factor_secret, Exception::class, 'Two-factor setup secret is not available.');
 
             $this->qrCodeSvg = $user->twoFactorQrCodeSvg();
             $this->manualSetupKey = decrypt($user->two_factor_secret);

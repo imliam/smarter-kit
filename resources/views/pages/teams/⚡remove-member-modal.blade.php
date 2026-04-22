@@ -31,7 +31,7 @@ new class extends Component {
     {
         Gate::authorize('removeMember', $this->team);
 
-        $user = User::findOrFail($this->memberId);
+        $user = User::query()->findOrFail($this->memberId);
 
         if ($this->memberName === '') {
             $this->memberName = $user->name;

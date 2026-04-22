@@ -377,6 +377,6 @@ class TeamName implements ValidationRule
             ->unique()
             ->sort()
             ->values()
-            ->toArray();
+            ->all();
     }
 }

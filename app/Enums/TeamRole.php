@@ -21,7 +21,7 @@ enum TeamRole: string
             ->filter(fn (self $role): bool => $role !== self::Owner)
             ->map(fn (self $role): array => ['value' => $role->value, 'label' => $role->label()])
             ->values()
-            ->toArray();
+            ->all();
     }
 
     /** Get the display label for the role. */

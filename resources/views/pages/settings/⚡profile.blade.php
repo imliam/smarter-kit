@@ -12,6 +12,7 @@ new #[Title('Profile settings')] class extends Component {
     use ProfileValidationRules;
 
     public string $name = '';
+
     public string $email = '';
 
     /**

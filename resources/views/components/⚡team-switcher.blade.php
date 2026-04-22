@@ -50,7 +50,7 @@ new class extends Component {
         $user = Auth::user();
 
         abort_unless(
-            $user->belongsToTeam($team = Team::where('slug', $slug)->firstOrFail()),
+            $user->belongsToTeam($team = Team::query()->where('slug', $slug)->firstOrFail()),
             403
         );
 

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\User;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\Features;
 use Livewire\Livewire;
@@ -20,7 +21,7 @@ test('security settings page can be rendered', function (): void {
     $user = User::factory()->create();
 
     $this->actingAs($user)
-        ->withSession(['auth.password_confirmed_at' => time()])
+        ->withSession(['auth.password_confirmed_at' => Date::now()->getTimestamp()])
         ->get(route('security.edit'))
         ->assertOk()
         ->assertSee('Two-factor authentication')
@@ -42,7 +43,7 @@ test('security settings page renders without two factor when feature is disabled
     $user = User::factory()->create();
 
     $this->actingAs($user)
-        ->withSession(['auth.password_confirmed_at' => time()])
+        ->withSession(['auth.password_confirmed_at' => Date::now()->getTimestamp()])
         ->get(route('security.edit'))
         ->assertOk()
         ->assertSee('Update password')

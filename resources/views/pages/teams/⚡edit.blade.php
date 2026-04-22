@@ -44,7 +44,7 @@ new class extends Component
         ]);
 
         $team = DB::transaction(function () use ($validated) {
-            $team = Team::whereKey($this->teamModel->id)->lockForUpdate()->firstOrFail();
+            $team = Team::query()->whereKey($this->teamModel->id)->lockForUpdate()->firstOrFail();
 
             $team->update(['name' => $validated['teamName']]);
 
@@ -94,7 +94,7 @@ new class extends Component
             'avatar' => $member->avatar ?? null,
             'role' => $member->pivot->role->value,
             'role_label' => $member->pivot->role?->label(),
-        ])->toArray();
+        ])->all();
 
         $this->invitations = $team->invitations()
             ->whereNull('accepted_at')
@@ -105,7 +105,7 @@ new class extends Component
                 'role' => $invitation->role->value,
                 'role_label' => $invitation->role->label(),
                 'created_at' => $invitation->created_at->toISOString(),
-            ])->toArray();
+            ])->all();
 
         $this->availableRoles = TeamRole::assignable();
 

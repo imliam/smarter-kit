@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\TeamRole;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Override;
 
 class Membership extends Pivot
 {
+    use HasFactory;
+
     /**
      * Indicates if the IDs are auto-incrementing.
      *
@@ -40,7 +43,7 @@ class Membership extends Pivot
     /**
      * Get the user that belongs to this membership.
      *
-     * @return BelongsTo<Model, $this>
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {
