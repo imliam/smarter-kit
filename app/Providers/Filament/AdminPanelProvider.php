@@ -37,6 +37,10 @@ class AdminPanelProvider extends PanelProvider
             ->emailVerification()
             ->emailChangeVerification()
             ->profile()
+            ->databaseNotifications()
+            ->sidebarFullyCollapsibleOnDesktop()
+            ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
+            ->globalSearchFieldKeyBindingSuffix()
             ->colors([
                 'primary' => Color::Amber,
             ])
