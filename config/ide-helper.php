@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+use App\Models\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\PendingRequest;
@@ -62,7 +63,7 @@ return [
     |
     */
 
-    'write_query_methods' => true,
+    'write_query_methods' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -158,7 +159,7 @@ return [
     */
 
     'ignored_models' => [
-        // App\MyModel::class,
+        Model::class,
     ],
 
     /*

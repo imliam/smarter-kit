@@ -5,12 +5,31 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\TeamRole;
+use Carbon\CarbonImmutable;
 use Database\Factories\TeamInvitationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use Override;
 
+/**
+ * @property int $id
+ * @property string $code
+ * @property int $team_id
+ * @property string $email
+ * @property TeamRole $role
+ * @property int $invited_by
+ * @property CarbonImmutable|null $expires_at
+ * @property CarbonImmutable|null $accepted_at
+ * @property CarbonImmutable|null $created_at
+ * @property CarbonImmutable|null $updated_at
+ * @property-read User $inviter
+ * @property-read Team|null $team
+ *
+ * @method static \Database\Factories\TeamInvitationFactory factory($count = null, $state = [])
+ *
+ * @mixin \Illuminate\Database\Eloquent\Model
+ */
 class TeamInvitation extends Model
 {
     /** @use HasFactory<TeamInvitationFactory> */
