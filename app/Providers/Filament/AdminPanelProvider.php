@@ -40,6 +40,7 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarFullyCollapsibleOnDesktop()
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
             ->globalSearchFieldKeyBindingSuffix()
+            ->unsavedChangesAlerts()
             ->colors([
                 'primary' => Color::Amber,
             ])
