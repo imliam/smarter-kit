@@ -13,7 +13,32 @@
         "lowercase_static_reference": true,
         "fully_qualified_strict_types": {
             "import_symbols": true,
-            "phpdoc_tags":  ["param", "phpstan-param", "phpstan-property", "phpstan-property-read", "phpstan-property-write", "phpstan-return", "phpstan-var", "property", "property-read", "property-write", "psalm-param", "psalm-property", "psalm-property-read", "psalm-property-write", "psalm-return", "psalm-var", "return", "see", "throws", "var", "extends", "use"]
+            "phpdoc_tags": [
+                "method",
+                "mixin",
+                "param",
+                "phpstan-param",
+                "phpstan-property",
+                "phpstan-property-read",
+                "phpstan-property-write",
+                "phpstan-return",
+                "phpstan-var",
+                "property",
+                "property-read",
+                "property-write",
+                "psalm-param",
+                "psalm-property",
+                "psalm-property-read",
+                "psalm-property-write",
+                "psalm-return",
+                "psalm-var",
+                "return",
+                "see",
+                "throws",
+                "var",
+                "extends",
+                "use"
+            ]
         },
         "global_namespace_import": {
             "import_classes": true,
@@ -67,7 +92,11 @@
         "self_static_accessor": true,
         "strict_comparison": true,
         "visibility_required": {
-            "elements": ["const", "method", "property"]
+            "elements": [
+                "const",
+                "method",
+                "property"
+            ]
         }
     }
 }

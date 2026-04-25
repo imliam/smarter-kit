@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Enums\TeamRole;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Override;
@@ -21,7 +22,7 @@ use Override;
  * @property-read Team|null $team
  * @property-read User $user
  *
- * @mixin \Illuminate\Database\Eloquent\Model
+ * @mixin Model
  */
 class Membership extends Pivot
 {

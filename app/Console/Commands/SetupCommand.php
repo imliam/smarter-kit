@@ -7,6 +7,7 @@ namespace App\Console\Commands;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Process;
+use Illuminate\Support\Str;
 use Override;
 use Symfony\Component\Finder\Finder;
 
@@ -30,16 +31,16 @@ class SetupCommand extends Command
             $this->warn('Warning: This directory is already a git repository - the setup command is only meant to be run in a new project.');
         }
 
-        $repositoryUrl = \Illuminate\Support\Str::replaceLast('.git', '', $this->ask("What is your project's repository URL?", 'https://github.com/imliam/smarter-kit.git'));
+        $repositoryUrl = Str::replaceLast('.git', '', $this->ask("What is your project's repository URL?", 'https://github.com/imliam/smarter-kit.git'));
         $repositoryName = $this->getRepositoryName($repositoryUrl);
-        $projectName = $this->ask("What is your project's name?", \Illuminate\Support\Str::headline(\Illuminate\Support\Str::after($repositoryName, '/')));
-        $projectOwner = $this->ask("What is your Git owner's username or organisation?", \Illuminate\Support\Str::before($repositoryName, '/'));
+        $projectName = $this->ask("What is your project's name?", Str::headline(Str::after($repositoryName, '/')));
+        $projectOwner = $this->ask("What is your Git owner's username or organisation?", Str::before($repositoryName, '/'));
         $securityEmail = $this->ask('What is the security contact email for your project?', 'security@example.com');
 
         $replacements = [
             'https://github.com/imliam/smarter-kit' => $repositoryUrl,
             'imliam/smarter-kit' => $repositoryName,
-            'smarter-kit' => \Illuminate\Support\Str::kebab($projectName),
+            'smarter-kit' => Str::kebab($projectName),
             'imliam' => $projectOwner,
             'Smarter Kit' => $projectName,
             'security@example.com' => $securityEmail,
@@ -68,14 +69,14 @@ class SetupCommand extends Command
 
     protected function getRepositoryName(string $repositoryUrl): string
     {
-        throw_unless(\Illuminate\Support\Str::isUrl($repositoryUrl), Exception::class, 'The provided URL is not valid.');
+        throw_unless(Str::isUrl($repositoryUrl), Exception::class, 'The provided URL is not valid.');
 
         $path = parse_url($repositoryUrl, PHP_URL_PATH);
 
         throw_if($path === null, Exception::class, 'Could not parse the URL path.');
 
         if (str_ends_with($path, '.git')) {
-            $path = \Illuminate\Support\Str::replaceLast('.git', '', $path);
+            $path = Str::replaceLast('.git', '', $path);
         }
 
         $path = mb_ltrim($path, '/');
