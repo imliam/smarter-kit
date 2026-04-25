@@ -24,4 +24,11 @@ class Login extends BaseLogin
         return parent::getPasswordFormComponent()
             ->default(app()->isLocal() ? DatabaseSeeder::DEFAULT_PASSWORD : null);
     }
+
+    #[Override]
+    protected function getRememberFormComponent(): Component
+    {
+        return parent::getRememberFormComponent()
+            ->default(app()->isLocal());
+    }
 }
