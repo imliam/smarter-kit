@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Livewire;
 
 test('profile page is displayed', function (): void {
@@ -74,4 +76,71 @@ test('correct password must be provided to delete account', function (): void {
     $response->assertHasErrors(['password']);
 
     expect($user->fresh())->not->toBeNull();
+});
+
+test('user can upload an avatar', function (): void {
+    Storage::fake('public');
+
+    $user = User::factory()->create();
+    $this->actingAs($user);
+
+    $file = UploadedFile::fake()->image('avatar.jpg');
+
+    $response = Livewire::test('pages::settings.profile')
+        ->set('avatar', $file)
+        ->call('updateAvatar');
+
+    $response->assertHasNoErrors();
+
+    $user->refresh();
+
+    expect($user->avatar_url)->not->toBeNull();
+    Storage::disk('public')->assertExists($user->avatar_url);
+});
+
+test('avatar upload validates file type', function (): void {
+    $user = User::factory()->create();
+    $this->actingAs($user);
+
+    $file = UploadedFile::fake()->create('document.pdf', 100, 'application/pdf');
+
+    $response = Livewire::test('pages::settings.profile')
+        ->set('avatar', $file)
+        ->call('updateAvatar');
+
+    $response->assertHasErrors(['avatar']);
+});
+
+test('old avatar is deleted when a new one is uploaded', function (): void {
+    Storage::fake('public');
+
+    $oldPath = UploadedFile::fake()->image('old.jpg')->store('avatars', 'public');
+
+    $user = User::factory()->create(['avatar_url' => $oldPath]);
+    $this->actingAs($user);
+
+    Livewire::test('pages::settings.profile')
+        ->set('avatar', UploadedFile::fake()->image('new.jpg'))
+        ->call('updateAvatar')
+        ->assertHasNoErrors();
+
+    Storage::disk('public')->assertMissing($oldPath);
+});
+
+test('user can remove their avatar', function (): void {
+    Storage::fake('public');
+
+    $path = UploadedFile::fake()->image('avatar.jpg')->store('avatars', 'public');
+
+    $user = User::factory()->create(['avatar_url' => $path]);
+    $this->actingAs($user);
+
+    Livewire::test('pages::settings.profile')
+        ->call('removeAvatar')
+        ->assertHasNoErrors();
+
+    $user->refresh();
+
+    expect($user->avatar_url)->toBeNull();
+    Storage::disk('public')->assertMissing($path);
 });

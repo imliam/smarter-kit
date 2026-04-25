@@ -8,6 +8,7 @@ use App\Concerns\HasTeams;
 use App\Enums\UserRole;
 use Carbon\CarbonImmutable;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
 use Illuminate\Auth\Authenticatable;
@@ -24,6 +25,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
@@ -44,6 +46,7 @@ use Override;
  * @property CarbonImmutable|null $two_factor_confirmed_at
  * @property int|null $current_team_id
  * @property UserRole $role
+ * @property string|null $avatar_url
  * @property-read Team|null $currentTeam
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read Collection<int, Team> $ownedTeams
@@ -56,7 +59,7 @@ use Override;
  * @mixin \Illuminate\Database\Eloquent\Model
  */
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, FilamentUser, HasName, MustVerifyEmailContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, FilamentUser, HasAvatar, HasName, MustVerifyEmailContract
 {
     use Authenticatable;
     use Authorizable;
@@ -91,6 +94,21 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getFilamentName(): string
     {
         return $this->name;
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->avatarUrl();
+    }
+
+    /** Return the public URL to the avatar, or null if none has been set. */
+    public function avatarUrl(): ?string
+    {
+        if (! $this->avatar_url) {
+            return null;
+        }
+
+        return Storage::disk('public')->url($this->avatar_url);
     }
 
     /**

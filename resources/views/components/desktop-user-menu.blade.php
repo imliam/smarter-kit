@@ -6,7 +6,11 @@
         class="group flex w-full items-center rounded-lg p-1 hover:bg-zinc-800/5 dark:hover:bg-white/10"
         data-test="sidebar-menu-button"
     >
-        <flux:avatar :initials="auth()->user()->initials()" size="sm" />
+        <flux:avatar
+            :src="auth()->user()->avatarUrl()"
+            :initials="auth()->user()->initials()"
+            size="sm"
+        />
         <div
             class="mx-2 grid flex-1 text-start text-sm leading-tight in-data-flux-sidebar-collapsed-desktop:hidden"
         >
@@ -31,6 +35,7 @@
     <flux:menu>
         <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
             <flux:avatar
+                :src="auth()->user()->avatarUrl()"
                 :name="auth()->user()->name"
                 :initials="auth()->user()->initials()"
             />

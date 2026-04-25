@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Users\Schemas;
 
 use App\Filament\Resources\Users\Pages\CreateUser;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Hash;
@@ -32,6 +33,15 @@ class UserForm
                     ->autocomplete('new-password')
                     ->dehydrated(fn (mixed $state): bool => filled($state))
                     ->dehydrateStateUsing(fn (mixed $state): string => Hash::make($state)),
+                FileUpload::make('avatar_url')
+                    ->label('Avatar')
+                    ->image()
+                    ->disk('public')
+                    ->directory('avatars')
+                    ->visibility('public')
+                    ->maxSize(2048)
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->deletable(),
             ]);
     }
 }

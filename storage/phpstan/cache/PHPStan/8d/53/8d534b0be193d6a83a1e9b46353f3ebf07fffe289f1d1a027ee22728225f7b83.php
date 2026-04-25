@@ -46,7 +46,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/liam.hammett/projects/smarter-kit-2/bootstrap/cache/services.php' => 
     array (
-      0 => 'a843f6528457623896bf3ee1cc175650cad4e618e4f0c34e54417fb45bbb8132',
+      0 => '247acc50d0b26f386d4dbb72a9794ccc7b782cb351814ca9f0ec9dac402432b1',
       1 => 
       array (
       ),
@@ -72,7 +72,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/liam.hammett/projects/smarter-kit-2/bootstrap/providers.php' => 
     array (
-      0 => '32570b1e32bb8fd428496e56715a38ad5a3e52743e0a72b6b765243138f1bf76',
+      0 => 'f41c21e1260616d604a5c6fc4192b3e59a333cffe94622d5b2639cdbc9c02e89',
       1 => 
       array (
       ),

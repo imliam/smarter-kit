@@ -257,7 +257,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/liam.hammett/projects/smarter-kit-2/app/Filament/Resources/Users/Schemas/UserForm.php' => 
     array (
-      0 => '3f0828f52c931bc872c784f080a7ea4dab8dab012c084553139e5e666fe7643c',
+      0 => '5333af8a51ec99784a9978bc97bf4797fb37f16632a2cfbe191a9f545ce2b6d5',
       1 => 
       array (
         0 => 'app\\filament\\resources\\users\\schemas\\userform',
@@ -517,7 +517,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/liam.hammett/projects/smarter-kit-2/app/Models/User.php' => 
     array (
-      0 => '10e23909f6935ca43d20de227be5566c2d4ff6ccea0421e66454d797363b51df',
+      0 => 'b53f165a94f932d03e05d53520e7fadebfb8e89c6e289b9d7b361ce5bd5b6d21',
       1 => 
       array (
         0 => 'app\\models\\user',
@@ -528,7 +528,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'app\\models\\isadmin',
         2 => 'app\\models\\canaccesspanel',
         3 => 'app\\models\\getfilamentname',
-        4 => 'app\\models\\casts',
+        4 => 'app\\models\\getfilamentavatarurl',
+        5 => 'app\\models\\avatarurl',
+        6 => 'app\\models\\casts',
       ),
       3 => 
       array (
@@ -597,7 +599,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/liam.hammett/projects/smarter-kit-2/app/Providers/Filament/AdminPanelProvider.php' => 
     array (
-      0 => 'ac35952245bbed929cfee00e18f468abb363ab71ba862bc7f842db0a33ff5ff7',
+      0 => '9fd5045755a4539b7945c0431a14fb40880af90a77421cd398ef7800f5ffdeae',
       1 => 
       array (
         0 => 'app\\providers\\filament\\adminpanelprovider',
@@ -687,6 +689,21 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\support\\__construct',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/Users/liam.hammett/projects/smarter-kit-2/app/Providers/MacroServiceProvider.php' => 
+    array (
+      0 => 'f4149fa69ec077c61ebbf7078ff01b4e438ab5792ba9052e66cc1125cd6a81ed',
+      1 => 
+      array (
+        0 => 'app\\providers\\macroserviceprovider',
+      ),
+      2 => 
+      array (
+        0 => 'app\\providers\\boot',
       ),
       3 => 
       array (

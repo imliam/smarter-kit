@@ -171,3 +171,12 @@ it('validates the form data', function (array $data, array $errors): void {
     '`email` is a valid email address' => [['email' => Str::random()], ['email' => 'email']],
     '`email` is required' => [['email' => null], ['email' => 'required']],
 ]);
+
+it('has avatar_url field on the edit form', function (): void {
+    $user = User::factory()->create();
+
+    livewire(EditUser::class, [
+        'record' => $user->id,
+    ])
+        ->assertFormFieldExists('avatar_url');
+});

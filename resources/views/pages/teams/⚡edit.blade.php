@@ -91,7 +91,7 @@ new class extends Component
             'id' => $member->id,
             'name' => $member->name,
             'email' => $member->email,
-            'avatar' => $member->avatar ?? null,
+            'avatar' => $member->avatarUrl(),
             'role' => $member->pivot->role->value,
             'role_label' => $member->pivot->role?->label(),
         ])->all();
@@ -199,6 +199,7 @@ new class extends Component
                         >
                             <div class="flex items-center gap-4">
                                 <flux:avatar
+                                    :src="$member['avatar']"
                                     :name="$member['name']"
                                     :initials="strtoupper(substr($member['name'], 0, 1))"
                                 />

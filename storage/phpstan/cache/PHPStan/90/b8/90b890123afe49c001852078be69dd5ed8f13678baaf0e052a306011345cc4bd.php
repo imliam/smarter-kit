@@ -42,7 +42,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/liam.hammett/projects/smarter-kit-2/database/factories/UserFactory.php' => 
     array (
-      0 => '95d4d4f15ba4f790da7ca20adfc7e348dc75c1b6a67fb3e16a09143976bb717b',
+      0 => '4e331e2ce5708d178fea2b228c6c93fe998659f71780deece893fed236b4f557',
       1 => 
       array (
         0 => 'database\\factories\\userfactory',
@@ -62,7 +62,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/liam.hammett/projects/smarter-kit-2/database/migrations/0001_01_01_000000_create_users_table.php' => 
     array (
-      0 => 'e8b695274dcd9bd040c3880b05e14ab35022066716ef0e116f0a8a01bad6b12b',
+      0 => '167c7468f06044c65b88ad1af76440a227848894c9435c14dc3aee20460a62dd',
       1 => 
       array (
       ),
