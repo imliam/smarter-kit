@@ -34,5 +34,6 @@ frankenphp-worker.php
 /public/js/filament
 /storage/rector/cache
 /storage/pint.cache
+/storage/phpstan
 /tests/Browser/Screenshots
 **/caddy
