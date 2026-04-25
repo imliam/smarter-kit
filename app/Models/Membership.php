@@ -22,7 +22,6 @@ use Override;
  * @property-read User $user
  *
  * @mixin \Illuminate\Database\Eloquent\Model
- * @mixin \Illuminate\Database\Eloquent\Model
  */
 class Membership extends Pivot
 {

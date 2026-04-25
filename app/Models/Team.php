@@ -34,7 +34,6 @@ use Override;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Team withoutTrashed()
  *
  * @mixin \Illuminate\Database\Eloquent\Model
- * @mixin \Illuminate\Database\Eloquent\Model
  */
 class Team extends Model
 {

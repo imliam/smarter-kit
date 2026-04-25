@@ -54,7 +54,6 @@ use Override;
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  *
  * @mixin \Illuminate\Database\Eloquent\Model
- * @mixin \Illuminate\Database\Eloquent\Model
  */
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, FilamentUser, HasName, MustVerifyEmailContract
