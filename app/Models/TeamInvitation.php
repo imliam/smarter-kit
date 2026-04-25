@@ -29,6 +29,7 @@ use Override;
  * @method static \Database\Factories\TeamInvitationFactory factory($count = null, $state = [])
  *
  * @mixin \Illuminate\Database\Eloquent\Model
+ * @mixin \Illuminate\Database\Eloquent\Model
  */
 class TeamInvitation extends Model
 {
