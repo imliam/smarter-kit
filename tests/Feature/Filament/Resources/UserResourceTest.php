@@ -45,7 +45,7 @@ it('can render the edit page', function (): void {
 it('has column', function (string $column): void {
     livewire(ListUsers::class)
         ->assertTableColumnExists($column);
-})->with(['name', 'email', 'created_at']);
+})->with(['name', 'email', 'created_at', 'avatar_url']);
 
 it('can render column', function (string $column): void {
     livewire(ListUsers::class)
