@@ -120,7 +120,7 @@ jobs:
           node-version: 24
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: bunx playwright install --with-deps
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2

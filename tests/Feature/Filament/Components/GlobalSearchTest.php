@@ -9,6 +9,10 @@ use Filament\Livewire\GlobalSearch;
 
 use function Pest\Livewire\livewire;
 
+beforeEach(function (): void {
+    $this->login(User::factory()->admin()->create());
+});
+
 it('can global search', function (): void {
     livewire(GlobalSearch::class)
         ->set('search', 'test')

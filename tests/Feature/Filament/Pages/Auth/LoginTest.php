@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Filament\Pages\Auth\Login;
+use App\Models\User;
 use Filament\Facades\Filament;
 
 use function Pest\Livewire\livewire;
@@ -28,11 +29,15 @@ test('an unauthenticated user can login', function (): void {
 });
 
 test('an authenticated user can access the admin panel', function (): void {
+    $this->login(User::factory()->admin()->create());
+
     $this->get('admin')
         ->assertOk();
 });
 
 test('an authenticated user can logout', function (): void {
+    $this->login(User::factory()->admin()->create());
+
     $this->assertAuthenticated();
 
     $this->post(Filament::getLogoutUrl())
