@@ -86,7 +86,7 @@ class SetupCommand extends Command
         return $path;
     }
 
-    protected function replaceInFiles(string $search, string $replace)
+    protected function replaceInFiles(string $search, string $replace): void
     {
         $basePath = base_path();
 

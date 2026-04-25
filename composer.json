@@ -88,6 +88,10 @@
             "@php artisan test --parallel",
             "phpstan analyse --ansi --memory-limit=-1"
         ],
+        "test:coverage": [
+            "pest --type-coverage --min=100",
+            "XDEBUG_MODE=\"coverage\" pest --parallel --coverage --exactly=100.0"
+        ],
         "fix": [
             "Composer\\Config::disableProcessTimeout",
             "@php artisan ide-helper:models --write",

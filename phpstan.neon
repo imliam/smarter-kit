@@ -20,6 +20,8 @@ parameters:
 
     checkOctaneCompatibility: true
 
+    tmpDir: storage/phpstan/
+
 #    ignoreErrors:
 #        - '#PHPDoc tag @var#'
 #

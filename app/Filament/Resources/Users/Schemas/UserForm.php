@@ -9,6 +9,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Livewire\Component;
 
 class UserForm
 {
@@ -25,12 +26,12 @@ class UserForm
                     ->required(),
                 TextInput::make('password')
                     ->password()
-                    ->required(fn ($livewire): bool => $livewire instanceof CreateUser)
+                    ->required(fn (Component $livewire): bool => $livewire instanceof CreateUser)
                     ->revealable(filament()->arePasswordsRevealable())
                     ->rule(Password::default())
                     ->autocomplete('new-password')
-                    ->dehydrated(fn ($state): bool => filled($state))
-                    ->dehydrateStateUsing(fn ($state): string => Hash::make($state)),
+                    ->dehydrated(fn (mixed $state): bool => filled($state))
+                    ->dehydrateStateUsing(fn (mixed $state): string => Hash::make($state)),
             ]);
     }
 }

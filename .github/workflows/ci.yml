@@ -13,6 +13,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   setup:
     runs-on: ubuntu-latest
@@ -42,7 +46,7 @@ jobs:
 
       - name: Cache Node Modules
         id: node-modules-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/bun.lock') }}
@@ -56,7 +60,7 @@ jobs:
 
       - name: Cache Vendor
         id: vendor-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: vendor
           key: ${{ runner.os }}-vendor-${{ hashFiles('**/composer.lock') }}
@@ -119,8 +123,20 @@ jobs:
         with:
           node-version: 24
 
+      - name: Cache Playwright Browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
+
       - name: Install Playwright Browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: bunx playwright install --with-deps
+
+      - name: Install Playwright System Dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: bunx playwright install-deps
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -131,6 +147,13 @@ jobs:
 
       - name: Run Tests
         run: ./vendor/bin/pest --parallel --coverage --cache-directory=storage/app/pest --shard ${{ matrix.shard }}/2 --ci
+
+      - name: Store Artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-screenshots
+          path: tests/Browser/Screenshots
 
   js-tests:
     runs-on: ubuntu-latest
@@ -185,6 +208,13 @@ jobs:
           php-version: ${{ matrix.php-version }}
           tools: composer:v2
 
+      - name: Cache PHPStan
+        uses: actions/cache@v4
+        with:
+          path: ./storage/phpstan
+          key: ${{ runner.os }}-phpstan-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-phpstan-
+
       - name: Run PHPStan
         run: ./vendor/bin/phpstan analyse --error-format=github --no-progress
 
@@ -222,14 +252,14 @@ jobs:
           cache: 'bun'
 
       - name: Cache Rector
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ./storage/rector/cache
           key: ${{ runner.os }}-rector-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-rector-
 
       - name: Cache Pint
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ./storage/pint.cache
           key: ${{ runner.os }}-pint-${{ hashFiles('**/composer.lock') }}

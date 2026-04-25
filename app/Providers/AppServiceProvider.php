@@ -68,7 +68,7 @@ class AppServiceProvider extends ServiceProvider
 
         Model::automaticallyEagerLoadRelationships();
 
-        MorphMapGenerator::resolveUsing(fn ($model) => $model->getTable());
+        MorphMapGenerator::resolveUsing(fn (Model $model) => $model->getTable());
 
         FormRequest::failOnUnknownFields();
 
