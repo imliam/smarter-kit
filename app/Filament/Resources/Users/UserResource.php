@@ -24,6 +24,9 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     #[Override]
+    protected static ?string $recordTitleAttribute = 'name';
+
+    #[Override]
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
 
     /** @return array<int, string> */

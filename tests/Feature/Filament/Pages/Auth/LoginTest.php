@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use App\Filament\Pages\Auth\Login;
 use App\Models\User;
+use Database\Seeders\DatabaseSeeder;
 use Filament\Facades\Filament;
+use Illuminate\Support\Facades\Hash;
 
 use function Pest\Livewire\livewire;
 
@@ -19,10 +21,15 @@ test('an unauthenticated user can not access the admin panel', function (): void
 });
 
 test('an unauthenticated user can login', function (): void {
+    User::factory()->admin()->create([
+        'email' => DatabaseSeeder::DEFAULT_EMAIL,
+        'password' => Hash::make(DatabaseSeeder::DEFAULT_PASSWORD),
+    ]);
+
     livewire(Login::class)
         ->fillForm([
-            'email' => config('app.default_user.email'),
-            'password' => config('app.default_user.password'),
+            'email' => DatabaseSeeder::DEFAULT_EMAIL,
+            'password' => DatabaseSeeder::DEFAULT_PASSWORD,
         ])
         ->call('authenticate')
         ->assertHasNoFormErrors();
