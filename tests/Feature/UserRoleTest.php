@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
+use App\Enums\UserRole;
 use App\Models\User;
 use Filament\Panel;
 use Illuminate\Support\Facades\Gate;
 
-test('users have no role by default', function (): void {
+test('users have the user role by default', function (): void {
     $user = User::factory()->create();
 
-    expect($user->role)->toBeNull();
+    expect($user->role)->toBe(UserRole::User);
     expect($user->isAdmin())->toBeFalse();
 });
 
