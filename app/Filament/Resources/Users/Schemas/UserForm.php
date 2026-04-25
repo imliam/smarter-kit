@@ -1,11 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Users\Schemas;
 
 use App\Filament\Resources\Users\Pages\CreateUser;
-use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Hash;
@@ -22,6 +21,7 @@ class UserForm
                 TextInput::make('email')
                     ->label('Email address')
                     ->email()
+                    ->unique()
                     ->required(),
                 TextInput::make('password')
                     ->password()
