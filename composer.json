@@ -94,7 +94,7 @@
         ],
         "fix": [
             "Composer\\Config::disableProcessTimeout",
-            "@php artisan ide-helper:models --write",
+            "@php artisan ide-helper:models --nowrite",
             "vendor/bin/rector",
             "@lint",
             "bun run format",
