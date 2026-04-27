@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Livewire\Blaze\Blaze;
 use Override;
 use Spatie\LaravelMorphMapGenerator\MorphMapGenerator;
 
@@ -77,6 +78,10 @@ class AppServiceProvider extends ServiceProvider
         if (! app()->isProduction()) {
             RequestException::dontTruncate();
         }
+
+        Blaze::optimize()->in(
+            resource_path('views/components'),
+        );
 
         Password::defaults(fn (): ?Password => app()->isProduction()
             ? Password::min(12)
