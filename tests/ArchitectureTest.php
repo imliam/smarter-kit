@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Models\Model;
-use App\Providers\Filament\AdminPanelProvider;
 use Pest\Arch\Support\Composer;
 
 arch()->preset()->php();
@@ -11,7 +10,6 @@ arch()->preset()->security();
 arch()->preset()->laravel()
     ->ignoring([
         Model::class,
-        AdminPanelProvider::class,
     ]);
 
 arch()->expect(['sleep', 'usleep'])->not->toBeUsed();
