@@ -6,8 +6,6 @@ namespace App\Providers;
 
 use App\Models\User;
 use Carbon\CarbonImmutable;
-use Filament\Schemas\Components\Section;
-use Filament\Tables\Table;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
@@ -37,7 +35,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->configureGates();
         $this->configureDefaults();
-        $this->configureFilamentDefaults();
     }
 
     protected function configureGates(): void
@@ -92,17 +89,5 @@ class AppServiceProvider extends ServiceProvider
                 ->uncompromised()
             : null,
         );
-    }
-
-    protected function configureFilamentDefaults(): void
-    {
-        Table::configureUsing(function (Table $table): void {
-            $table->striped()->deferLoading();
-            $table->paginated([10, 25, 50, 100]);
-        });
-
-        Section::configureUsing(function (Section $section): void {
-            $section->columns(2);
-        }, isImportant: true);
     }
 }
