@@ -89,6 +89,11 @@
             "@php artisan test --parallel",
             "phpstan analyse --ansi --memory-limit=-1"
         ],
+        "optimize": [
+            "@php artisan optimize:clear --ansi",
+            "@php artisan optimize --ansi",
+            "@php artisan filament:optimize"
+        ],
         "test:coverage": [
             "pest --type-coverage --min=100",
             "XDEBUG_MODE=\"coverage\" pest --parallel --coverage --exactly=100.0"
