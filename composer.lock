@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2d9ac78a316b3449f20481186033aa8",
+    "content-hash": "80e8807a77d34e58fdd08dc21c89b3f8",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.379.7",
+            "version": "3.379.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "2c338cb3f2bcb9e8616ffbac7a36d66034f2ceef"
+                "reference": "856ddf3d241c29132fe1eb946e112351ab043542"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2c338cb3f2bcb9e8616ffbac7a36d66034f2ceef",
-                "reference": "2c338cb3f2bcb9e8616ffbac7a36d66034f2ceef",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/856ddf3d241c29132fe1eb946e112351ab043542",
+                "reference": "856ddf3d241c29132fe1eb946e112351ab043542",
                 "shasum": ""
             },
             "require": {
@@ -153,9 +153,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.379.7"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.379.8"
             },
-            "time": "2026-04-24T18:17:06+00:00"
+            "time": "2026-04-27T19:13:21+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -2365,16 +2365,16 @@
         },
         {
             "name": "laravel/ai",
-            "version": "v0.6.3",
+            "version": "v0.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/ai.git",
-                "reference": "42cefc32ae2762b6fd1ec0b3c9272e894623b717"
+                "reference": "32296ee5fc7a6a1dd007a66f32abb15d877b434b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ai/zipball/42cefc32ae2762b6fd1ec0b3c9272e894623b717",
-                "reference": "42cefc32ae2762b6fd1ec0b3c9272e894623b717",
+                "url": "https://api.github.com/repos/laravel/ai/zipball/32296ee5fc7a6a1dd007a66f32abb15d877b434b",
+                "reference": "32296ee5fc7a6a1dd007a66f32abb15d877b434b",
                 "shasum": ""
             },
             "require": {
@@ -2429,7 +2429,7 @@
                 "issues": "https://github.com/laravel/ai/issues",
                 "source": "https://github.com/laravel/ai"
             },
-            "time": "2026-04-22T21:16:19+00:00"
+            "time": "2026-04-28T05:42:50+00:00"
         },
         {
             "name": "laravel/fortify",
@@ -6101,16 +6101,16 @@
         },
         {
             "name": "spatie/shiki-php",
-            "version": "2.3.3",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/shiki-php.git",
-                "reference": "9d50ff4d9825d87d3283a6695c65ae9c3c3caa6b"
+                "reference": "b8b0ca32d3a82bc5c533e68ffab96c5d4ec1b9ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/shiki-php/zipball/9d50ff4d9825d87d3283a6695c65ae9c3c3caa6b",
-                "reference": "9d50ff4d9825d87d3283a6695c65ae9c3c3caa6b",
+                "url": "https://api.github.com/repos/spatie/shiki-php/zipball/b8b0ca32d3a82bc5c533e68ffab96c5d4ec1b9ba",
+                "reference": "b8b0ca32d3a82bc5c533e68ffab96c5d4ec1b9ba",
                 "shasum": ""
             },
             "require": {
@@ -6154,7 +6154,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/shiki-php/tree/2.3.3"
+                "source": "https://github.com/spatie/shiki-php/tree/2.4.0"
             },
             "funding": [
                 {
@@ -6162,7 +6162,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-01T09:30:04+00:00"
+            "time": "2026-04-27T14:27:52+00:00"
         },
         {
             "name": "symfony/clock",
@@ -7271,7 +7271,7 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.36.0",
+            "version": "v1.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
@@ -7330,7 +7330,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.36.0"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.37.0"
             },
             "funding": [
                 {
@@ -7354,16 +7354,16 @@
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
-            "version": "v1.36.0",
+            "version": "v1.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
-                "reference": "ad1b7b9092976d6c948b8a187cec9faaea9ec1df"
+                "reference": "4864388bfbd3001ce88e234fab652acd91fdc57e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/ad1b7b9092976d6c948b8a187cec9faaea9ec1df",
-                "reference": "ad1b7b9092976d6c948b8a187cec9faaea9ec1df",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/4864388bfbd3001ce88e234fab652acd91fdc57e",
+                "reference": "4864388bfbd3001ce88e234fab652acd91fdc57e",
                 "shasum": ""
             },
             "require": {
@@ -7412,7 +7412,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.36.0"
+                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.37.0"
             },
             "funding": [
                 {
@@ -7432,11 +7432,11 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-10T16:19:22+00:00"
+            "time": "2026-04-26T13:13:48+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.36.0",
+            "version": "v1.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
@@ -7499,7 +7499,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.36.0"
+                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.37.0"
             },
             "funding": [
                 {
@@ -7523,7 +7523,7 @@
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-            "version": "v1.36.0",
+            "version": "v1.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
@@ -7584,7 +7584,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.36.0"
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.37.0"
             },
             "funding": [
                 {
@@ -7608,7 +7608,7 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.36.0",
+            "version": "v1.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
@@ -7669,7 +7669,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.36.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.37.0"
             },
             "funding": [
                 {
@@ -7693,7 +7693,7 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.36.0",
+            "version": "v1.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
@@ -7753,7 +7753,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.36.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.37.0"
             },
             "funding": [
                 {
@@ -7777,7 +7777,7 @@
         },
         {
             "name": "symfony/polyfill-php84",
-            "version": "v1.36.0",
+            "version": "v1.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php84.git",
@@ -7833,7 +7833,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php84/tree/v1.36.0"
+                "source": "https://github.com/symfony/polyfill-php84/tree/v1.37.0"
             },
             "funding": [
                 {
@@ -7857,16 +7857,16 @@
         },
         {
             "name": "symfony/polyfill-php85",
-            "version": "v1.36.0",
+            "version": "v1.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php85.git",
-                "reference": "2c408a6bb0313e6001a83628dc5506100474254e"
+                "reference": "fcfa4973a9917cef23f2e38774da74a2b7d115ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/2c408a6bb0313e6001a83628dc5506100474254e",
-                "reference": "2c408a6bb0313e6001a83628dc5506100474254e",
+                "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/fcfa4973a9917cef23f2e38774da74a2b7d115ee",
+                "reference": "fcfa4973a9917cef23f2e38774da74a2b7d115ee",
                 "shasum": ""
             },
             "require": {
@@ -7913,7 +7913,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php85/tree/v1.36.0"
+                "source": "https://github.com/symfony/polyfill-php85/tree/v1.37.0"
             },
             "funding": [
                 {
@@ -7933,11 +7933,11 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-10T16:50:15+00:00"
+            "time": "2026-04-26T13:10:57+00:00"
         },
         {
             "name": "symfony/polyfill-uuid",
-            "version": "v1.36.0",
+            "version": "v1.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-uuid.git",
@@ -7996,7 +7996,7 @@
                 "uuid"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-uuid/tree/v1.36.0"
+                "source": "https://github.com/symfony/polyfill-uuid/tree/v1.37.0"
             },
             "funding": [
                 {
@@ -8977,16 +8977,16 @@
         },
         {
             "name": "voku/portable-ascii",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voku/portable-ascii.git",
-                "reference": "d870a33f0f79d2b4579740b0620200221ee44aeb"
+                "reference": "8e1051fe39379367aecf014f41744ce7539a856f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/d870a33f0f79d2b4579740b0620200221ee44aeb",
-                "reference": "d870a33f0f79d2b4579740b0620200221ee44aeb",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/8e1051fe39379367aecf014f41744ce7539a856f",
+                "reference": "8e1051fe39379367aecf014f41744ce7539a856f",
                 "shasum": ""
             },
             "require": {
@@ -9023,7 +9023,7 @@
             ],
             "support": {
                 "issues": "https://github.com/voku/portable-ascii/issues",
-                "source": "https://github.com/voku/portable-ascii/tree/2.1.0"
+                "source": "https://github.com/voku/portable-ascii/tree/2.1.1"
             },
             "funding": [
                 {
@@ -9047,7 +9047,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-16T23:10:39+00:00"
+            "time": "2026-04-26T05:33:54+00:00"
         }
     ],
     "packages-dev": [
@@ -11393,17 +11393,79 @@
             "time": "2026-04-16T10:02:43+00:00"
         },
         {
-            "name": "laravel/boost",
-            "version": "v2.4.5",
+            "name": "laravel/agent-detector",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/boost.git",
-                "reference": "60386c7723ff7cb388b62b6c137597244a9cf2f2"
+                "url": "https://github.com/laravel/agent-detector.git",
+                "reference": "3c2a914d6ede3c863087e76bfb97587e2e638276"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/boost/zipball/60386c7723ff7cb388b62b6c137597244a9cf2f2",
-                "reference": "60386c7723ff7cb388b62b6c137597244a9cf2f2",
+                "url": "https://api.github.com/repos/laravel/agent-detector/zipball/3c2a914d6ede3c863087e76bfb97587e2e638276",
+                "reference": "3c2a914d6ede3c863087e76bfb97587e2e638276",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.24.0",
+                "pestphp/pest": "^3.8.5|^4.1.0",
+                "pestphp/pest-plugin-type-coverage": "^3.0|^4.0.2",
+                "phpstan/phpstan": "^2.1.26",
+                "rector/rector": "^2.1.7",
+                "symfony/var-dumper": "^7.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "Laravel\\AgentDetector\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Detect if code is running in an AI agent or automated development environment",
+            "homepage": "https://github.com/laravel/agent-detector",
+            "keywords": [
+                "Agent",
+                "ai",
+                "automation",
+                "claude",
+                "cursor",
+                "detection",
+                "devin",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/agent-detector/issues",
+                "source": "https://github.com/laravel/agent-detector"
+            },
+            "time": "2026-04-27T14:47:07+00:00"
+        },
+        {
+            "name": "laravel/boost",
+            "version": "v2.4.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/boost.git",
+                "reference": "c9ea6368c66f7c0e6a9b26706b401de900cdb9ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/boost/zipball/c9ea6368c66f7c0e6a9b26706b401de900cdb9ac",
+                "reference": "c9ea6368c66f7c0e6a9b26706b401de900cdb9ac",
                 "shasum": ""
             },
             "require": {
@@ -11456,7 +11518,7 @@
                 "issues": "https://github.com/laravel/boost/issues",
                 "source": "https://github.com/laravel/boost"
             },
-            "time": "2026-04-22T13:29:20+00:00"
+            "time": "2026-04-28T11:52:01+00:00"
         },
         {
             "name": "laravel/mcp",
@@ -11610,6 +11672,90 @@
                 "source": "https://github.com/laravel/pail"
             },
             "time": "2026-02-09T13:44:54+00:00"
+        },
+        {
+            "name": "laravel/pao",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/pao.git",
+                "reference": "02f62a64c2b60af44a418ee490fee193590d8269"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/pao/zipball/02f62a64c2b60af44a418ee490fee193590d8269",
+                "reference": "02f62a64c2b60af44a418ee490fee193590d8269",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/agent-detector": "^2.0.0",
+                "php": "^8.3"
+            },
+            "conflict": {
+                "laravel/framework": "<12.0.0",
+                "nunomaduro/collision": "<8.9.3",
+                "pestphp/pest": "<4.6.3 || >=6.0.0",
+                "phpunit/phpunit": "<12.5.23 || >=13.0.0 <13.1.7 || >=14.0.0"
+            },
+            "require-dev": {
+                "brianium/paratest": "^7.20.0",
+                "laravel/pint": "^1.29.1",
+                "orchestra/testbench": "^10.11.0 || ^11.1.0",
+                "pestphp/pest": "^4.6.3 || ^5.0.0",
+                "pestphp/pest-plugin-type-coverage": "^4.0.4 || ^5.0.0",
+                "phpstan/phpstan": "^2.1.51",
+                "rector/rector": "^2.4.2",
+                "symfony/process": "^7.4.8 || ^8.1.0",
+                "symfony/var-dumper": "^7.4.8 || ^8.0.8"
+            },
+            "type": "library",
+            "extra": {
+                "pest": {
+                    "plugins": [
+                        "Laravel\\Pao\\Drivers\\Pest\\Plugin"
+                    ]
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Pao\\Laravel\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Autoload.php"
+                ],
+                "psr-4": {
+                    "Laravel\\Pao\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Agent-optimized output for PHP testing tools",
+            "keywords": [
+                "Agent",
+                "PHPStan",
+                "ai",
+                "dev",
+                "paratest",
+                "pest",
+                "php",
+                "phpunit",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/pao/issues",
+                "source": "https://github.com/laravel/pao"
+            },
+            "time": "2026-04-27T22:37:26+00:00"
         },
         {
             "name": "laravel/pint",
@@ -12041,104 +12187,6 @@
                 }
             ],
             "time": "2026-04-21T14:04:20+00:00"
-        },
-        {
-            "name": "nunomaduro/pao",
-            "version": "v1.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nunomaduro/pao.git",
-                "reference": "abb05092e543e031b035058894ede0f5e7dbfecf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/pao/zipball/abb05092e543e031b035058894ede0f5e7dbfecf",
-                "reference": "abb05092e543e031b035058894ede0f5e7dbfecf",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.3",
-                "shipfastlabs/agent-detector": "^1.1.3"
-            },
-            "conflict": {
-                "laravel/framework": "<12.0",
-                "nunomaduro/collision": "<8.9.3",
-                "pestphp/pest": "<4.6.3 || >=6.0",
-                "phpunit/phpunit": "<12.5.23 || >=13.0.0 <13.1.7 || >=14.0"
-            },
-            "require-dev": {
-                "brianium/paratest": "^7.20.0",
-                "laravel/pint": "^1.29.0",
-                "orchestra/testbench": "^10.11.0 || ^11.1.0",
-                "pestphp/pest": "^4.6.3 || ^5.0.0",
-                "pestphp/pest-plugin-type-coverage": "^4.0.4 || ^5.0.0",
-                "phpstan/phpstan": "^2.1.50",
-                "rector/rector": "^2.4.2",
-                "symfony/process": "^7.4.8 || ^8.1.0",
-                "symfony/var-dumper": "^7.4.8 || ^8.0.8"
-            },
-            "type": "library",
-            "extra": {
-                "pest": {
-                    "plugins": [
-                        "Pao\\Drivers\\Pest\\Plugin"
-                    ]
-                },
-                "laravel": {
-                    "providers": [
-                        "Pao\\Laravel\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/Autoload.php"
-                ],
-                "psr-4": {
-                    "Pao\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nuno Maduro",
-                    "email": "enunomaduro@gmail.com"
-                }
-            ],
-            "description": "Agent-optimized output for PHP testing tools",
-            "keywords": [
-                "Agent",
-                "PHPStan",
-                "dev",
-                "json",
-                "paratest",
-                "pest",
-                "php",
-                "phpunit",
-                "testing"
-            ],
-            "support": {
-                "issues": "https://github.com/nunomaduro/pao/issues",
-                "source": "https://github.com/nunomaduro/pao/tree/v1.0.4"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.com/paypalme/enunomaduro",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/nunomaduro",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/nunomaduro",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2026-04-20T15:51:00+00:00"
         },
         {
             "name": "nunomaduro/pokio",
@@ -13476,11 +13524,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.51",
+            "version": "2.1.52",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/dc3b523c45e714c70de2ac5113b958223b55dc59",
-                "reference": "dc3b523c45e714c70de2ac5113b958223b55dc59",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/08a34f8db7ca4daabff74a474fe13c0e56e2b4e5",
+                "reference": "08a34f8db7ca4daabff74a474fe13c0e56e2b4e5",
                 "shasum": ""
             },
             "require": {
@@ -13525,7 +13573,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-21T18:22:01+00:00"
+            "time": "2026-04-28T12:17:53+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -14990,73 +15038,6 @@
                 }
             ],
             "time": "2025-02-07T05:00:38+00:00"
-        },
-        {
-            "name": "shipfastlabs/agent-detector",
-            "version": "v1.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shipfastlabs/agent-detector.git",
-                "reference": "0faef92b88c6680b3fc53c8f349ea868181d2484"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shipfastlabs/agent-detector/zipball/0faef92b88c6680b3fc53c8f349ea868181d2484",
-                "reference": "0faef92b88c6680b3fc53c8f349ea868181d2484",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.2.0"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.24.0",
-                "pestphp/pest": "^3.8.5|^4.1.0",
-                "pestphp/pest-plugin-type-coverage": "^3.0|^4.0.2",
-                "phpstan/phpstan": "^2.1.26",
-                "rector/rector": "^2.1.7",
-                "symfony/var-dumper": "^7.3.3"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/functions.php"
-                ],
-                "psr-4": {
-                    "AgentDetector\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pushpak Chahjed",
-                    "email": "pushpak1300@gmail.com"
-                }
-            ],
-            "description": "Detect if code is running in an AI agent or automated development environment",
-            "keywords": [
-                "Agent",
-                "ai",
-                "automation",
-                "claude",
-                "cursor",
-                "detection",
-                "devin",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/shipfastlabs/agent-detector/issues",
-                "source": "https://github.com/shipfastlabs/agent-detector/tree/v1.1.3"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/pushpak1300",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-04-14T03:10:46+00:00"
         },
         {
             "name": "spatie/backtrace",

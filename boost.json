@@ -4,6 +4,7 @@
         "opencode",
         "copilot"
     ],
+    "cloud": false,
     "guidelines": true,
     "mcp": true,
     "nightwatch_mcp": false,
