@@ -64,6 +64,9 @@ class SetupCommand extends Command
         }
 
         $this->info('Deleting setup command...');
+
+        $this->info('To generate a logo, run the following command:');
+        $this->line('    cpx imliam/logophpile');
         // unlink(app_path('Console/Commands/SetupCommand.php'));
     }
 

@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import '../../vendor/livewire/flux/dist/flux.css';
 @import './reset.css';
+@import './shared/colors.css';
 
 @source '../views';
 @source '../js';
