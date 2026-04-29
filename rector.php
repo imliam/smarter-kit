@@ -10,6 +10,8 @@ use Rector\CodingStyle\Rector\If_\NullableCompareToNullRector;
 use Rector\Config\RectorConfig;
 use RectorLaravel\Rector\ClassMethod\MakeModelAttributesAndScopesProtectedRector;
 use RectorLaravel\Set\LaravelSetList;
+use RectorPest\Set\PestLevelSetList;
+use RectorPest\Set\PestSetList;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -51,6 +53,10 @@ return RectorConfig::configure()
         LaravelSetList::LARAVEL_LEGACY_FACTORIES_TO_CLASSES,
         LaravelSetList::LARAVEL_TESTING,
         LaravelSetList::LARAVEL_TYPE_DECLARATIONS,
+        PestSetList::PEST_CODE_QUALITY,
+        PestSetList::PEST_LARAVEL,
+        PestSetList::PEST_CODE_QUALITY,
+        PestLevelSetList::UP_TO_PEST_40,
     ])
     ->withSkip([
         EncapsedStringsToSprintfRector::class,
