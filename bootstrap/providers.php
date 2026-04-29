@@ -1,11 +1,16 @@
 <?php
 
 declare(strict_types=1);
+use App\Providers\AppServiceProvider;
+use App\Providers\Filament\AdminPanelServiceProvider;
+use App\Providers\FilamentServiceProvider;
+use App\Providers\FortifyServiceProvider;
+use App\Providers\MacroServiceProvider;
 
 return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\FilamentServiceProvider::class,
-    App\Providers\Filament\AdminPanelServiceProvider::class,
-    App\Providers\FortifyServiceProvider::class,
-    App\Providers\MacroServiceProvider::class,
+    AppServiceProvider::class,
+    FilamentServiceProvider::class,
+    AdminPanelServiceProvider::class,
+    FortifyServiceProvider::class,
+    MacroServiceProvider::class,
 ];
