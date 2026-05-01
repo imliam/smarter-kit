@@ -25,6 +25,7 @@
         "barryvdh/laravel-ide-helper": "^3.7",
         "driftingly/rector-laravel": "^2.3",
         "fakerphp/faker": "^1.24.1",
+        "knuckleswtf/scribe": "^5.9",
         "larastan/larastan": "^3.9.6",
         "laravel/boost": "^2.4.6",
         "laravel/pail": "^1.2.6",
@@ -121,7 +122,8 @@
             "@php artisan ide-helper:models --nowrite",
             "@php artisan ide-helper:eloquent",
             "@php artisan filament:upgrade",
-            "@php artisan icons:cache"
+            "@php artisan icons:cache",
+            "@php artisan scribe:generate --quiet --no-interaction"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",

@@ -20,4 +20,4 @@ Route::middleware(['auth'])->group(function (): void {
     Route::livewire('invitations/{invitation}/accept', 'pages::teams.accept-invitation')->name('invitations.accept');
 });
 
-require __DIR__.'/settings.php';
+require __DIR__.'/web/settings.php';

@@ -16,7 +16,7 @@ class AddContext
     public function handle(Request $request, Closure $next): Response
     {
         Context::add('url', $request->url());
-        Context::add('trace_id', Str::uuid()->toString());
+        Context::add('request_id', $request->hasHeader('X-Request-Id') ? $request->header('X-Request-Id') : Str::uuid()->toString());
 
         return $next($request);
     }

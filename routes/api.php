@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', fn (Request $request) => $request->user())->middleware('auth:sanctum');
+Route::prefix('v1')->group(base_path(
+    path: 'routes/api/v1.php',
+));
