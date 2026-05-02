@@ -14,7 +14,7 @@ final class EnforceTransportSecurity
     /** @param  Closure(Request): Response  $next */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! $request->isSecure() && app()->isProduction()) {
+        if (! $request->isSecure() && (bool) config('security.force_https', app()->isProduction())) {
             return new JsonResponse([
                 'message' => 'HTTPS is required for this endpoint.',
             ], 400);

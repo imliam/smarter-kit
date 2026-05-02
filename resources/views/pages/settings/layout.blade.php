@@ -14,6 +14,9 @@
             >
                 Teams</flux:navlist.item
             >
+            <flux:navlist.item :href="route('tokens.index')" wire:navigate>
+                API Tokens</flux:navlist.item
+            >
             <flux:navlist.item :href="route('appearance.edit')" wire:navigate>
                 Appearance</flux:navlist.item
             >
