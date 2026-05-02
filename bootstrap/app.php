@@ -17,6 +17,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Support\Env;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Exceptions\InvalidSignatureException;
@@ -41,12 +42,12 @@ return Application::configure(basePath: dirname(__DIR__))
             'sunset' => Sunset::class,
         ]);
 
-        $trustedProxies = (string) env('TRUSTED_PROXIES', '*');
+        $trustedProxies = (string) Env::get('TRUSTED_PROXIES', '*');
         $middleware->trustProxies($trustedProxies !== '' ? $trustedProxies : null);
 
         $trustedHosts = array_values(array_filter(array_map(
             static fn (string $host): string => mb_trim($host),
-            explode(',', (string) env('TRUSTED_HOSTS', '')),
+            explode(',', (string) Env::get('TRUSTED_HOSTS', '')),
         )));
         if ($trustedHosts !== []) {
             $middleware->trustHosts(at: $trustedHosts, subdomains: false);
