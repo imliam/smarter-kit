@@ -15,7 +15,7 @@ class TwoFactorLoginResponse implements TwoFactorLoginResponseContract
         $user = $request->user();
         $team = $user->currentTeam ?? $user->personalTeam();
 
-        abort_unless($team, 403);
+        abort_unless($team !== null, 403);
 
         return $request->wantsJson()
             ? new JsonResponse(['two_factor' => false], 200)
