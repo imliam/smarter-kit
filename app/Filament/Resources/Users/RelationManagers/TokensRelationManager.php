@@ -151,8 +151,8 @@ class TokensRelationManager extends RelationManager
     /** @return list<string> */
     private function availableAbilities(): array
     {
-        $abilities = config('sanctum.abilities.default', []);
+        $abilities = config()->array('sanctum.abilities.default', []);
 
-        return is_array($abilities) ? array_values($abilities) : [];
+        return array_values($abilities);
     }
 }

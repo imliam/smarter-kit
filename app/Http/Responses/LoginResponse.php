@@ -14,7 +14,7 @@ class LoginResponse implements LoginResponseContract
     public function toResponse($request): Response
     {
         $user = $request->user();
-        $team = $user?->currentTeam ?? $user?->personalTeam();
+        $team = $user->currentTeam ?? $user->personalTeam();
 
         abort_unless($team, 403);
 

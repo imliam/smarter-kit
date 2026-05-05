@@ -26,7 +26,7 @@ final class LogoutController
 {
     public function __invoke(Request $request, #[CurrentUser] User $user): Response
     {
-        /** @var PersonalAccessToken $token */
+        /** @var PersonalAccessToken|null $token */
         $token = $user->currentAccessToken();
 
         if ($token) {

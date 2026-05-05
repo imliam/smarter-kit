@@ -94,11 +94,7 @@ final class RegisterController
     /** @return list<string> */
     private function defaultAbilities(): array
     {
-        $abilities = config('sanctum.abilities.default', []);
-
-        if (! is_array($abilities)) {
-            return [];
-        }
+        $abilities = config()->array('sanctum.abilities.default', []);
 
         return array_values(array_filter(
             array_map(static fn (mixed $ability): string => mb_trim((string) $ability), $abilities),

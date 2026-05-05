@@ -50,11 +50,11 @@ class AppServiceProvider extends ServiceProvider
         $appUrl = mb_strtolower((string) config('app.url', ''));
         throw_unless(str_starts_with($appUrl, 'https://'), RuntimeException::class, 'In production, APP_URL must use https://.');
 
-        $allowedOrigins = config('cors.allowed_origins', []);
-        throw_if(is_array($allowedOrigins) && in_array('*', $allowedOrigins, true), RuntimeException::class, 'In production, CORS allowed origins must not use wildcard "*".');
+        $allowedOrigins = config()->array('cors.allowed_origins', []);
+        throw_if(in_array('*', $allowedOrigins, true), RuntimeException::class, 'In production, CORS allowed origins must not use wildcard "*".');
 
-        $trustedHosts = config('security.trusted_hosts', []);
-        throw_if(! is_array($trustedHosts) || $trustedHosts === [], RuntimeException::class, 'In production, TRUSTED_HOSTS must be configured.');
+        $trustedHosts = config()->array('security.trusted_hosts', []);
+        throw_if($trustedHosts === [], RuntimeException::class, 'In production, TRUSTED_HOSTS must be configured.');
     }
 
     protected function configureGates(): void
