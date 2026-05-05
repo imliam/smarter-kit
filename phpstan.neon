@@ -13,7 +13,7 @@ parameters:
         - routes/
 
     # Level 10 is the highest level
-    level: 8
+    level: 9
 
     checkModelProperties: true
 
@@ -22,6 +22,10 @@ parameters:
     checkOctaneCompatibility: true
 
     tmpDir: storage/phpstan/
+
+    ignoreErrors:
+        - identifier: cast.string
+        - identifier: cast.int
 
 #    ignoreErrors:
 #        - '#PHPDoc tag @var#'

@@ -32,7 +32,7 @@ class UserForm
                     ->rule(Password::default())
                     ->autocomplete('new-password')
                     ->dehydrated(fn (mixed $state): bool => filled($state))
-                    ->dehydrateStateUsing(fn (mixed $state): string => Hash::make($state)),
+                    ->dehydrateStateUsing(fn (mixed $state): string => Hash::make((string) $state)),
                 FileUpload::make('avatar_url')
                     ->label('Avatar')
                     ->image()

@@ -68,7 +68,7 @@ final class ResetPasswordController
             ]);
 
             throw ValidationException::withMessages([
-                'email' => [$this->statusToMessage($status)],
+                'email' => [$this->statusToMessage((string) $status)],
             ]);
         }
 

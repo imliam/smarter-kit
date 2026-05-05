@@ -33,7 +33,8 @@ class TeamName implements ValidationRule
      */
     protected function reservedNames(): array
     {
-        return once(fn () => collect($this->routesPrefixes())
+        /** @var array<int, string> $names */
+        $names = once(fn () => collect($this->routesPrefixes())
             ->merge([
                 '300',
                 '302',
@@ -368,6 +369,8 @@ class TeamName implements ValidationRule
             ->sort()
             ->values()
             ->toArray());
+
+        return $names;
     }
 
     /**

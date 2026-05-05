@@ -31,11 +31,11 @@ class SetupCommand extends Command
             $this->warn('Warning: This directory is already a git repository - the setup command is only meant to be run in a new project.');
         }
 
-        $repositoryUrl = Str::replaceLast('.git', '', $this->ask("What is your project's repository URL?", 'https://github.com/imliam/smarter-kit.git'));
+        $repositoryUrl = Str::replaceLast('.git', '', (string) $this->ask("What is your project's repository URL?", 'https://github.com/imliam/smarter-kit.git'));
         $repositoryName = $this->getRepositoryName($repositoryUrl);
-        $projectName = $this->ask("What is your project's name?", Str::headline(Str::after($repositoryName, '/')));
-        $projectOwner = $this->ask("What is your Git owner's username or organisation?", Str::before($repositoryName, '/'));
-        $securityEmail = $this->ask('What is the security contact email for your project?', 'security@example.com');
+        $projectName = (string) $this->ask("What is your project's name?", Str::headline(Str::after($repositoryName, '/')));
+        $projectOwner = (string) $this->ask("What is your Git owner's username or organisation?", Str::before($repositoryName, '/'));
+        $securityEmail = (string) $this->ask('What is the security contact email for your project?', 'security@example.com');
 
         $replacements = [
             'https://github.com/imliam/smarter-kit' => $repositoryUrl,

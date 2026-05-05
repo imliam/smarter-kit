@@ -24,9 +24,10 @@ trait GeneratesUniqueTeamSlugs
             $query->where('id', '!=', $excludeId);
         }
 
+        /** @var \Illuminate\Support\Collection<int, string> $existingSlugs */
         $existingSlugs = $query->pluck('slug');
 
-        $maxSuffix = $existingSlugs
+        $maxSuffix = (int) ($existingSlugs
             ->map(function (string $slug) use ($defaultSlug): ?int {
                 if ($slug === $defaultSlug) {
                     return 0;
@@ -39,7 +40,7 @@ trait GeneratesUniqueTeamSlugs
                 return null;
             })
             ->filter(fn (?int $suffix): bool => $suffix !== null)
-            ->max() ?? 0;
+            ->max() ?? 0);
 
         return $existingSlugs->isEmpty()
             ? $defaultSlug

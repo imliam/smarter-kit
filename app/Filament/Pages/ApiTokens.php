@@ -165,7 +165,11 @@ class ApiTokens extends Page implements Tables\Contracts\HasTable
                     $token = $user->createToken($data['name'], $data['abilities'], $expiresAt);
 
                     $this->newTokenValue = $token->plainTextToken;
-                    $this->mountedActions[0]['data']['token'] = $token->plainTextToken;
+
+                    /** @var array<int, array{data: array<string, mixed>}> $mountedActions */
+                    $mountedActions = $this->mountedActions;
+                    $mountedActions[0]['data']['token'] = $token->plainTextToken;
+                    $this->mountedActions = $mountedActions;
 
                     $action->halt();
                 })
@@ -181,6 +185,7 @@ class ApiTokens extends Page implements Tables\Contracts\HasTable
     /** @return list<string> */
     private function availableAbilities(): array
     {
+        /** @var array<string> $abilities */
         $abilities = config()->array('sanctum.abilities.default', []);
 
         return array_values($abilities);
