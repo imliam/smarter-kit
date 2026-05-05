@@ -8,8 +8,8 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Support\SecurityAudit;
+use Carbon\CarbonImmutable;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Knuckles\Scribe\Attributes\BodyParam;
@@ -77,7 +77,7 @@ final class LoginController
         ])->response();
     }
 
-    /** @return array{0:string,1:Carbon|null} */
+    /** @return array{0: string, 1: CarbonImmutable|null} */
     private function issueToken(User $user, string $deviceName): array
     {
         $configuredExpiration = config('sanctum.expiration');

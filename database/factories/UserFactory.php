@@ -21,11 +21,7 @@ class UserFactory extends Factory
     /** The current password being used by the factory. */
     protected static ?string $password;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    /** Define the model's default state. */
     public function definition(): array
     {
         return [

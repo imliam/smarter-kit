@@ -26,6 +26,8 @@ class CreateNewUser implements CreatesNewUsers
      * Validate and create a newly registered user.
      *
      * @param  array<string, string>  $input
+     *
+     * @phpstan-ignore method.childReturnType (App\Models\User intentionally does not extend Illuminate\Foundation\Auth\User due to custom base model hierarchy)
      */
     public function create(array $input): User
     {

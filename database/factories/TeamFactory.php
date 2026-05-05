@@ -13,11 +13,7 @@ use Illuminate\Support\Str;
  */
 class TeamFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    /** Define the model's default state. */
     public function definition(): array
     {
         $name = fake()->unique()->company();

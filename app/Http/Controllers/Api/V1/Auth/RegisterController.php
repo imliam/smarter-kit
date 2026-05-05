@@ -8,9 +8,9 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Support\SecurityAudit;
+use Carbon\CarbonImmutable;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Carbon;
 use Knuckles\Scribe\Attributes\BodyParam;
 use Knuckles\Scribe\Attributes\Endpoint;
 use Knuckles\Scribe\Attributes\Group;
@@ -72,7 +72,7 @@ final class RegisterController
         ])->response()->setStatusCode(201);
     }
 
-    /** @return array{0:string,1:Carbon|null} */
+    /** @return array{0: string, 1: CarbonImmutable|null} */
     private function issueToken(User $user, string $deviceName): array
     {
         $configuredExpiration = config('sanctum.expiration');

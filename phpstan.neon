@@ -13,7 +13,7 @@ parameters:
         - routes/
 
     # Level 10 is the highest level
-    level: 2
+    level: 3
 
     checkModelProperties: true
 
