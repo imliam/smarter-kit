@@ -26,7 +26,11 @@ class TeamName implements ValidationRule
         }
     }
 
-    /** Get a list of all reserved names. */
+    /**
+     * Get a list of all reserved names.
+     *
+     * @return array<int, string>
+     */
     protected function reservedNames(): array
     {
         return once(fn () => collect($this->routesPrefixes())
@@ -366,7 +370,11 @@ class TeamName implements ValidationRule
             ->toArray());
     }
 
-    /** Get a list of reserved names from the application's route prefixes. */
+    /**
+     * Get a list of reserved names from the application's route prefixes.
+     *
+     * @return array<int, string>
+     */
     protected function routesPrefixes(): array
     {
         return collect(Route::getRoutes()->getRoutes())

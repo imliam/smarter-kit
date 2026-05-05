@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Concerns\HasTeams;
 use App\Enums\UserRole;
 use Carbon\CarbonImmutable;
+use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
@@ -65,7 +66,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use Authorizable;
     use CanResetPassword;
     use HasApiTokens;
+
+    /** @use HasFactory<UserFactory> */
     use HasFactory;
+
     use HasTeams;
     use MustVerifyEmail;
     use Notifiable;

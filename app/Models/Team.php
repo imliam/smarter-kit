@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Concerns\GeneratesUniqueTeamSlugs;
 use App\Enums\TeamRole;
 use Carbon\CarbonImmutable;
+use Database\Factories\TeamFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -37,7 +38,10 @@ use Override;
 class Team extends Model
 {
     use GeneratesUniqueTeamSlugs;
+
+    /** @use HasFactory<TeamFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     /** Get the team owner. */
