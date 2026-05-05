@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\PersonalAccessToken;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -73,6 +76,17 @@ new #[Title('API Tokens')] class extends Component {
     }
 
     /**
+     * The user's existing personal access tokens.
+     *
+     * @return Collection<int, PersonalAccessToken>
+     */
+    #[Computed]
+    public function tokens(): Collection
+    {
+        return Auth::user()->tokens()->latest('id')->get();
+    }
+
+    /**
      * The available token abilities from config.
      *
      * @return list<string>
@@ -142,9 +156,7 @@ new #[Title('API Tokens')] class extends Component {
         </form>
 
         {{-- Existing tokens list --}}
-        @php ($tokens = Auth::user()->tokens()->latest('id')->get())
-
-        @if ($tokens->isNotEmpty())
+        @if ($this->tokens->isNotEmpty())
             <section class="mt-12">
                 <div class="flex items-center justify-between">
                     <flux:heading>Active tokens</flux:heading>
@@ -157,7 +169,7 @@ new #[Title('API Tokens')] class extends Component {
                 </div>
 
                 <div class="mt-4 space-y-3">
-                    @foreach ($tokens as $token)
+                    @foreach ($this->tokens as $token)
                         <div
                             class="flex items-center justify-between rounded-lg border border-zinc-200 px-4 py-3 dark:border-zinc-700"
                         >
