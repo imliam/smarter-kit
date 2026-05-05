@@ -21,6 +21,24 @@ parameters:
 
     checkOctaneCompatibility: true
 
+    checkBenevolentUnionTypes: true
+
+    checkMissingCallableSignature: true
+
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+
+    checkTooWideThrowTypesInProtectedAndPublicMethods: true
+
+    checkUninitializedProperties: true
+
+    reportAnyTypeWideningInVarTag: true
+
+    reportIgnoresWithoutComments: true
+
+#    reportPossiblyNonexistentConstantArrayOffset: true
+
+#    reportPossiblyNonexistentGeneralArrayOffset: true
+
     tmpDir: storage/phpstan/
 
     ignoreErrors:

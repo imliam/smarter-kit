@@ -61,6 +61,6 @@ class EnsureTeamMembership
             return Team::query()->where('slug', $team)->first();
         }
 
-        return $team;
+        return $team instanceof Team ? $team : null;
     }
 }
