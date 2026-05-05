@@ -8,6 +8,7 @@ use Rector\CodingStyle\Rector\Closure\ClosureDelegatingCallToFirstClassCallableR
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\If_\NullableCompareToNullRector;
 use Rector\Config\RectorConfig;
+use Rector\TypeDeclarationDocblocks\Rector\ClassMethod\DocblockReturnArrayFromDirectArrayInstanceRector;
 use RectorLaravel\Rector\ClassMethod\MakeModelAttributesAndScopesProtectedRector;
 use RectorLaravel\Set\LaravelSetList;
 use RectorPest\Set\PestLevelSetList;
@@ -64,4 +65,5 @@ return RectorConfig::configure()
         ArrowFunctionDelegatingCallToFirstClassCallableRector::class,
         MakeModelAttributesAndScopesProtectedRector::class,
         NullableCompareToNullRector::class,
+        DocblockReturnArrayFromDirectArrayInstanceRector::class,
     ]);

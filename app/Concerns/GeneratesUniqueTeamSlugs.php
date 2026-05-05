@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Concerns;
 
 use App\Models\Team;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 trait GeneratesUniqueTeamSlugs
@@ -24,7 +25,7 @@ trait GeneratesUniqueTeamSlugs
             $query->where('id', '!=', $excludeId);
         }
 
-        /** @var \Illuminate\Support\Collection<int, string> $existingSlugs */
+        /** @var Collection<int, string> $existingSlugs */
         $existingSlugs = $query->pluck('slug');
 
         $maxSuffix = (int) ($existingSlugs
