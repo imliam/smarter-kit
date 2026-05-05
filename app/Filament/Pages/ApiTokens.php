@@ -53,7 +53,7 @@ class ApiTokens extends Page implements Tables\Contracts\HasTable
     {
         return $table
             ->query(fn (): Builder => PersonalAccessToken::query()
-                ->where('tokenable_type', (new (Auth::user()::class))->getMorphClass())
+                ->where('tokenable_type', (new User)->getMorphClass())
                 ->where('tokenable_id', Auth::id())
                 ->latest('id'))
             ->columns([

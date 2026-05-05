@@ -14,6 +14,9 @@ class RegisterResponse implements RegisterResponseContract
     public function toResponse($request): Response
     {
         $user = $request->user();
+
+        abort_if($user === null, 401);
+
         $team = $user->currentTeam ?? $user->personalTeam();
 
         abort_unless($team !== null, 403);

@@ -26,6 +26,8 @@ final class SendEmailVerificationNotificationController
     {
         $user = $request->user();
 
+        abort_if($user === null, 401);
+
         if ($user->hasVerifiedEmail()) {
             SecurityAudit::log('auth.email_verification.already_verified', [
                 'user_id' => (string) $user->getKey(),

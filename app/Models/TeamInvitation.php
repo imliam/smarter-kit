@@ -24,7 +24,7 @@ use Override;
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read User $inviter
- * @property-read Team|null $team
+ * @property-read Team $team
  *
  * @method static \Database\Factories\TeamInvitationFactory factory($count = null, $state = [])
  *
