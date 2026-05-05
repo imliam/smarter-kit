@@ -26,9 +26,12 @@ final class DeleteTokenRequest extends FormRequest
     #[Override]
     public function validationData(): array
     {
-        return array_merge($this->all(), [
+        /** @var array<string, mixed> $data */
+        $data = array_merge($this->all(), [
             'token_id' => $this->route('token_id'),
         ]);
+
+        return $data;
     }
 
     public function tokenId(): int

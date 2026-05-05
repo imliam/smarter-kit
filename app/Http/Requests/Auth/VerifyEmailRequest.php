@@ -29,10 +29,13 @@ final class VerifyEmailRequest extends FormRequest
     #[Override]
     public function validationData(): array
     {
-        return array_merge($this->all(), [
+        /** @var array<string, mixed> $data */
+        $data = array_merge($this->all(), [
             'id' => $this->route('id'),
             'hash' => $this->route('hash'),
         ]);
+
+        return $data;
     }
 
     public function id(): string

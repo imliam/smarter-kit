@@ -109,12 +109,12 @@ class TokensRelationManager extends RelationManager
                             ->hidden(fn (): bool => ! $this->newTokenValue),
                     ])
                     ->action(function (array $data, Action $action): void {
-                        $expiresAt = filled($data['expiresAt']) ? Date::parse($data['expiresAt'])->endOfDay() : null;
+                        $expiresAt = filled($data['expiresAt']) ? Date::parse((string) $data['expiresAt'])->endOfDay() : null;
 
                         /** @var User $user */
                         $user = $this->getOwnerRecord();
 
-                        $token = $user->createToken($data['name'], $data['abilities'], $expiresAt);
+                        $token = $user->createToken((string) $data['name'], (array) $data['abilities'], $expiresAt);
 
                         $this->newTokenValue = $token->plainTextToken;
 

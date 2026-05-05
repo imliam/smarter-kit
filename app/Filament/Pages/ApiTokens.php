@@ -160,9 +160,9 @@ class ApiTokens extends Page implements Tables\Contracts\HasTable
                     /** @var User $user */
                     $user = Auth::user();
 
-                    $expiresAt = filled($data['expiresAt']) ? Date::parse($data['expiresAt'])->endOfDay() : null;
+                    $expiresAt = filled($data['expiresAt']) ? Date::parse((string) $data['expiresAt'])->endOfDay() : null;
 
-                    $token = $user->createToken($data['name'], $data['abilities'], $expiresAt);
+                    $token = $user->createToken((string) $data['name'], (array) $data['abilities'], $expiresAt);
 
                     $this->newTokenValue = $token->plainTextToken;
 
