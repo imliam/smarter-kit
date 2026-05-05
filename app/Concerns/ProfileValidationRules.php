@@ -13,7 +13,7 @@ trait ProfileValidationRules
     /**
      * Get the validation rules used to validate user profiles.
      *
-     * @return array<string, array<int, \Illuminate\Contracts\Validation\Rule|array<mixed>|string>>
+     * @return array<string, array<int, \Illuminate\Contracts\Validation\Rule|Unique|array<mixed>|string>>
      */
     protected function profileRules(?int $userId = null): array
     {

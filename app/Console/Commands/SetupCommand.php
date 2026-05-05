@@ -76,7 +76,7 @@ class SetupCommand extends Command
 
         $path = parse_url($repositoryUrl, PHP_URL_PATH);
 
-        throw_if($path === null, Exception::class, 'Could not parse the URL path.');
+        throw_unless(is_string($path), Exception::class, 'Could not parse the URL path.');
 
         if (str_ends_with($path, '.git')) {
             $path = Str::replaceLast('.git', '', $path);
@@ -107,6 +107,11 @@ class SetupCommand extends Command
             $relativePath = mb_ltrim(str_replace($basePath, '', $file->getPathname()), '/');
 
             $contents = file_get_contents($file->getPathname());
+
+            if ($contents === false) {
+                continue;
+            }
+
             $newContents = str_replace($search, $replace, $contents);
 
             if ($contents !== $newContents) {
