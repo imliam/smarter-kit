@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b4be33cc37b917a86ec7c4067bb661b",
+    "content-hash": "efdcffc04a79d72e9833c0cf818754d6",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -12459,6 +12459,77 @@
                 "source": "https://github.com/iamcal/SQLParser/tree/v0.7"
             },
             "time": "2026-01-28T22:20:33+00:00"
+        },
+        {
+            "name": "imliam/laravel-env-set-command",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imliam/laravel-env-set-command.git",
+                "reference": "49a8a5ff9048feb2ce234da96120221b3db90482"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imliam/laravel-env-set-command/zipball/49a8a5ff9048feb2ce234da96120221b3db90482",
+                "reference": "49a8a5ff9048feb2ce234da96120221b3db90482",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^12.0|^13.0",
+                "illuminate/support": "^12.0|^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^10.0|^11.0",
+                "phpunit/phpunit": "^11.0",
+                "roave/security-advisories": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ImLiam\\EnvironmentSetCommand\\EnvironmentSetCommandServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ImLiam\\EnvironmentSetCommand\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Liam Hammett",
+                    "email": "liam@liamhammett.com",
+                    "homepage": "https://liamhammett.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Set a .env file variable from the command line",
+            "homepage": "https://github.com/imliam/laravel-env-set-command",
+            "keywords": [
+                "artisan",
+                "env",
+                "environment",
+                "imliam",
+                "laravel-env-set-command",
+                "variables"
+            ],
+            "support": {
+                "issues": "https://github.com/imliam/laravel-env-set-command/issues",
+                "source": "https://github.com/imliam/laravel-env-set-command/tree/v3.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/imliam",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-05-09T19:56:56+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",

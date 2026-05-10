@@ -51,6 +51,11 @@ class SetupCommand extends Command
             $this->replaceInFiles($search, $replace);
         }
 
+        $today = now()->format('Y-m-d');
+        $this->info('Setting GPC last update date...');
+        $this->call('env:set', ['key' => 'SECURITY_GPC_LAST_UPDATE', 'value' => $today]);
+        $this->call('env:set', ['key' => 'SECURITY_GPC_LAST_UPDATE', 'value' => $today, 'filepath' => base_path('.env.example')]);
+
         if ($isAlreadyGitRepository) {
             $this->info('Skipping git initialization as this is already a git repository.');
         } else {

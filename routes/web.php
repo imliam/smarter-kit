@@ -21,3 +21,4 @@ Route::middleware(['auth'])->group(function (): void {
 });
 
 require __DIR__.'/web/settings.php';
+require __DIR__.'/web/well-known.php';
