@@ -17,7 +17,7 @@ return [
         /**
          * The neutral color is used for all grays throughout the UI.
          *
-         * Choose from one of Slate, Gray, Zinc, Neutral, or Stone.
+         * Choose from one of Slate, Gray, Zinc, Neutral, Stone, Mauve, Olive, Mist or Taupe.
          */
         'neutral' => Color::Neutral,
     ],
