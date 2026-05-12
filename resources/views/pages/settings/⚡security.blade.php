@@ -6,6 +6,8 @@ use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
+use Laravel\Passkeys\Passkey;
+use Laravel\Passkeys\Passkeys as PasskeysManager;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -84,6 +86,15 @@ new #[Title('Security settings')] class extends Component {
         $disableTwoFactorAuthentication(auth()->user());
 
         $this->twoFactorEnabled = false;
+    }
+
+    /**
+     * Delete a passkey for the authenticated user.
+     */
+    public function deletePasskey(int $passkeyId): void
+    {
+        $passkey = Auth::user()->passkeys()->findOrFail($passkeyId);
+        $passkey->delete();
     }
 }; ?>
 
@@ -196,6 +207,110 @@ new #[Title('Security settings')] class extends Component {
                             />
                         </div>
                     @endif
+                </div>
+            </section>
+        @endif
+
+        @if (Features::enabled(Features::passkeys()))
+            <section class="mt-12">
+                <flux:heading>Passkeys</flux:heading>
+                <flux:subheading
+                    >Sign in without a password using biometrics or a hardware
+                    key</flux:subheading
+                >
+
+                <div
+                    class="mt-6 space-y-4"
+                    x-data="{
+                        registering: false,
+                        error: null,
+                        async register() {
+                            const name = prompt('Name this passkey (e.g. "
+                    My
+                    MacBook")');
+                    if
+                    (name="=="
+                    null)
+                    return;
+                    this.error="null;"
+                    this.registering="true;"
+                    try
+                    {
+                    await
+                    Passkeys.register({
+                    name:
+                    name.trim()
+                    ||
+                    'My
+                    device'
+                    });
+                    $wire.call('$refresh');
+                    }
+                    catch
+                    (e)
+                    {
+                    this.error="e?.message"
+                    ??
+                    'Passkey
+                    registration
+                    failed.
+                    Please
+                    try
+                    again.';
+                    }
+                    finally
+                    {
+                    this.registering="false;"
+                    }
+                    },
+                    }"
+                >
+                    @forelse (auth()->user()->passkeys as $passkey)
+                        <div
+                            class="flex items-center justify-between rounded-lg border border-zinc-200 px-4 py-3 dark:border-zinc-700"
+                        >
+                            <div class="flex items-center gap-3">
+                                <flux:icon.key class="size-5 text-zinc-400" />
+                                <div>
+                                    <flux:text
+                                        class="font-medium"
+                                        >{{ $passkey->name }}</flux:text
+                                    >
+                                    <flux:text variant="subtle" class="text-xs">
+                                        Added {{ $passkey->created_at->diffForHumans() }}
+                                        @if ($passkey->last_used_at)
+                                            · Last used {{ $passkey->last_used_at->diffForHumans() }}
+                                        @endif
+                                    </flux:text>
+                                </div>
+                            </div>
+                            <flux:button
+                                variant="danger"
+                                size="sm"
+                                wire:click="deletePasskey({{ $passkey->id }})"
+                                wire:confirm="Are you sure you want to remove this passkey?"
+                            >
+                                Remove
+                            </flux:button>
+                        </div>
+                    @empty
+                        <flux:text variant="subtle">
+                            You have no passkeys registered. Add one to sign in
+                            without a password.
+                        </flux:text>
+                    @endforelse
+
+                    <div class="flex items-center gap-4">
+                        <flux:button
+                            x-on:click="register"
+                            x-bind:disabled="registering"
+                            data-test="register-passkey-button"
+                        >
+                            Add passkey
+                        </flux:button>
+
+                        <flux:error x-show="error" x-text="error" />
+                    </div>
                 </div>
             </section>
         @endif

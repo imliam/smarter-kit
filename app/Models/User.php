@@ -29,6 +29,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Passkeys\Contracts\PasskeyUser;
+use Laravel\Passkeys\PasskeyAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\PersonalAccessToken;
 use Override;
@@ -60,7 +62,7 @@ use Override;
  * @mixin \Illuminate\Database\Eloquent\Model
  */
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, FilamentUser, HasAvatar, HasName, MustVerifyEmailContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, FilamentUser, HasAvatar, HasName, MustVerifyEmailContract, PasskeyUser
 {
     use Authenticatable;
     use Authorizable;
@@ -73,6 +75,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use HasTeams;
     use MustVerifyEmail;
     use Notifiable;
+    use PasskeyAuthenticatable;
     use TwoFactorAuthenticatable;
 
     /** Get the user's initials */
