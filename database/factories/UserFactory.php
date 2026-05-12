@@ -38,11 +38,14 @@ class UserFactory extends Factory
         ];
     }
 
-    /** Configure the model factory. */
+    /**
+     * Configure the model factory.
+     */
     #[Override]
     public function configure(): static
     {
-        return $this->afterCreating(function ($user): void {
+        /** @var $this $factory */
+        $factory = $this->afterCreating(function ($user): void {
             $team = Team::factory()->personal()->create([
                 'name' => $user->name."'s Team",
             ]);
@@ -53,6 +56,8 @@ class UserFactory extends Factory
 
             $user->switchTeam($team);
         });
+
+        return $factory;
     }
 
     /** Indicate that the model's email address should be unverified. */
