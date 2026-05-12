@@ -24,6 +24,7 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^4.2.8",
         "barryvdh/laravel-ide-helper": "^3.7",
+        "calebdw/larastan-livewire": "^2.5",
         "driftingly/rector-laravel": "^2.3",
         "fakerphp/faker": "^1.24.1",
         "imliam/laravel-env-set-command": "^3.0",
