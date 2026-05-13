@@ -38,9 +38,7 @@ class UserFactory extends Factory
         ];
     }
 
-    /**
-     * Configure the model factory.
-     */
+    /** Configure the model factory. */
     #[Override]
     public function configure(): static
     {

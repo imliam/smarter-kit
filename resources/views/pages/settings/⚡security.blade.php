@@ -254,16 +254,22 @@ new #[Title('Security settings')] class extends Component {
                         registering: false,
                         error: null,
                         async register() {
-                            const name = prompt('Name this passkey (e.g. \'My MacBook\')');
-                            
+                            const name = prompt(
+                                'Name this passkey (e.g. \'My MacBook\')',
+                            );
+
                             if (name === null) return;
                             this.error = null;
                             this.registering = true;
                             try {
-                                await Passkeys.register({ name: name.trim() || 'My device' });
+                                await Passkeys.register({
+                                    name: name.trim() || 'My device',
+                                });
                                 $wire.call('$refresh');
                             } catch (e) {
-                                this.error = e?.message ?? 'Passkey registration failed. Please try again.';
+                                this.error =
+                                    e?.message ??
+                                    'Passkey registration failed. Please try again.';
                             } finally {
                                 this.registering = false;
                             }
@@ -322,11 +328,15 @@ new #[Title('Security settings')] class extends Component {
 
         <section class="mt-12">
             <flux:heading>Other devices</flux:heading>
-            <flux:subheading>Sign out of all other browser sessions across all of your devices</flux:subheading>
+            <flux:subheading
+                >Sign out of all other browser sessions across all of your
+                devices</flux:subheading
+            >
             <div class="mt-6 space-y-6">
                 <flux:text>
-                    If you believe your account has been compromised, or you've recently logged in on a
-                    public or shared device, you can sign out of all other active sessions here.
+                    If you believe your account has been compromised, or you've
+                    recently logged in on a public or shared device, you can
+                    sign out of all other active sessions here.
                 </flux:text>
 
                 <flux:modal.trigger name="confirm-logout-other-devices">
@@ -344,13 +354,19 @@ new #[Title('Security settings')] class extends Component {
                     focusable
                     class="max-w-lg"
                 >
-                    <form method="POST" wire:submit="logoutOtherDevices" class="space-y-6">
+                    <form
+                        method="POST"
+                        wire:submit="logoutOtherDevices"
+                        class="space-y-6"
+                    >
                         <div>
-                            <flux:heading size="lg">Log out other devices</flux:heading>
+                            <flux:heading size="lg"
+                                >Log out other devices</flux:heading
+                            >
 
                             <flux:subheading>
-                                Please enter your password to confirm you would like to sign out of
-                                all other active sessions.
+                                Please enter your password to confirm you would
+                                like to sign out of all other active sessions.
                             </flux:subheading>
                         </div>
 
@@ -361,9 +377,13 @@ new #[Title('Security settings')] class extends Component {
                             viewable
                         />
 
-                        <div class="flex justify-end space-x-2 rtl:space-x-reverse">
+                        <div
+                            class="flex justify-end space-x-2 rtl:space-x-reverse"
+                        >
                             <flux:modal.close>
-                                <flux:button variant="filled">Cancel</flux:button>
+                                <flux:button variant="filled"
+                                    >Cancel</flux:button
+                                >
                             </flux:modal.close>
 
                             <flux:button

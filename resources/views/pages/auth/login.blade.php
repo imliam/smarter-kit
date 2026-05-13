@@ -118,7 +118,9 @@
                 class="space-x-1 text-center text-sm text-zinc-600 rtl:space-x-reverse dark:text-zinc-400"
             >
                 <span>Don't have an account?</span>
-                <flux:link :href="route('register')" wire:navigate>Sign up</flux:link>
+                <flux:link :href="route('register')" wire:navigate
+                    >Sign up</flux:link
+                >
             </div>
         @endif
     </div>
