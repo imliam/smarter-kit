@@ -36,6 +36,9 @@ jobs:
           tools: composer:v2
           coverage: xdebug
 
+      - name: Lint PHP Files
+        run: find app bootstrap config database routes -name "*.php" -print0 | xargs -0 -P4 php -l
+
       - uses: oven-sh/setup-bun@v2
 
       - name: Setup Node
