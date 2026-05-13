@@ -12,6 +12,7 @@ class EditProfile extends BaseEditProfile
     /** After the profile is saved, sign out all other devices if the password was changed. */
     protected function afterSave(): void
     {
+        /** @var string|null $password */
         $password = $this->data['password'] ?? null;
 
         if (filled($password)) {
