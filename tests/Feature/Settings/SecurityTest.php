@@ -105,3 +105,46 @@ test('correct password must be provided to update password', function (): void {
 
     $response->assertHasErrors(['current_password']);
 });
+
+test('updating password signs out other devices', function (): void {
+    $user = User::factory()->create([
+        'password' => Hash::make('password'),
+    ]);
+
+    $this->actingAs($user);
+
+    Livewire::test('pages::settings.security')
+        ->set('current_password', 'password')
+        ->set('password', 'new-password')
+        ->set('password_confirmation', 'new-password')
+        ->call('updatePassword')
+        ->assertHasNoErrors();
+
+    expect(Hash::check('new-password', $user->refresh()->password))->toBeTrue();
+});
+
+test('other devices can be logged out with correct password', function (): void {
+    $user = User::factory()->create([
+        'password' => Hash::make('password'),
+    ]);
+
+    $this->actingAs($user);
+
+    Livewire::test('pages::settings.security')
+        ->set('logout_other_devices_password', 'password')
+        ->call('logoutOtherDevices')
+        ->assertHasNoErrors();
+});
+
+test('incorrect password prevents logging out other devices', function (): void {
+    $user = User::factory()->create([
+        'password' => Hash::make('password'),
+    ]);
+
+    $this->actingAs($user);
+
+    Livewire::test('pages::settings.security')
+        ->set('logout_other_devices_password', 'wrong-password')
+        ->call('logoutOtherDevices')
+        ->assertHasErrors(['logout_other_devices_password']);
+});

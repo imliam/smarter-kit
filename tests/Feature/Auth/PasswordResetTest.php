@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Laravel\Fortify\Features;
 
@@ -61,6 +63,40 @@ test('password can be reset with valid token', function (): void {
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect(route('login', absolute: false));
+
+        return true;
+    });
+});
+
+test('resetting password invalidates all existing sessions', function (): void {
+    config(['session.driver' => 'database']);
+
+    Notification::fake();
+
+    $user = User::factory()->create([
+        'password' => Hash::make('old-password'),
+    ]);
+
+    DB::table('sessions')->insert([
+        'id' => 'other-device-session',
+        'user_id' => $user->id,
+        'ip_address' => '1.2.3.4',
+        'user_agent' => 'Other Browser',
+        'payload' => base64_encode('data'),
+        'last_activity' => now()->timestamp,
+    ]);
+
+    $this->post(route('password.request'), ['email' => $user->email]);
+
+    Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user): true {
+        $this->post(route('password.update'), [
+            'token' => $notification->token,
+            'email' => $user->email,
+            'password' => 'new-password',
+            'password_confirmation' => 'new-password',
+        ]);
+
+        expect(DB::table('sessions')->where('id', 'other-device-session')->count())->toBe(0);
 
         return true;
     });

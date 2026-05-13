@@ -1,6 +1,7 @@
 <?php
 
 use App\Concerns\PasswordValidationRules;
+use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
@@ -20,6 +21,8 @@ new #[Title('Security settings')] class extends Component {
     public string $password = '';
 
     public string $password_confirmation = '';
+
+    public string $logout_other_devices_password = '';
 
     public bool $canManageTwoFactor;
 
@@ -60,6 +63,8 @@ new #[Title('Security settings')] class extends Component {
             throw $validationException;
         }
 
+        Auth::logoutOtherDevices($validated['current_password']);
+
         Auth::user()->update([
             'password' => $validated['password'],
         ]);
@@ -67,6 +72,30 @@ new #[Title('Security settings')] class extends Component {
         $this->reset('current_password', 'password', 'password_confirmation');
 
         $this->dispatch('password-updated');
+    }
+
+    /**
+     * Log out all other devices after verifying the user's password.
+     */
+    public function logoutOtherDevices(): void
+    {
+        try {
+            $validated = $this->validate([
+                'logout_other_devices_password' => $this->currentPasswordRules(),
+            ]);
+        } catch (ValidationException $validationException) {
+            $this->reset('logout_other_devices_password');
+
+            throw $validationException;
+        }
+
+        Auth::logoutOtherDevices($validated['logout_other_devices_password']);
+
+        $this->reset('logout_other_devices_password');
+
+        Flux::modal('confirm-logout-other-devices')->close();
+
+        Flux::toast(text: 'All other devices have been signed out.', variant: 'success');
     }
 
     /**
@@ -225,44 +254,20 @@ new #[Title('Security settings')] class extends Component {
                         registering: false,
                         error: null,
                         async register() {
-                            const name = prompt('Name this passkey (e.g. "
-                    My
-                    MacBook")');
-                    if
-                    (name="=="
-                    null)
-                    return;
-                    this.error="null;"
-                    this.registering="true;"
-                    try
-                    {
-                    await
-                    Passkeys.register({
-                    name:
-                    name.trim()
-                    ||
-                    'My
-                    device'
-                    });
-                    $wire.call('$refresh');
-                    }
-                    catch
-                    (e)
-                    {
-                    this.error="e?.message"
-                    ??
-                    'Passkey
-                    registration
-                    failed.
-                    Please
-                    try
-                    again.';
-                    }
-                    finally
-                    {
-                    this.registering="false;"
-                    }
-                    },
+                            const name = prompt('Name this passkey (e.g. \'My MacBook\')');
+                            
+                            if (name === null) return;
+                            this.error = null;
+                            this.registering = true;
+                            try {
+                                await Passkeys.register({ name: name.trim() || 'My device' });
+                                $wire.call('$refresh');
+                            } catch (e) {
+                                this.error = e?.message ?? 'Passkey registration failed. Please try again.';
+                            } finally {
+                                this.registering = false;
+                            }
+                        },
                     }"
                 >
                     @forelse (auth()->user()->passkeys as $passkey)
@@ -314,5 +319,64 @@ new #[Title('Security settings')] class extends Component {
                 </div>
             </section>
         @endif
+
+        <section class="mt-12">
+            <flux:heading>Other devices</flux:heading>
+            <flux:subheading>Sign out of all other browser sessions across all of your devices</flux:subheading>
+            <div class="mt-6 space-y-6">
+                <flux:text>
+                    If you believe your account has been compromised, or you've recently logged in on a
+                    public or shared device, you can sign out of all other active sessions here.
+                </flux:text>
+
+                <flux:modal.trigger name="confirm-logout-other-devices">
+                    <flux:button
+                        variant="filled"
+                        data-test="logout-other-devices-button"
+                    >
+                        Log out other devices
+                    </flux:button>
+                </flux:modal.trigger>
+
+                <flux:modal
+                    name="confirm-logout-other-devices"
+                    :show="$errors->has('logout_other_devices_password')"
+                    focusable
+                    class="max-w-lg"
+                >
+                    <form method="POST" wire:submit="logoutOtherDevices" class="space-y-6">
+                        <div>
+                            <flux:heading size="lg">Log out other devices</flux:heading>
+
+                            <flux:subheading>
+                                Please enter your password to confirm you would like to sign out of
+                                all other active sessions.
+                            </flux:subheading>
+                        </div>
+
+                        <flux:input
+                            wire:model="logout_other_devices_password"
+                            label="Password"
+                            type="password"
+                            viewable
+                        />
+
+                        <div class="flex justify-end space-x-2 rtl:space-x-reverse">
+                            <flux:modal.close>
+                                <flux:button variant="filled">Cancel</flux:button>
+                            </flux:modal.close>
+
+                            <flux:button
+                                variant="primary"
+                                type="submit"
+                                data-test="confirm-logout-other-devices-button"
+                            >
+                                Log out other devices
+                            </flux:button>
+                        </div>
+                    </form>
+                </flux:modal>
+            </div>
+        </section>
     </x-pages::settings.layout>
 </section>
