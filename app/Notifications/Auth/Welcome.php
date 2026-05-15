@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Notifications\Auth;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -23,7 +24,7 @@ class Welcome extends Notification implements ShouldQueue
         return ['mail'];
     }
 
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(User $notifiable): MailMessage
     {
         return (new MailMessage)
             ->subject('Welcome to '.config('app.name'))
@@ -36,7 +37,7 @@ class Welcome extends Notification implements ShouldQueue
     }
 
     /** @return array<string, mixed> */
-    public function toArray(object $notifiable): array
+    public function toArray(User $notifiable): array
     {
         return [
             'provider' => $this->provider,

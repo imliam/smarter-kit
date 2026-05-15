@@ -6,9 +6,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserSocial;
 use App\Notifications\Auth\Welcome;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -29,6 +29,12 @@ class SocialLoginCallbackController extends Controller
                 ->withErrors(['email' => 'Social login failed or was cancelled. Please try again.']);
         }
 
+        $socialToken = $serviceUser instanceof \Laravel\Socialite\Two\User || $serviceUser instanceof \Laravel\Socialite\One\User
+            ? $serviceUser->token
+            : null;
+        $socialTokenSecret = $serviceUser instanceof \Laravel\Socialite\One\User ? $serviceUser->tokenSecret : null;
+        $socialRefreshToken = $serviceUser instanceof \Laravel\Socialite\Two\User ? $serviceUser->refreshToken : null;
+
         $email = $serviceUser->getEmail();
 
         if (empty($email)) {
@@ -37,15 +43,16 @@ class SocialLoginCallbackController extends Controller
         }
 
         if (session()->pull('social_connect_intent') && Auth::check()) {
+            /** @var User $user */
             $user = Auth::user();
 
             if (! $user->hasSocialLinked($service)) {
                 $user->social()->create([
                     'social_id' => $serviceUser->getId(),
                     'service' => $service,
-                    'token' => $serviceUser->token,
-                    'token_secret' => $serviceUser->tokenSecret ?? null,
-                    'refresh_token' => $serviceUser->refreshToken,
+                    'token' => $socialToken,
+                    'token_secret' => $socialTokenSecret,
+                    'refresh_token' => $socialRefreshToken,
                 ]);
             }
 
@@ -70,17 +77,17 @@ class SocialLoginCallbackController extends Controller
             $user->social()->create([
                 'social_id' => $serviceUser->getId(),
                 'service' => $service,
-                'token' => $serviceUser->token,
-                'token_secret' => $serviceUser->tokenSecret ?? null,
-                'refresh_token' => $serviceUser->refreshToken,
+                'token' => $socialToken,
+                'token_secret' => $socialTokenSecret,
+                'refresh_token' => $socialRefreshToken,
             ]);
         } else {
             $user->social()
                 ->where('service', $service)
                 ->update([
-                    'token' => $serviceUser->token,
-                    'token_secret' => $serviceUser->tokenSecret ?? null,
-                    'refresh_token' => $serviceUser->refreshToken,
+                    'token' => $socialToken,
+                    'token_secret' => $socialTokenSecret,
+                    'refresh_token' => $socialRefreshToken,
                 ]);
         }
 
@@ -98,10 +105,10 @@ class SocialLoginCallbackController extends Controller
     {
         return User::query()
             ->where('email', $serviceUser->getEmail())
-            ->orWhereHas(
-                'social',
-                fn (Builder $query) => $query->where('social_id', $serviceUser->getId())->where('service', $service),
-            )
+            ->orWhereIn('id', UserSocial::query()
+                ->where('social_id', $serviceUser->getId())
+                ->where('service', $service)
+                ->select('user_id'))
             ->first();
     }
 }
