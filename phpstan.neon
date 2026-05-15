@@ -40,6 +40,8 @@ parameters:
 
 #    reportPossiblyNonexistentGeneralArrayOffset: true
 
+    reportUnmatchedIgnoredErrors: true
+
     tmpDir: storage/phpstan/
 
     ignoreErrors:
