@@ -45,6 +45,8 @@
                 placeholder="email@example.com"
             />
 
+            @php $passwordRules = \Illuminate\Validation\Rules\Password::defaults()->toPasswordRulesString(); @endphp
+
             <!-- Password -->
             <flux:input
                 name="password"
@@ -52,6 +54,7 @@
                 type="password"
                 required
                 autocomplete="new-password"
+                passwordrules="{{ $passwordRules }}"
                 placeholder="Password"
                 viewable
             />
@@ -63,6 +66,7 @@
                 type="password"
                 required
                 autocomplete="new-password"
+                passwordrules="{{ $passwordRules }}"
                 placeholder="Confirm password"
                 viewable
             />

@@ -3,6 +3,7 @@
 use App\Concerns\PasswordValidationRules;
 use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Features;
@@ -159,6 +160,7 @@ new #[Title('Security settings')] class extends Component {
         heading="Update password"
         subheading="Ensure your account is using a long, random password to stay secure"
     >
+        @php $passwordRules = Password::defaults()->toPasswordRulesString(); @endphp
         <form method="POST" wire:submit="updatePassword" class="mt-6 space-y-6">
             <flux:input
                 wire:model="current_password"
@@ -174,6 +176,7 @@ new #[Title('Security settings')] class extends Component {
                 type="password"
                 required
                 autocomplete="new-password"
+                passwordrules="{{ $passwordRules }}"
                 viewable
             />
             <flux:input
@@ -182,6 +185,7 @@ new #[Title('Security settings')] class extends Component {
                 type="password"
                 required
                 autocomplete="new-password"
+                passwordrules="{{ $passwordRules }}"
                 viewable
             />
 
