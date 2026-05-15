@@ -14,6 +14,7 @@
         "laravel/mcp": "^0.7.0",
         "laravel/octane": "^2.17.2",
         "laravel/passkeys": "^0.1.0",
+        "laravel/pennant": "^1.23",
         "laravel/sanctum": "^4.3.1",
         "laravel/socialite": "^5.27",
         "laravel/tinker": "^3.0.2",
