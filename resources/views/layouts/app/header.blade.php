@@ -37,7 +37,7 @@
                 <flux:navbar.item
                     class="[&>div>svg]:size-5 h-10 max-lg:hidden"
                     icon="folder-git-2"
-                    href="https://github.com/laravel/livewire-starter-kit"
+                    href="https://github.com/imliam/smarter-kit"
                     target="_blank"
                     label="Repository"
                 />
@@ -49,6 +49,15 @@
                     href="https://laravel.com/docs/starter-kits#livewire"
                     target="_blank"
                     label="Documentation"
+                />
+            </flux:tooltip>
+            <flux:tooltip content="Admin panel" position="bottom">
+                <flux:navbar.item
+                    class="[&>div>svg]:size-5 h-10 max-lg:hidden"
+                    icon="command-line"
+                    href="{{ route('filament.admin.pages.dashboard') }}"
+                    target="_blank"
+                    label="Admin panel"
                 />
             </flux:tooltip>
         </flux:navbar>
@@ -97,7 +106,7 @@
         <flux:sidebar.nav>
             <flux:sidebar.item
                 icon="folder-git-2"
-                href="https://github.com/laravel/livewire-starter-kit"
+                href="https://github.com/imliam/smarter-kit"
                 target="_blank"
             >
                 Repository

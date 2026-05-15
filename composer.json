@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/livewire-starter-kit",
+    "name": "imliam/smarter-kit",
     "type": "project",
-    "description": "The official Laravel starter kit for Livewire.",
+    "description": "Smarter Kit is a Laravel starter kit with a handful of pre-configured features and tools to help build applications.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {

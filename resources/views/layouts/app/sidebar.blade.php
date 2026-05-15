@@ -33,7 +33,7 @@
         <flux:sidebar.nav>
             <flux:sidebar.item
                 icon="folder-git-2"
-                href="https://github.com/laravel/livewire-starter-kit"
+                href="https://github.com/imliam/smarter-kit"
                 target="_blank"
             >
                 Repository
@@ -45,6 +45,14 @@
                 target="_blank"
             >
                 Documentation
+            </flux:sidebar.item>
+
+            <flux:sidebar.item
+                icon="command-line"
+                href="{{ route('filament.admin.pages.dashboard') }}"
+                target="_blank"
+            >
+                Admin panel
             </flux:sidebar.item>
         </flux:sidebar.nav>
 
