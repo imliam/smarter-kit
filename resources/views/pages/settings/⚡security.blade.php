@@ -125,6 +125,29 @@ new #[Title('Security settings')] class extends Component {
         $passkey = Auth::user()->passkeys()->findOrFail($passkeyId);
         $passkey->delete();
     }
+
+    /**
+     * Disconnect a linked social account.
+     */
+    public function disconnectSocial(int $socialId): void
+    {
+        $user = Auth::user();
+        $social = $user->social()->findOrFail($socialId);
+
+        $hasPassword = ! is_null($user->password);
+        $otherSocialCount = $user->social()->where('id', '!=', $socialId)->count();
+        $hasPasskeys = $user->passkeys()->exists();
+
+        if (! $hasPassword && $otherSocialCount === 0 && ! $hasPasskeys) {
+            Flux::toast(text: 'Set a password before removing your only sign-in method.', variant: 'warning');
+
+            return;
+        }
+
+        $social->delete();
+
+        Flux::toast(text: ucfirst((string) $social->service).' account disconnected.', variant: 'success');
+    }
 }; ?>
 
 <section class="w-full">
@@ -327,7 +350,79 @@ new #[Title('Security settings')] class extends Component {
         @endif
 
         <section class="mt-12">
-            <flux:heading>Other devices</flux:heading>
+            <flux:heading>Connected accounts</flux:heading>
+            <flux:subheading
+                >Manage the social accounts linked to your
+                profile</flux:subheading
+            >
+
+            <div class="mt-6 space-y-4">
+                @forelse (auth()->user()->social as $socialAccount)
+                    @php
+                        $hasPassword = ! is_null(auth()->user()->password);
+                        $otherSocialCount = auth()->user()->social->where('id', '!=', $socialAccount->id)->count();
+                        $hasPasskeys = auth()->user()->passkeys->isNotEmpty();
+                        $canDisconnect = $hasPassword || $otherSocialCount > 0 || $hasPasskeys;
+                    @endphp
+                    <div
+                        class="flex items-center justify-between rounded-lg border border-zinc-200 px-4 py-3 dark:border-zinc-700"
+                    >
+                        <div class="flex items-center gap-3">
+                            {!! svg('simpleicon-'.$socialAccount->service, 'size-5 text-zinc-600 dark:text-zinc-400')->toHtml() !!}
+                            <div>
+                                <flux:text
+                                    class="font-medium"
+                                    >{{ ucfirst($socialAccount->service) }}</flux:text
+                                >
+                                <flux:text variant="subtle" class="text-xs">
+                                    Connected {{ $socialAccount->created_at->diffForHumans() }}
+                                </flux:text>
+                            </div>
+                        </div>
+                        <flux:button
+                            variant="danger"
+                            size="sm"
+                            wire:click="disconnectSocial({{ $socialAccount->id }})"
+                            wire:confirm="Are you sure you want to disconnect this account?"
+                            :disabled="! $canDisconnect"
+                            :title="! $canDisconnect ? 'Set a password before removing your only sign-in method' : ''"
+                        >
+                            Remove
+                        </flux:button>
+                    </div>
+                @empty
+                    <flux:text variant="subtle"
+                        >No social accounts connected.</flux:text
+                    >
+                @endforelse
+
+                @foreach (config('auth.social_providers') as $provider)
+                    @if (! auth()->user()->hasSocialLinked($provider))
+                        <div
+                            class="flex items-center justify-between rounded-lg border border-dashed border-zinc-200 px-4 py-3 dark:border-zinc-700"
+                        >
+                            <div class="flex items-center gap-3">
+                                {!! svg('simpleicon-'.$provider, 'size-5 text-zinc-400')->toHtml() !!}
+                                <flux:text
+                                    variant="subtle"
+                                    >{{ ucfirst($provider) }}</flux:text
+                                >
+                            </div>
+                            <flux:button
+                                size="sm"
+                                tag="a"
+                                href="{{ route('social-login.redirect', ['service' => $provider]) }}?connect=true"
+                            >
+                                Connect
+                            </flux:button>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </section>
+
+        <section class="mt-12">
+            <flux:heading>Log out other devices</flux:heading>
             <flux:subheading
                 >Sign out of all other browser sessions across all of your
                 devices</flux:subheading

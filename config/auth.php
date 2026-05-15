@@ -116,4 +116,23 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Social Login Providers
+    |--------------------------------------------------------------------------
+    |
+    | The social login providers available in the application. A provider is
+    | considered active when both its CLIENT_ID and CLIENT_SECRET environment
+    | variables are non-empty. Credentials are configured in config/services.php.
+    |
+    | Supported: "github", "facebook"
+    |
+    */
+
+    'social_providers' => array_values(array_filter(
+        ['github', 'facebook'],
+        fn (string $provider): bool => ! empty(env(mb_strtoupper($provider).'_CLIENT_ID'))
+            && ! empty(env(mb_strtoupper($provider).'_CLIENT_SECRET')),
+    )),
+
 ];

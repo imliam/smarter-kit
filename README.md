@@ -54,6 +54,8 @@ php artisan octane:install
 php artisan boost:install
 ```
 
+To enable social login, add your OAuth credentials to `.env`. Supported providers are listed in `config/services.php`, which also includes links to each provider's OAuth app setup page.
+
 ## Running the Application
 
 To start the application locally, run:

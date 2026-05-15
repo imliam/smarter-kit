@@ -1,4 +1,9 @@
 <x-layouts::auth title="Register">
+    @php
+        $socialProviders = config('auth.social_providers');
+        $lastLoginMethod = request()->cookie('last_login_method');
+    @endphp
+
     <div class="flex flex-col gap-6">
         <x-auth-header
             title="Create an account"
@@ -73,6 +78,37 @@
                 </flux:button>
             </div>
         </form>
+
+        @if ($socialProviders)
+            <div class="flex flex-col gap-3">
+                <div class="relative flex items-center gap-3">
+                    <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-700"></div>
+                    <span class="text-xs text-zinc-400">or</span>
+                    <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-700"></div>
+                </div>
+
+                @foreach ($socialProviders as $provider)
+                    <div class="relative">
+                        @if ($lastLoginMethod === $provider)
+                            <flux:badge
+                                class="absolute -top-2 right-2 z-10"
+                                size="sm"
+                                color="zinc"
+                                >Last used</flux:badge
+                            >
+                        @endif
+                        <flux:button
+                            tag="a"
+                            href="{{ route('social-login.redirect', $provider) }}"
+                            class="w-full"
+                        >
+                            {!! svg('simpleicon-'.$provider, 'size-4')->toHtml() !!} Sign
+                            up with {{ ucfirst($provider) }}
+                        </flux:button>
+                    </div>
+                @endforeach
+            </div>
+        @endif
 
         <div
             class="space-x-1 text-center text-sm text-zinc-600 rtl:space-x-reverse dark:text-zinc-400"

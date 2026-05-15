@@ -22,6 +22,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -116,6 +117,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         }
 
         return Storage::disk('public')->url($this->avatar_url);
+    }
+
+    /** @return HasMany<UserSocial, $this> */
+    public function social(): HasMany
+    {
+        return $this->hasMany(UserSocial::class);
+    }
+
+    public function hasSocialLinked(string $service): bool
+    {
+        return (bool) $this->social->where('service', $service)->count();
     }
 
     /**

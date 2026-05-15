@@ -1,4 +1,9 @@
 <x-layouts::auth title="Log in">
+    @php
+        $socialProviders = config('auth.social_providers');
+        $lastLoginMethod = request()->cookie('last_login_method');
+    @endphp
+
     <div
         class="flex flex-col gap-6"
         x-data="{
@@ -110,6 +115,27 @@
                 </flux:button>
 
                 <flux:error x-show="passkeyError" x-text="passkeyError" />
+
+                @foreach ($socialProviders as $provider)
+                    <div class="relative">
+                        @if ($lastLoginMethod === $provider)
+                            <flux:badge
+                                class="absolute -top-2 right-2 z-10"
+                                size="sm"
+                                color="zinc"
+                                >Last used</flux:badge
+                            >
+                        @endif
+                        <flux:button
+                            tag="a"
+                            href="{{ route('social-login.redirect', $provider) }}"
+                            class="w-full"
+                        >
+                            {!! svg('simpleicon-'.$provider, 'size-4')->toHtml() !!} Sign
+                            in with {{ ucfirst($provider) }}
+                        </flux:button>
+                    </div>
+                @endforeach
             </div>
         </form>
 

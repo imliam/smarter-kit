@@ -15,12 +15,14 @@
         "laravel/octane": "^2.17.2",
         "laravel/passkeys": "^0.1.0",
         "laravel/sanctum": "^4.3.1",
+        "laravel/socialite": "^5.27",
         "laravel/tinker": "^3.0.2",
         "livewire/blaze": "^1.0.11",
         "livewire/flux": "^2.14.1",
         "livewire/livewire": "^4.2.4",
         "spatie/laravel-morph-map-generator": "^1.4",
-        "spatie/laravel-sluggable": "^3.8.1"
+        "spatie/laravel-sluggable": "^3.8.1",
+        "ublabs/blade-simple-icons": "^0.199.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^4.2.8",
