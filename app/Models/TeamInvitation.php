@@ -13,12 +13,12 @@ use Illuminate\Support\Str;
 use Override;
 
 /**
- * @property int $id
+ * @property string $id
  * @property string $code
- * @property int $team_id
+ * @property string $team_id
  * @property string $email
  * @property TeamRole $role
- * @property int $invited_by
+ * @property string $invited_by
  * @property CarbonImmutable|null $expires_at
  * @property CarbonImmutable|null $accepted_at
  * @property CarbonImmutable|null $created_at

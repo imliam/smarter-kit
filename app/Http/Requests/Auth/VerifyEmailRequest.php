@@ -20,7 +20,7 @@ final class VerifyEmailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => ['required', 'integer', Rule::exists('users', 'id')],
+            'id' => ['required', 'string', Rule::exists('users', 'id')],
             'hash' => ['required', 'string', 'size:64'],
         ];
     }

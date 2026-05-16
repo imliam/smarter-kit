@@ -1,17 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Laravel\Pennant\Migrations\PennantMigration;
 
 return new class extends PennantMigration
 {
-    /**
-     * Run the migrations.
-     */
+    /** Run the migrations. */
     public function up(): void
     {
-        Schema::create('features', function (Blueprint $table) {
+        Schema::create('features', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
             $table->string('scope');
@@ -22,9 +22,7 @@ return new class extends PennantMigration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    /** Reverse the migrations. */
     public function down(): void
     {
         Schema::dropIfExists('features');

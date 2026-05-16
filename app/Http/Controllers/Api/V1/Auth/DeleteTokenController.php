@@ -21,7 +21,7 @@ use Knuckles\Scribe\Attributes\UrlParam;
 #[Subgroup(name: 'Token Authentication')]
 #[Endpoint(title: 'Revoke Token', description: 'Revoke one personal access token owned by the authenticated user.')]
 #[Authenticated]
-#[UrlParam('token_id', type: 'integer', description: 'Personal access token id.', required: true, example: 42)]
+#[UrlParam('token_id', type: 'string', description: 'Personal access token id.', required: true, example: '019e2df4-3309-7000-a000-000000000001')]
 #[ScribeResponse(content: null, status: 204, description: 'Token revoked.')]
 #[ScribeResponse(content: ['message' => 'Token not found.'], status: 404, description: 'Token does not belong to current user or no longer exists.')]
 #[ScribeResponse(content: ['message' => 'Forbidden.'], status: 403, description: 'Token is missing required ability.')]
@@ -35,7 +35,7 @@ final class DeleteTokenController
         if (! $token) {
             SecurityAudit::log('auth.tokens.revoke_failed', [
                 'user_id' => (string) $user->getKey(),
-                'token_id' => (string) $request->tokenId(),
+                'token_id' => $request->tokenId(),
                 'reason' => 'not_found',
             ]);
 

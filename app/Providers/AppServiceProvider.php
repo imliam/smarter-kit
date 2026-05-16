@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Models\PersonalAccessToken;
 use App\Models\User;
 use Carbon\CarbonImmutable;
+use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
@@ -19,6 +21,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Laravel\Sanctum\Sanctum;
 use Livewire\Blaze\Blaze;
 use Override;
 use RuntimeException;
@@ -34,6 +37,20 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
+
+        RedirectIfAuthenticated::redirectUsing(function (Request $request): string {
+            /** @var User|null $user */
+            $user = $request->user();
+            $team = $user?->currentTeam ?? $user?->personalTeam();
+
+            if ($team) {
+                return route('dashboard', ['current_team' => $team->slug]);
+            }
+
+            return route('home');
+        });
+
         $this->checkEnvironment();
         $this->configureGates();
         $this->configureDefaults();

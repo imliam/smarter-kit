@@ -33,11 +33,10 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Passkeys\Contracts\PasskeyUser;
 use Laravel\Passkeys\PasskeyAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
-use Laravel\Sanctum\PersonalAccessToken;
 use Override;
 
 /**
- * @property int $id
+ * @property string $id
  * @property string $name
  * @property string $email
  * @property CarbonImmutable|null $email_verified_at
@@ -48,7 +47,7 @@ use Override;
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
  * @property CarbonImmutable|null $two_factor_confirmed_at
- * @property int|null $current_team_id
+ * @property string|null $current_team_id
  * @property UserRole $role
  * @property string|null $avatar_url
  * @property-read Team|null $currentTeam

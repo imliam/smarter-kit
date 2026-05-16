@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Models\PersonalAccessToken;
 use App\Models\User;
-use Laravel\Sanctum\PersonalAccessToken;
 
 it('requires auth for token management endpoints', function (): void {
     $this->getJson('/api/v1/auth/tokens')->assertUnauthorized();

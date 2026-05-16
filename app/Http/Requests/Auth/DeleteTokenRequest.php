@@ -18,7 +18,7 @@ final class DeleteTokenRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'token_id' => ['required', 'integer'],
+            'token_id' => ['required', 'string', 'uuid'],
         ];
     }
 
@@ -34,8 +34,8 @@ final class DeleteTokenRequest extends FormRequest
         return $data;
     }
 
-    public function tokenId(): int
+    public function tokenId(): string
     {
-        return (int) $this->validated('token_id');
+        return (string) $this->validated('token_id');
     }
 }

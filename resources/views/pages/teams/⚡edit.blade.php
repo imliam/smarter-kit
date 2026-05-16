@@ -59,7 +59,7 @@ new class extends Component
         $this->redirectRoute('teams.edit', ['team' => $this->teamModel->fresh()->slug], navigate: true);
     }
 
-    public function updateMember(int $userId, string $role): void
+    public function updateMember(string $userId, string $role): void
     {
         Gate::authorize('updateMember', $this->teamModel);
 

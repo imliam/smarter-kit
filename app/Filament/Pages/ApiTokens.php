@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Pages;
 
+use App\Models\PersonalAccessToken;
 use App\Models\User;
 use BackedEnum;
 use Filament\Actions\Action;
@@ -24,7 +25,6 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
-use Laravel\Sanctum\PersonalAccessToken;
 use Override;
 
 class ApiTokens extends Page implements Tables\Contracts\HasTable

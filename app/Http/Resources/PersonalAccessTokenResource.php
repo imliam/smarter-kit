@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
+use App\Models\PersonalAccessToken;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\JsonApi\JsonApiResource;
-use Laravel\Sanctum\PersonalAccessToken;
 use Override;
 
 final class PersonalAccessTokenResource extends JsonApiResource

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Models\PersonalAccessToken;
 use App\Models\User;
-use Laravel\Sanctum\PersonalAccessToken;
 
 it('rejects non json payloads on write endpoints', function (): void {
     User::factory()->create([
@@ -34,7 +34,7 @@ it('issues expiring sanctum tokens by default', function (): void {
     expect($response->json('meta.expires_at'))->not->toBeNull();
     expect($tokenId)->not->toBeNull();
 
-    $token = PersonalAccessToken::query()->findOrFail((int) $tokenId);
+    $token = PersonalAccessToken::query()->findOrFail($tokenId);
 
     expect($token->expires_at)->not->toBeNull();
 });

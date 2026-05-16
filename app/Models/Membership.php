@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Enums\TeamRole;
 use Carbon\CarbonImmutable;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,9 +15,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 use Override;
 
 /**
- * @property int $id
- * @property int $team_id
- * @property int $user_id
+ * @property string $id
+ * @property string $team_id
+ * @property string $user_id
  * @property TeamRole $role
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
@@ -30,13 +31,7 @@ class Membership extends Pivot
     /** @use HasFactory<Factory<static>> */
     use HasFactory;
 
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    #[Override]
-    public $incrementing = true;
+    use HasUuids;
 
     /**
      * The table associated with the model.

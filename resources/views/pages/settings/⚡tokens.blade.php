@@ -53,7 +53,7 @@ new #[Title('API Tokens')] class extends Component {
     /**
      * Revoke a single token by ID.
      */
-    public function revokeToken(int $tokenId): void
+    public function revokeToken(string $tokenId): void
     {
         Auth::user()->tokens()->whereKey($tokenId)->delete();
     }

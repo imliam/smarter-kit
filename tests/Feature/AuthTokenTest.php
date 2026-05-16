@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
+use App\Models\PersonalAccessToken;
 use App\Models\User;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Notification;
-use Laravel\Sanctum\PersonalAccessToken;
 
 it('registers a user and returns a bearer token', function (): void {
     Notification::fake();
@@ -70,7 +70,7 @@ it('issues scoped tokens without wildcard ability', function (): void {
 
     expect($tokenId)->not->toBeNull();
 
-    $token = PersonalAccessToken::query()->findOrFail((int) $tokenId);
+    $token = PersonalAccessToken::query()->findOrFail($tokenId);
 
     expect($token->abilities)->toContain('auth:me');
     expect($token->abilities)->toContain('auth:logout');

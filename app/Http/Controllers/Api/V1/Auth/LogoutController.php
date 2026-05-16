@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1\Auth;
 
+use App\Models\PersonalAccessToken;
 use App\Models\User;
 use App\Support\SecurityAudit;
 use Illuminate\Container\Attributes\CurrentUser;
@@ -14,7 +15,6 @@ use Knuckles\Scribe\Attributes\Endpoint;
 use Knuckles\Scribe\Attributes\Group;
 use Knuckles\Scribe\Attributes\Response as ScribeResponse;
 use Knuckles\Scribe\Attributes\Subgroup;
-use Laravel\Sanctum\PersonalAccessToken;
 
 #[Group(name: 'Authentication')]
 #[Subgroup(name: 'Token Authentication')]
