@@ -107,7 +107,7 @@
                             class="w-full"
                         >
                             {!! svg('simpleicon-'.$provider, 'size-4')->toHtml() !!} Sign
-                            up with {{ ucfirst($provider) }}
+                            up with {{ config("services.{$provider}.name", ucfirst($provider)) }}
                         </flux:button>
                     </div>
                 @endforeach

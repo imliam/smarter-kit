@@ -409,7 +409,7 @@ new #[Title('Security settings')] class extends Component {
                                 {!! svg('simpleicon-'.$provider, 'size-5 text-zinc-400')->toHtml() !!}
                                 <flux:text
                                     variant="subtle"
-                                    >{{ ucfirst($provider) }}</flux:text
+                                    >{{ config("services.{$provider}.name", ucfirst($provider)) }}</flux:text
                                 >
                             </div>
                             <flux:button
