@@ -28,6 +28,8 @@ Route::middleware(['auth', 'verified'])->group(function (): void {
         )
         ->name('security.edit');
 
+    Route::livewire('teams/create', 'pages::teams.create')->name('teams.create');
+
     Route::livewire('settings/teams', 'pages::teams.index')->name('teams.index');
 
     Route::middleware(EnsureTeamMembership::class)->group(function (): void {

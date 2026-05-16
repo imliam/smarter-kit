@@ -269,3 +269,34 @@ test('guests cannot access teams', function (): void {
 
     $response->assertRedirect(route('login'));
 });
+
+test('authenticated user without a team is redirected to create team page', function (): void {
+    $user = User::factory()->withoutTeam()->create();
+
+    $this->actingAs($user)
+        ->get(route('dashboard', ['current_team' => 'any-slug']))
+        ->assertRedirect(route('teams.create'));
+});
+
+test('create team page can be rendered for authenticated user', function (): void {
+    $user = User::factory()->withoutTeam()->create();
+
+    $this->actingAs($user)
+        ->get(route('teams.create'))
+        ->assertOk();
+});
+
+test('a team can be created from the create team page', function (): void {
+    $user = User::factory()->withoutTeam()->create();
+
+    $this->actingAs($user);
+
+    Livewire::test('pages::teams.create')
+        ->set('name', 'My First Team')
+        ->call('createTeam')
+        ->assertHasNoErrors()
+        ->assertRedirect();
+
+    expect($user->teams()->count())->toBe(1)
+        ->and($user->teams()->first()->name)->toBe('My First Team');
+});

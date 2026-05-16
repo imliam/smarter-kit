@@ -22,6 +22,10 @@ class EnsureTeamMembership
     {
         [$user, $team] = [$request->user(), $this->team($request)];
 
+        if ($user instanceof User && $user->teams()->doesntExist()) {
+            return to_route('teams.create');
+        }
+
         abort_if(! $user || ! $team instanceof Team || ! $user->belongsToTeam($team), 403);
 
         $this->ensureTeamMemberHasRequiredRole($user, $team, $minimumRole);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\Teams\CreateTeam;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserSocial;
@@ -18,6 +19,8 @@ use Throwable;
 
 class SocialLoginCallbackController extends Controller
 {
+    public function __construct(private readonly CreateTeam $createTeam) {}
+
     public function __invoke(string $service): RedirectResponse
     {
         abort_unless(in_array($service, config('auth.social_providers'), true), 404);
@@ -69,6 +72,8 @@ class SocialLoginCallbackController extends Controller
                 'password' => Str::password(32),
                 'email_verified_at' => now(),
             ]);
+
+            $this->createTeam->handle($user, $user->name."'s Team", isPersonal: true);
 
             event(new Registered($user));
         }

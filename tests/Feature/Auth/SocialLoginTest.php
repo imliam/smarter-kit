@@ -76,6 +76,23 @@ describe('callback', function (): void {
         Notification::assertSentTo($user, Welcome::class, fn ($n): bool => $n->provider === 'github');
     });
 
+    test('new social user gets a personal team created', function (): void {
+        Notification::fake();
+
+        Socialite::fake('github', makeSocialiteUser([
+            'id' => 'gh-new-team',
+            'name' => 'Team User',
+            'email' => 'teamuser@example.com',
+        ]));
+
+        $this->get(route('social-login.callback', 'github'));
+
+        $user = User::query()->where('email', 'teamuser@example.com')->first();
+        expect($user)->not->toBeNull()
+            ->and($user->teams()->count())->toBe(1)
+            ->and($user->teams()->first()->is_personal)->toBeTrue();
+    });
+
     test('existing user is logged in without creating duplicate social record', function (): void {
         Notification::fake();
 

@@ -94,4 +94,13 @@ class UserFactory extends Factory
             'two_factor_confirmed_at' => now(),
         ]);
     }
+
+    /** Indicate that the user should be created without a personal team. */
+    public function withoutTeam(): static
+    {
+        return $this->afterCreating(function (User $user): void {
+            $user->teams()->detach();
+            $user->update(['current_team_id' => null]);
+        });
+    }
 }

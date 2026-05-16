@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
         RedirectIfAuthenticated::redirectUsing(function (Request $request): string {
             /** @var User|null $user */
             $user = $request->user();
-            $team = $user?->currentTeam ?? $user?->personalTeam();
+            $team = $user !== null ? ($user->currentTeam ?? $user->personalTeam()) : null;
 
             if ($team) {
                 return route('dashboard', ['current_team' => $team->slug]);
