@@ -40,3 +40,7 @@ frankenphp-worker.php
 /storage/phpstan
 /tests/Browser/Screenshots
 **/caddy
+.agents/skills
+.cursor/skills
+.github/skills
+AGENTS.md
