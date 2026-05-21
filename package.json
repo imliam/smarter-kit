@@ -17,7 +17,7 @@
         "@eslint/js": "^10.0.1",
         "@laravel/vite-plugin-wayfinder": "^0.1.7",
         "@stylistic/eslint-plugin": "^5.10.0",
-        "@types/node": "^25.9.0",
+        "@types/node": "^25.9.1",
         "eslint": "^10.4.0",
         "eslint-config-prettier": "^10.1.8",
         "eslint-import-resolver-typescript": "^4.4.4",
@@ -37,8 +37,8 @@
         "prettier-plugin-blade": "^3.1.6",
         "tailwindcss": "^4.3.0",
         "typescript": "^6.0.3",
-        "vite": "^8.0.13",
-        "vitest": "^4.1.6"
+        "vite": "^8.0.14",
+        "vitest": "^4.1.7"
     },
     "optionalDependencies": {
         "@rollup/rollup-linux-x64-gnu": "4.60.2",
