@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Auth\SocialLoginCallbackController;
 use App\Http\Controllers\Auth\SocialLoginRedirectController;
+use App\Http\Controllers\RobotsTxtController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Middleware\EnsureTeamMembership;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
@@ -11,6 +13,9 @@ use Laravel\Fortify\Features;
 Route::view('/', 'welcome', [
     'canRegister' => Features::enabled(Features::registration()),
 ])->name('home');
+
+Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
+Route::get('/robots.txt', RobotsTxtController::class)->name('robots-txt');
 
 Route::prefix('{current_team}')
     ->middleware(['auth', 'verified', EnsureTeamMembership::class])
