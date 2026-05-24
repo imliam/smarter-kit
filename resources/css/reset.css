@@ -17,10 +17,18 @@ html {
     hanging-punctuation: first last;
     scroll-behavior: smooth;
     scroll-padding-top: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-neutral-500, gray) transparent;
+    accent-color: var(--color-primary-500, black);
 
     @media (prefers-reduced-motion: reduce) {
         scroll-behavior: auto;
     }
+}
+
+::selection {
+  color: var(--color-primary-100, white);
+  background-color: var(--color-primary-500, black);
 }
 
 body {
@@ -60,4 +68,9 @@ p {
 p {
     text-wrap: pretty;
     max-width: 75ch;
+}
+
+input,
+textarea {
+    caret-color: var(--color-primary-500, black);
 }
