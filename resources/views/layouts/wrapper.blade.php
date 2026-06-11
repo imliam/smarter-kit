@@ -11,6 +11,8 @@
         {{ filled($title ?? null) ? $title.' - '.config('app.name', 'Laravel') : config('app.name', 'Laravel') }}
     </title>
 
+    @stack('meta')
+
     {{-- Inline script to detect system dark mode preference and apply it immediately --}}
     <script>
         (function () {
