@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\SocialLoginCallbackController;
 use App\Http\Controllers\Auth\SocialLoginRedirectController;
 use App\Http\Controllers\RobotsTxtController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Middleware\EnsureTeamMembership;
+use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
@@ -32,3 +34,9 @@ Route::get('/login/{service}/callback', SocialLoginCallbackController::class)->n
 
 require __DIR__.'/web/settings.php';
 require __DIR__.'/web/well-known.php';
+
+$reservedArticlePaths = implode('|', array_map(preg_quote(...), Article::RESERVED_TOP_LEVEL_PATHS));
+
+Route::get('{path}', ArticleController::class)
+    ->where('path', "^(?!({$reservedArticlePaths})(/|$)).+")
+    ->name('articles.show');

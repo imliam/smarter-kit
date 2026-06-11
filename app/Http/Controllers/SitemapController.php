@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Sitemap\Sitemap;
@@ -30,6 +31,18 @@ class SitemapController extends Controller
                 ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
                 ->setLastModificationDate(now()),
         );
+
+        Article::query()
+            ->publiclyVisible()
+            ->orderBy('path')
+            ->each(function (Article $article) use ($sitemap): void {
+                $sitemap->add(
+                    Url::create($article->url())
+                        ->setPriority(0.8)
+                        ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+                        ->setLastModificationDate($article->updated_at ?? now()),
+                );
+            });
 
         return $sitemap;
     }
